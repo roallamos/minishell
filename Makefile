@@ -1,0 +1,46 @@
+BLACK		= \033[0;30m
+RED			= \033[0;31m
+GREEN		= \033[0;32m
+YELLOW		= \033[0;33m
+BLUE		= \033[0;34m
+RESET		= \033[0m
+
+CC 			= cc
+CFLAGS		= -Wall -Wextra -Werror -I/usr/include 
+LIBS	= -L./libft -lft -lreadline
+
+MANDATORY 	= src/main.c
+SRC 		= $(MANDATORY)
+OBJS 		= $(SRC:.c=.o)
+INCLS 		= -Iincludes
+
+NAME 		= minishell
+
+%.o: %.c
+	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLS)
+
+$(NAME): $(OBJS)
+	@echo "$(BLUE)<----compiling libft---->$(RESET)"
+	@(cd ./libft && make)
+	@echo "$(GREEN)<----libft compiled!---->$(RESET)"
+	@echo "$(YELLOW)****/compiling so_long\****$(RESET)"
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBS)
+	@echo "$(GREEN)****\$(NAME) compiled!/****$(RESET)"
+
+all: $(NAME)
+
+clean:
+	@(cd ./libft && make clean)
+	@rm -f $(OBJS) $(OBJS_BONUS)
+	@echo "$(RED)--->objects deleted<----$(RESET)"
+
+fclean: clean
+	@(cd ./libft && make fclean)
+	@rm -f $(NAME)
+	@echo "$(RED)---->$(NAME) deleted<----$(RESET)"
+
+re: fclean all
+
+bonus: all
+
+.PHONY: all clean fclean re bonus
