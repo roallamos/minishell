@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 14:12:44 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/12 18:01:06 by migumore         ###   ########.fr       */
+/*   Created: 2024/06/12 17:31:52 by migumore          #+#    #+#             */
+/*   Updated: 2024/06/12 17:59:15 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	main(int argc, char *argv[], char *envp[])
+static void	handler(int signal)
 {
-	t_data				data;
+	if (signal == SIGINT)
+	{
+		ft_putchar_fd('\n', STDOUT);
+		rl_on_new_line();
+		rl_replace_line("", 1);
+		rl_redisplay();
+	}
+}
 
-	(void)argv;
-	(void)envp;
-	signals();
-	if (argc > 1)
-	{
-		ft_putendl_fd("Only 1 argument required", STDERR);
-		return (EXIT_SUCCESS);
-	}
-	while (1)
-	{
-		data.input = readline(CYAN BOLD"minishell:~$"RESET);
-		add_history(data.input);
-		if (!data.input)
-		{
-			printf("exit\n");
-			return (EXIT_SUCCESS);
-		}
-		free(data.input);
-	}
-	return (0);
+void	signals(void)
+{
+	struct sigaction	sa;
+
+	sa.sa_handler = handler;
+	sigemptyset(&sa.sa_mask);
+	sigaction(SIGINT, &sa, &sa);
 }

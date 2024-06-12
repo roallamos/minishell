@@ -6,10 +6,10 @@ BLUE		= \033[0;34m
 RESET		= \033[0m
 
 CC 			= cc
-CFLAGS		= -Wall -Wextra -Werror -I/usr/include 
+CFLAGS		= -Wall -Wextra -Werror -I include 
 LIBS	= -L./libft -lft -lreadline
 
-MANDATORY 	= src/main.c
+MANDATORY 	= src/main.c src/signals.c \
 SRC 		= $(MANDATORY)
 OBJS 		= $(SRC:.c=.o)
 INCLS 		= -Iincludes

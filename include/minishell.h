@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/12 16:44:52 by migumore         ###   ########.fr       */
+/*   Updated: 2024/06/12 18:01:11 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct s_data
 	char	*input;
 }	t_data;
 
+void	signals(void);
 
 #endif // MINISHELL_H
 
