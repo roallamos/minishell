@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:12:44 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/13 17:18:27 by migumore         ###   ########.fr       */
+/*   Updated: 2024/06/13 18:20:38 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,14 @@ void	get_cmd_and_execute(t_data *data, char *envp[])
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_data	data;
+	char	*pwd;
 
 	(void)argv;
 	(void)envp;
 	signal(SIGINT, handler);
+//	pwd = getcwd(NULL, 0);
+//	printf("%s\n", pwd);
+//	free (pwd);
 	if (argc > 1)
 	{
 		ft_putendl_fd("Only 1 argument required", STDERR);
@@ -42,7 +46,7 @@ int	main(int argc, char *argv[], char *envp[])
 	}
 	while (1)
 	{
-		data.input = readline(CYAN BOLD"minishell:~$"RESET);
+		data.input = readline(CYAN BOLD"minishell:~$ "RESET);
 		add_history(data.input);
 		if (!data.input)
 		{
@@ -50,7 +54,6 @@ int	main(int argc, char *argv[], char *envp[])
 			return (EXIT_SUCCESS);
 		}
 		data.path_envp = ft_find_path(envp);
-		printf("perro\n");
 		data.path = ft_split(data.path_envp, ':');
 		data.pids = fork();
 		if (data.pids == 0)
