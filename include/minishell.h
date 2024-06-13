@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/12 18:01:11 by migumore         ###   ########.fr       */
+/*   Updated: 2024/06/13 16:55:17 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,27 @@
 
 typedef struct s_data
 {
-	char	*input;
+	char		*input;
+	char		*path_envp;
+	char		**path;
+	char		**args;
+	char		*cmd;
+	int			status;
+	int			cap;
+	int			size;
+	const char	*pos;
+	const char	*start;
+	char		quote;
+	pid_t		pids;
 }	t_data;
 
-void	signals(void);
+void	handler(int signal);
+char	*ft_find_path(char *envp[]);
+char	*ft_get_cmd(char **path, char *cmd);
+char	**ft_split_command(const char *command, t_data *data);
+void	write_error(char *msg, char *arg);
+void	ft_free_args(t_data *data);
+void	ft_free_path(t_data *data);
 
 #endif // MINISHELL_H
 

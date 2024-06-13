@@ -1,0 +1,51 @@
+readline: Reads a line of text from the user, with support for line editing and history.
+rl_clear_history: Clears the history of lines entered by the user.
+rl_on_new_line: Updates internal data structures to reflect that the user is on a new line.
+rl_replace_line: Replaces the current line buffer with a new string.
+rl_redisplay: Redisplays the current line with any changes.
+add_history: Adds the most recent line to the history list.
+printf: Prints formatted output to stdout.
+malloc: Allocates a specified number of bytes in memory.
+free: Deallocates previously allocated memory.
+write: Writes data from a buffer to a file descriptor.
+access: Checks the accessibility of a file.
+open: Opens a file and returns a file descriptor.
+read: Reads data from a file descriptor into a buffer.
+close: Closes an open file descriptor.
+fork: Creates a new process by duplicating the current process.
+wait: Waits for a child process to change state.
+waitpid: Waits for a specific child process to change state.
+wait3: Waits for a child process to change state, with resource usage information.
+wait4: Waits for a specific child process to change state, with resource usage information.
+signal: Sets a signal handler for a specific signal.
+sigaction: Examines or changes the action taken by a process on receipt of a specific signal.
+kill: Sends a signal to a process or a group of processes.
+exit: Terminates the calling process immediately. (BUILT-IN EXIT)
+getcwd: Gets the current working directory. (BUILT-IN PWD)
+chdir: Changes the current working directory. (BUILT-IN CD)
+stat: Retrieves information about a file.
+lstat: Like stat, but if the file is a symbolic link, it returns information about the link itself.
+fstat: Retrieves information about an open file descriptor.
+unlink: Deletes a name from the filesystem (removes a file).
+execve: Executes a program, replacing the current process.
+dup: Duplicates a file descriptor.
+dup2: Duplicates a file descriptor to a specified value.
+pipe: Creates a unidirectional data channel (pipe) for inter-process communication.
+opendir: Opens a directory stream.
+readdir: Reads a directory entry from a directory stream.
+closedir: Closes a directory stream.
+strerror: Returns a string describing the error code.
+perror: Prints a description of the last error encountered.
+isatty: Tests whether a file descriptor refers to a terminal.
+ttyname: Returns the pathname of the terminal associated with a file descriptor.
+ttyslot: Returns the index of the current user's terminal in the utmp file.
+ioctl: Performs device-specific input/output operations.
+getenv: Retrieves the value of an environment variable. (BUILT-IN ENV)
+tcsetattr: Sets the parameters associated with the terminal.
+tcgetattr: Gets the parameters associated with the terminal.
+tgetent: Loads a terminal entry from the termcap database.
+tgetflag: Gets the value of a boolean capability from the termcap database.
+tgetnum: Gets the value of a numeric capability from the termcap database.
+tgetstr: Gets the value of a string capability from the termcap database.
+tgoto: Computes a cursor addressing string.
+tputs: Outputs a string to the terminal, with padding.

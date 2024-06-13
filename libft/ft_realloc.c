@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 17:31:52 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/13 16:55:03 by migumore         ###   ########.fr       */
+/*   Created: 2024/03/02 00:21:16 by migumore          #+#    #+#             */
+/*   Updated: 2024/03/04 14:44:05 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "libft.h"
 
-void	handler(int signal)
+void	*ft_realloc(void *ptr, size_t original_size, size_t new_size)
 {
-	if (signal == SIGINT)
+	void	*new_ptr;
+
+	new_ptr = malloc(new_size);
+	if (!new_ptr)
+		return (NULL);
+	if (ptr)
 	{
-		ft_putchar_fd('\n', STDOUT);
-		rl_on_new_line();
-		rl_replace_line("", 1);
-		rl_redisplay();
+		ft_memcpy(new_ptr, ptr, original_size);
+		free(ptr);
 	}
+	return (new_ptr);
 }

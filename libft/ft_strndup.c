@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 17:31:52 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/13 16:55:03 by migumore         ###   ########.fr       */
+/*   Created: 2024/03/02 00:45:52 by migumore          #+#    #+#             */
+/*   Updated: 2024/03/04 15:24:17 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "libft.h"
 
-void	handler(int signal)
+char	*ft_strndup(const char *s, size_t n)
 {
-	if (signal == SIGINT)
-	{
-		ft_putchar_fd('\n', STDOUT);
-		rl_on_new_line();
-		rl_replace_line("", 1);
-		rl_redisplay();
-	}
+	size_t	len;
+	char	*new;
+
+	len = ft_strnlen(s, n);
+	new = (char *)malloc(sizeof(char) * (len + 1));
+	if (!new)
+		return (NULL);
+	new[len] = '\0';
+	return (ft_memcpy(new, s, len));
 }

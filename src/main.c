@@ -6,19 +6,35 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:12:44 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/12 18:01:06 by migumore         ###   ########.fr       */
+/*   Updated: 2024/06/13 17:18:27 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "../include/minishell.h"
+
+void	get_cmd_and_execute(t_data *data, char *envp[])
+{
+	data->args = ft_split_command(data->input, data);
+	data->cmd = ft_get_cmd(data->path, data->args[0]);
+	if (!data->cmd)
+	{
+		write_error("pipex: command not found: ", data->args[0]);
+		ft_free_args(data);
+		ft_free_path(data);
+		exit(127);
+	}
+	execve(data->cmd, data->args, envp);
+	perror("execve");
+	exit(1);
+}
 
 int	main(int argc, char *argv[], char *envp[])
 {
-	t_data				data;
+	t_data	data;
 
 	(void)argv;
 	(void)envp;
-	signals();
+	signal(SIGINT, handler);
 	if (argc > 1)
 	{
 		ft_putendl_fd("Only 1 argument required", STDERR);
@@ -33,6 +49,14 @@ int	main(int argc, char *argv[], char *envp[])
 			printf("exit\n");
 			return (EXIT_SUCCESS);
 		}
+		data.path_envp = ft_find_path(envp);
+		printf("perro\n");
+		data.path = ft_split(data.path_envp, ':');
+		data.pids = fork();
+		if (data.pids == 0)
+			get_cmd_and_execute(&data, envp);
+		else
+			waitpid(data.pids, &data.status, 0);
 		free(data.input);
 	}
 	return (0);

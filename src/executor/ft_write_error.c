@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   ft_write_error.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 17:31:52 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/13 16:55:03 by migumore         ###   ########.fr       */
+/*   Created: 2024/03/25 15:01:27 by migumore          #+#    #+#             */
+/*   Updated: 2024/06/13 16:28:29 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "../include/minishell.h"
 
-void	handler(int signal)
+void	write_error(char *msg, char *arg)
 {
-	if (signal == SIGINT)
-	{
-		ft_putchar_fd('\n', STDOUT);
-		rl_on_new_line();
-		rl_replace_line("", 1);
-		rl_redisplay();
-	}
+	ft_putstr_fd(msg, STDERR_FILENO);
+	ft_putendl_fd(arg, STDERR_FILENO);
 }

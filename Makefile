@@ -6,13 +6,19 @@ BLUE		= \033[0;34m
 RESET		= \033[0m
 
 CC 			= cc
-CFLAGS		= -Wall -Wextra -Werror -I include 
-LIBS	= -L./libft -lft -lreadline
+CFLAGS		= -Wall -Wextra -Werror -I include
+LIBS		= -L./libft -lft -lreadline
 
-MANDATORY 	= src/main.c src/signals.c \
-SRC 		= $(MANDATORY)
+MANDATORY 	= src/main.c \
+			src/signals.c	
+EXECUTOR	= src/executor/ft_find_path.c \
+			src/executor/ft_free.c \
+			src/executor/ft_get_cmd.c \
+			src/executor/ft_split_command.c \
+			src/executor/ft_write_error.c
+SRC 		= $(MANDATORY)$(EXECUTOR)
 OBJS 		= $(SRC:.c=.o)
-INCLS 		= -Iincludes
+INCLS 		= -I include
 
 NAME 		= minishell
 
@@ -23,7 +29,7 @@ $(NAME): $(OBJS)
 	@echo "$(BLUE)<----compiling libft---->$(RESET)"
 	@(cd ./libft && make)
 	@echo "$(GREEN)<----libft compiled!---->$(RESET)"
-	@echo "$(YELLOW)****/compiling so_long\****$(RESET)"
+	@echo "$(YELLOW)****/compiling $(NAME)\****$(RESET)"
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBS)
 	@echo "$(GREEN)****\$(NAME) compiled!/****$(RESET)"
 

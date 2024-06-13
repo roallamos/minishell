@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid>       +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 10:05:36 by rodralva          #+#    #+#             */
-/*   Updated: 2024/01/30 14:10:01 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/13 17:23:14 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ char	**ft_split(char const *s, char c)
 	char	*w_len;
 	char	**splt;
 
+	if (!s)
+		return (NULL);
 	w = ft_wordcount(s, c);
 	i = 0;
 	w_len = (char *)s;
@@ -86,10 +88,9 @@ char	**ft_split(char const *s, char c)
 		splt[i] = ft_calloc(ft_length(w_len, c) + 1, 1);
 		if (splt[i] == 0)
 			return (ft_free(splt));
-		ft_strlcpy(splt[i], w_len, ft_length(w_len, c) + 1);
+		ft_strlcpy(splt[i++], w_len, ft_length(w_len, c) + 1);
 		while (*w_len && *w_len != c)
 			w_len++;
-		i++;
 	}
 	return (splt);
 }
