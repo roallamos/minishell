@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/13 18:15:25 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/19 19:24:47 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct s_data
 	char		**path;
 	char		**args;
 	char		*cmd;
+	char		**envp;
 	int			status;
 	int			cap;
 	int			size;
@@ -109,6 +110,7 @@ char	**ft_split_command(const char *command, t_data *data);
 void	write_error(char *msg, char *arg);
 void	ft_free_args(t_data *data);
 void	ft_free_path(t_data *data);
+void	get_envp_value(t_data *data, char *s, int pos);
+void    parse(t_data *data);
 
 #endif // MINISHELL_H
-

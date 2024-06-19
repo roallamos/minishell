@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_command.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 23:47:13 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/13 16:27:05 by migumore         ###   ########.fr       */
+/*   Updated: 2024/06/19 18:23:49 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,20 @@ static void	process_quotes(t_data *data)
 	while (*data->pos && *data->pos != data->quote)
 		data->pos++;
 }
+static int	proces_hashtag(t_data *data)
+{
+		while (*data->pos)
+			data->pos++;
+		data->args[data->size] = ft_calloc(1, 8);
+		return (0);
+}
 
 static int	process(t_data *data)
 {
 	data->start = data->pos;
-	if (*data->pos == '"' || *data->pos == '\'')
+	if (*data->pos == '#')
+		return (proces_hashtag(data));
+	else if (*data->pos == '"' || *data->pos == '\'')
 		process_quotes(data);
 	else
 	{
@@ -32,8 +41,7 @@ static int	process(t_data *data)
 	}
 	if (data->size >= data->cap - 1)
 	{
-		data->cap *= 2;
-		data->args = (char **)ft_realloc(data->args, data->size, data->cap);
+		data->args = (char **)ft_realloc(data->args, data->size, data->cap * 2);
 		if (!data->args)
 			return (1);
 	}

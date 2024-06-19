@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:12:44 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/13 18:20:38 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/19 19:38:47 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 void	get_cmd_and_execute(t_data *data, char *envp[])
 {
 	data->args = ft_split_command(data->input, data);
+	parse(data);
 	data->cmd = ft_get_cmd(data->path, data->args[0]);
 	if (!data->cmd)
 	{
-		write_error("pipex: command not found: ", data->args[0]);
+		write_error("minishell: command not found: ", data->args[0]);
 		ft_free_args(data);
 		ft_free_path(data);
 		exit(127);
@@ -31,10 +32,10 @@ void	get_cmd_and_execute(t_data *data, char *envp[])
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_data	data;
-	char	*pwd;
+//	char	*pwd;
 
 	(void)argv;
-	(void)envp;
+	(void)envp; 
 	signal(SIGINT, handler);
 //	pwd = getcwd(NULL, 0);
 //	printf("%s\n", pwd);
@@ -53,6 +54,7 @@ int	main(int argc, char *argv[], char *envp[])
 			printf("exit\n");
 			return (EXIT_SUCCESS);
 		}
+		data.envp = envp;
 		data.path_envp = ft_find_path(envp);
 		data.path = ft_split(data.path_envp, ':');
 		data.pids = fork();

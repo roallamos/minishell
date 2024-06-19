@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:45:40 by rodralva          #+#    #+#             */
-/*   Updated: 2024/06/13 16:37:51 by migumore         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:01:36 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int		ft_isalpha(int a);
 int		ft_isdigit(int a);
 int		ft_isascii(int a);
 int		ft_isprint(int a);
+int		ft_isspace(int a);
 int		ft_tolower(int a);
 int		ft_toupper(int a);
 char	*get_next_line(int fd);
