@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:24:43 by rodralva          #+#    #+#             */
-/*   Updated: 2024/06/20 18:34:49 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/20 18:37:02 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void    export(t_data *data, int pos)
         data->envp[size] = ft_strndup(data->args[pos + 1], ft_strlen(data->args[pos + 1]));
         data->envp[size +  1] = NULL;
     }
-    i = 0;
     printf("size antes %i\n", size);
     size = envp_size(data->envp);
     printf("size despues %i\n", size);
