@@ -17,7 +17,8 @@ EXECUTOR	= src/executor/ft_find_path.c \
 			src/executor/ft_split_command.c \
 			src/executor/ft_write_error.c \
 			src/parse.c \
-			src/executor/get_envp_value.c
+			src/executor/get_envp_value.c \
+			src/executor/export.c
 SRC 		= $(MANDATORY)$(EXECUTOR)
 OBJS 		= $(SRC:.c=.o)
 INCLS 		= -I include

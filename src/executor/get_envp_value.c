@@ -6,20 +6,11 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:17:20 by rodralva          #+#    #+#             */
-/*   Updated: 2024/06/19 19:26:32 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:31:52 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-/*static int  length_to_char(const char *str, char c)
-{
-    int i;
-
-    while(str[i] && str[i] == c)
-        i++;
-    return (i);
-}*/
 
 void    get_envp_value(t_data *data, char *s, int pos)
 {

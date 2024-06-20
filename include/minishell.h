@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/19 19:24:47 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/20 18:33:30 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,8 @@ void	ft_free_args(t_data *data);
 void	ft_free_path(t_data *data);
 void	get_envp_value(t_data *data, char *s, int pos);
 void    parse(t_data *data);
+void    export(t_data *data, int pos);
+int 	envp_size(char **arr);
+
 
 #endif // MINISHELL_H
