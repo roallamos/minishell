@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/21 15:48:07 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/21 19:17:04 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,6 @@ void	export(t_data *data, int pos);
 int		env_size(char **arr);
 void	dup_env(t_data *data, char **env);
 void	get_cmd_and_execute(t_data *data);
+void	print_env(t_data *data);
 
 #endif // MINISHELL_H

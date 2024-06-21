@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/06/21 16:11:17 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/21 19:30:51 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	parse(t_data *data)
 			expand_var(data, i);
 		else if (!ft_strcmp(data->args[i], "export"))
 			export(data, i);
+		else if (!ft_strcmp(data->args[i], "env"))
+			print_env(data);
 		i++;
 	}
 }

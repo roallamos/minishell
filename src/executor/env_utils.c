@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:17:20 by rodralva          #+#    #+#             */
-/*   Updated: 2024/06/21 16:11:34 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/21 19:25:18 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	dup_env(t_data *data, char **env)
 
 	i = 0;
 	size = env_size(env);
-	data->env = ft_calloc(sizeof(char *), size);
+	data->env = ft_calloc(sizeof(char *), size + 1);
 	if (!data->env)
 		return ;
 	while (i < size)
@@ -38,4 +38,15 @@ void	dup_env(t_data *data, char **env)
 		i++;
 	}
 	data->env[i] = NULL;
+}
+void	print_env(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->env[i])
+	{
+		printf("%s\n", data->env[i]);
+		i++;
+	}
 }
