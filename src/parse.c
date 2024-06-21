@@ -6,23 +6,32 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/06/20 17:39:46 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/21 16:11:17 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include <minishell.h>
 
-void    parse(t_data *data)
+void	expand_var(t_data *data, int pos)
 {
-    int i;
+	char	*temp;
 
-    i = 0;
-    while (data->args[i])
-    {
-        if (data->args[i][0] == '$')
-            get_envp_value(data, &data->args[i][0], i);
-        else if (!ft_strcmp(data->args[i], "export"))
-            export(data, i);
-        i++;
-    }
+	temp = data->args[pos];
+	data->args[pos] = getenv(&data->args[pos][1]);
+	free(temp);
+}
+
+void	parse(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->args[i])
+	{
+		if (data->args[i][0] == '$')
+			expand_var(data, i);
+		else if (!ft_strcmp(data->args[i], "export"))
+			export(data, i);
+		i++;
+	}
 }

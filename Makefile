@@ -14,11 +14,13 @@ MANDATORY 	= src/main.c \
 EXECUTOR	= src/executor/ft_find_path.c \
 			src/executor/ft_free.c \
 			src/executor/ft_get_cmd.c \
-			src/executor/ft_split_command.c \
+			src/executor/ft_split_input.c \
 			src/executor/ft_write_error.c \
+			src/executor/execute_cmd.c \
 			src/parse.c \
-			src/executor/get_envp_value.c \
-			src/executor/export.c
+			src/executor/env_utils.c \
+			src/executor/export.c \
+			src/read/read_input.c
 SRC 		= $(MANDATORY)$(EXECUTOR)
 OBJS 		= $(SRC:.c=.o)
 INCLS 		= -I include

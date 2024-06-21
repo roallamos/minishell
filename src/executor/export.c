@@ -6,39 +6,23 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:24:43 by rodralva          #+#    #+#             */
-/*   Updated: 2024/06/20 18:37:02 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/21 15:33:33 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include <minishell.h>
 
-int  envp_size(char **arr)
+void	export(t_data *data, int pos)
 {
-    int i;
+	int	size;
 
-    i = 0;
-    while(arr[i])
-        i++;
-    return(i);
-}
-
-void    export(t_data *data, int pos)
-{
-    int size;
-    
-    size = envp_size(data->envp);
-    if (data->args[pos + 1])
-    {
-        data->envp = ft_realloc(data->envp, size * sizeof(char *), (size + 1) * sizeof(char *));
-        data->envp[size] = ft_strndup(data->args[pos + 1], ft_strlen(data->args[pos + 1]));
-        data->envp[size +  1] = NULL;
-    }
-    printf("size antes %i\n", size);
-    size = envp_size(data->envp);
-    printf("size despues %i\n", size);
-   /* while(data->envp[i])
+	size = env_size(data->env);
+	if (data->args[pos + 1])
 	{
-		printf("despues %s\n", data->envp[i]);
-		i++;
-	}*/
+		data->env = ft_realloc(data->env, size * sizeof(char *),
+				(size + 1) * sizeof(char *));
+		data->env[size] = ft_strndup(data->args[pos + 1],
+				ft_strlen(data->args[pos + 1]));
+		data->env[size + 1] = NULL;
+	}
 }

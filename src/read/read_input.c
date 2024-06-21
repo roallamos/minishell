@@ -3,18 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/12 14:26:16 by migumore         ###   ########.fr       */
+/*   Updated: 2024/06/21 16:23:33 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include <minishell.h>
 
-void	read_input()
+void	read_input(t_data *data)
 {
-	input_file();
-	input_string_c();
-	input_terminal();
+	while (1)
+	{
+		data->input = readline(CYAN BOLD"minishell:~$ "RESET);
+		add_history(data->input);
+		if (!data->input)
+		{
+			printf("exit\n");
+			exit(EXIT_SUCCESS);
+		}
+		data->args = ft_split_input(data->input, data);
+		parse(data);
+		data->pids = fork();
+		if (data->pids == 0)
+			get_cmd_and_execute(data);
+		else
+			waitpid(data->pids, &data->status, 0);
+		free(data->input);
+	}
 }

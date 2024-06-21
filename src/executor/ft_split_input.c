@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_command.c                                 :+:      :+:    :+:   */
+/*   ft_split_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 23:47:13 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/19 18:23:49 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/21 17:01:50 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include <minishell.h>
 
 static void	process_quotes(t_data *data)
 {
 	data->quote = *data->pos++;
 	data->start = data->pos;
-	while (*data->pos && *data->pos != data->quote)
+	while (*data->pos && (*data->pos != data->quote
+		|| *data->start == data->quote))
+	{
+		if (*data->start == data->quote)
+			data->start++;
 		data->pos++;
+	}
 }
+
 static int	proces_hashtag(t_data *data)
 {
-		while (*data->pos)
-			data->pos++;
-		data->args[data->size] = ft_calloc(1, 8);
-		return (0);
+	while (*data->pos)
+		data->pos++;
+	data->args[data->size] = ft_calloc(1, 8);
+	return (0);
 }
 
 static int	process(t_data *data)
@@ -54,7 +60,7 @@ static int	process(t_data *data)
 	return (0);
 }
 
-char	**ft_split_command(const char *command, t_data *data)
+char	**ft_split_input(const char *command, t_data *data)
 {
 	data->cap = 10;
 	data->size = 0;

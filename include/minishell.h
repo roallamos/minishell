@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/20 18:33:30 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/21 15:48:07 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,11 @@
 typedef struct s_data
 {
 	char		*input;
-	char		*path_envp;
+	char		*path_in_env;
 	char		**path;
 	char		**args;
 	char		*cmd;
-	char		**envp;
+	char		**env;
 	int			status;
 	int			cap;
 	int			size;
@@ -106,14 +106,16 @@ typedef struct s_data
 void	handler(int signal);
 char	*ft_find_path(char *envp[]);
 char	*ft_get_cmd(char **path, char *cmd);
-char	**ft_split_command(const char *command, t_data *data);
+char	**ft_split_input(const char *command, t_data *data);
 void	write_error(char *msg, char *arg);
 void	ft_free_args(t_data *data);
 void	ft_free_path(t_data *data);
-void	get_envp_value(t_data *data, char *s, int pos);
-void    parse(t_data *data);
-void    export(t_data *data, int pos);
-int 	envp_size(char **arr);
-
+void	get_env_value(t_data *data, char *s, int pos);
+void	read_input(t_data *data);
+void	parse(t_data *data);
+void	export(t_data *data, int pos);
+int		env_size(char **arr);
+void	dup_env(t_data *data, char **env);
+void	get_cmd_and_execute(t_data *data);
 
 #endif // MINISHELL_H

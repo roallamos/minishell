@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:34:45 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/13 16:27:12 by migumore         ###   ########.fr       */
+/*   Updated: 2024/06/21 15:34:21 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include <minishell.h>
 
 char	*ft_get_cmd(char **path, char *cmd)
 {

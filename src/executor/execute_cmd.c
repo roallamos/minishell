@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_envp_value.c                                   :+:      :+:    :+:   */
+/*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 18:17:20 by rodralva          #+#    #+#             */
-/*   Updated: 2024/06/20 16:31:52 by rodralva         ###   ########.fr       */
+/*   Created: 2024/06/21 15:21:41 by rodralva          #+#    #+#             */
+/*   Updated: 2024/06/21 15:22:12 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include <minishell.h>
 
-void    get_envp_value(t_data *data, char *s, int pos)
+void	get_cmd_and_execute(t_data *data)
 {
-    int i;
-    int len;
-    int len_e;
-
-    i = 0;
-    len = ft_strlen(s) - 1;
-    len_e = len + 1;
-    while (data->envp[i] && ft_strncmp(data->envp[i], s + 1, len))
-        i++;;
-    len = ft_strlen(data->envp[i]) - len;
-    free(s);
-    data->args[pos] = ft_strndup(&data->envp[i][len_e], len);
+	data->cmd = ft_get_cmd(data->path, data->args[0]);
+	if (!data->cmd)
+	{
+		write_error("minishell: command not found: ", data->args[0]);
+		ft_free_args(data);
+		ft_free_path(data);
+		exit(127);
+	}
+	execve(data->cmd, data->args, data->env);
+	perror("execve");
+	exit(1);
 }
