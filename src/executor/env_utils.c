@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:17:20 by rodralva          #+#    #+#             */
-/*   Updated: 2024/06/21 19:25:18 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/21 19:51:57 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	dup_env(t_data *data, char **env)
 		data->env[i] = ft_strdup(env[i]);
 		i++;
 	}
-	data->env[i] = NULL;
 }
 void	print_env(t_data *data)
 {

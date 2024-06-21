@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/21 19:23:25 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/21 20:16:25 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	read_input(t_data *data)
 		{
 			printf("exit\n");
 			ft_free_path(data);
+			ft_free_env(data);
+			ft_free_args(data);
+			rl_clear_history();
 			exit(EXIT_SUCCESS);
 		}
 		data->args = ft_split_input(data->input, data);

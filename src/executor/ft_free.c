@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:50:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/21 19:23:32 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/21 19:40:05 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,17 @@ void	ft_free_path(t_data *data)
 			free(data->path[i++]);
 		free(data->path);
 	}
+}
+void	ft_free_env(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while(data->env[i])
+	{
+		free(data->env[i]);
+		i++;
+	}
+	free(data->env);
 }
 

@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/21 19:17:04 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/21 19:40:50 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ char	**ft_split_input(const char *command, t_data *data);
 void	write_error(char *msg, char *arg);
 void	ft_free_args(t_data *data);
 void	ft_free_path(t_data *data);
+void	ft_free_env(t_data *data);
 void	get_env_value(t_data *data, char *s, int pos);
 void	read_input(t_data *data);
 void	parse(t_data *data);
