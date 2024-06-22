@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:54:45 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/22 20:05:37 by migumore         ###   ########.fr       */
+/*   Updated: 2024/06/22 20:16:19 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	do_cd(t_data *data, int pos)
 	{
 		user = getenv("USER");
 		home = ft_strjoin("/home/", user);
-		res = chdir("");
+		res = chdir(home);
 		free(home);
 	}
 	if (res == -1)

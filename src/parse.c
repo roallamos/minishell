@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/06/22 19:56:26 by migumore         ###   ########.fr       */
+/*   Updated: 2024/06/22 20:15:41 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ void	parse(t_data *data)
 	while (data->args[i])
 	{
 		if (!data->args[i][0])
-		{
-			printf("perro\n");
 			return ;
-		}
 		else if (data->args[i][0] == '$')
 			expand_var(data, i);
 		else if (!ft_strcmp(data->args[i], "export"))
