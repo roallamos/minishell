@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 23:47:13 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/21 18:13:40 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/22 16:08:19 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,11 @@ char	**ft_split_input(const char *command, t_data *data)
 		while (*data->pos && *data->pos == ' ')
 			data->pos++;
 		if (*data->pos == '\0')
+		{
+			data->args[data->size] = ft_calloc(1, 1);
+			data->size++;
 			break ;
+		}
 		if (process(data) == 1)
 			return (NULL);
 	}

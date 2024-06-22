@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid>       +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 17:53:24 by rodralva          #+#    #+#             */
-/*   Updated: 2024/01/24 18:48:28 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/22 15:59:32 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

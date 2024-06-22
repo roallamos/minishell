@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/06/21 19:30:51 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/22 16:12:43 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,12 @@ void	parse(t_data *data)
 	i = 0;
 	while (data->args[i])
 	{
-		if (data->args[i][0] == '$')
+		if (data->args[i][0] == '\0')
+		{
+			printf("perro\n");
+			return ;
+		}
+		else if (data->args[i][0] == '$')
 			expand_var(data, i);
 		else if (!ft_strcmp(data->args[i], "export"))
 			export(data, i);
