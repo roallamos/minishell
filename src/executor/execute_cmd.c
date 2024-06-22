@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 15:21:41 by rodralva          #+#    #+#             */
-/*   Updated: 2024/06/22 15:08:01 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/22 15:34:19 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	get_cmd_and_execute(t_data *data)
 {
+	rl_clear_history();
 	data->cmd = ft_get_cmd(data->path, data->args[0]);
 	if (!data->cmd)
 	{
@@ -21,10 +22,9 @@ void	get_cmd_and_execute(t_data *data)
 		ft_free_args(data);
 		ft_free_path(data);
 		ft_free_env(data);
-		rl_clear_history();
 		exit(127);
 	}
-	rl_clear_history();
+	ft_free_env(data);
 	execve(data->cmd, data->args, data->env);
 	perror("execve");
 	exit(1);

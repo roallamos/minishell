@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/22 15:00:08 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/22 15:40:23 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	read_input(t_data *data)
 			rl_clear_history();
 			exit(EXIT_SUCCESS);
 		}
-		add_history(data->input);
+		if (*data->input)
+			add_history(data->input);
 		data->args = ft_split_input(data->input, data);
 		parse(data);
 		data->pids = fork();
