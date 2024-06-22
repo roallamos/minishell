@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 15:21:41 by rodralva          #+#    #+#             */
-/*   Updated: 2024/06/22 15:53:43 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/22 18:16:12 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	get_cmd_and_execute(t_data *data)
 		ft_free_env(data);
 		exit(127);
 	}
-	ft_free_env(data);
 	execve(data->cmd, data->args, data->env);
 	perror("execve");
 	exit(1);

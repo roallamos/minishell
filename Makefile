@@ -20,7 +20,11 @@ EXECUTOR	= src/executor/ft_find_path.c \
 			src/parse.c \
 			src/executor/env_utils.c \
 			src/executor/export.c \
-			src/read/read_input.c
+			src/read/read_input.c \
+			src/executor/ft_pwd.c \
+			src/executor/set_prompt.c \
+			src/executor/do_exit.c \
+			src/executor/do_cd.c
 SRC 		= $(MANDATORY)$(EXECUTOR)
 OBJS 		= $(SRC:.c=.o)
 INCLS 		= -I include

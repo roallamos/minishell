@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/21 19:40:50 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/22 19:58:38 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@
 # define STDOUT STDOUT_FILENO
 # define STDERR STDERR_FILENO
 
+# define HOSTNAME_MAX_LEN 256
+
 // Macro definition for text colors
 # define RED     "\033[0;31m"
 # define GREEN   "\033[0;32m"
@@ -94,6 +96,8 @@ typedef struct s_data
 	char		**args;
 	char		*cmd;
 	char		**env;
+	char		*pwd;
+	char		*prompt;
 	int			status;
 	int			cap;
 	int			size;
@@ -111,7 +115,6 @@ void	write_error(char *msg, char *arg);
 void	ft_free_args(t_data *data);
 void	ft_free_path(t_data *data);
 void	ft_free_env(t_data *data);
-void	get_env_value(t_data *data, char *s, int pos);
 void	read_input(t_data *data);
 void	parse(t_data *data);
 void	export(t_data *data, int pos);
@@ -119,5 +122,9 @@ int		env_size(char **arr);
 void	dup_env(t_data *data, char **env);
 void	get_cmd_and_execute(t_data *data);
 void	print_env(t_data *data);
+void	ft_pwd(t_data *data);
+void	set_prompt(t_data *data);
+void	do_exit(t_data *data);
+void	do_cd(t_data *data, int pos);
 
 #endif // MINISHELL_H

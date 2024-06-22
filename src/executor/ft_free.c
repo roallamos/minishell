@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:50:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/22 15:37:56 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/22 19:38:49 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ void	ft_free_args(t_data *data)
 		while (data->args[i])
 		{
 			free(data->args[i]);
+			data->args[i] = NULL;
 			i++;
 		}
 		free(data->args);
+		data->args = NULL;
 	}
 	if (data->cmd)
 		free(data->cmd);
@@ -42,16 +44,20 @@ void	ft_free_path(t_data *data)
 		free(data->path);
 	}
 }
+
 void	ft_free_env(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	while(data->env[i])
+	if (data->env)
 	{
-		free(data->env[i]);
-		i++;
+		while (data->env[i])
+		{
+			free(data->env[i]);
+			i++;
+		}
+		free(data->env);
 	}
-	free(data->env);
 }
 

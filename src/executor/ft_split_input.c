@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 23:47:13 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/22 16:08:19 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/22 18:12:43 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,11 @@ char	**ft_split_input(const char *command, t_data *data)
 			data->pos++;
 		if (*data->pos == '\0')
 		{
-			data->args[data->size] = ft_calloc(1, 1);
-			data->size++;
+			if (data->size == 0)
+			{
+				data->args[data->size] = ft_calloc(1, 1);
+				data->size++;
+			}
 			break ;
 		}
 		if (process(data) == 1)

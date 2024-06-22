@@ -1,52 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_utils.c                                        :+:      :+:    :+:   */
+/*   do_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 18:17:20 by rodralva          #+#    #+#             */
-/*   Updated: 2024/06/22 17:22:44 by migumore         ###   ########.fr       */
+/*   Created: 2024/06/22 19:54:45 by migumore          #+#    #+#             */
+/*   Updated: 2024/06/22 20:05:37 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	env_size(char **arr)
+void	do_cd(t_data *data, int pos)
 {
-	int	i;
+	int		res;
+	char	*home;
+	char	*user;
 
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
-}
-
-void	dup_env(t_data *data, char **env)
-{
-	int	i;
-	int	size;
-
-	i = 0;
-	size = env_size(env);
-	data->env = ft_calloc(sizeof(char *), size + 1);
-	if (!data->env)
-		return ;
-	while (i < size)
+	if (data->args[pos + 1] && (*data->args[pos + 1] != '~'))
+		res = chdir(data->args[pos + 1]);
+	else
 	{
-		data->env[i] = ft_strdup(env[i]);
-		i++;
+		user = getenv("USER");
+		home = ft_strjoin("/home/", user);
+		res = chdir("");
+		free(home);
 	}
-}
-
-void	print_env(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (data->env[i])
-	{
-		printf("%s\n", data->env[i]);
-		i++;
-	}
+	if (res == -1)
+		perror("cd");
 }

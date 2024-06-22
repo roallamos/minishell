@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/06/22 16:12:43 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/22 19:56:26 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	parse(t_data *data)
 	i = 0;
 	while (data->args[i])
 	{
-		if (data->args[i][0] == '\0')
+		if (!data->args[i][0])
 		{
 			printf("perro\n");
 			return ;
@@ -39,6 +39,12 @@ void	parse(t_data *data)
 			export(data, i);
 		else if (!ft_strcmp(data->args[i], "env"))
 			print_env(data);
+		else if (!ft_strcmp(data->args[i], "exit"))
+			do_exit(data);
+		else if (!ft_strcmp(data->args[i], "pwd"))
+			printf("%s\n", getcwd(NULL, 0));
+		else if (!ft_strcmp(data->args[i], "cd"))
+			do_cd(data, i);
 		i++;
 	}
 }
