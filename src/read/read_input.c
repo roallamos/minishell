@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/22 14:37:35 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/22 15:00:08 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	read_input(t_data *data)
 	while (1)
 	{
 		data->input = readline(CYAN BOLD"minishell:~$ "RESET);
-		
 		if (!data->input)
 		{
 			printf("exit\n");
