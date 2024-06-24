@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:50:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/22 19:38:49 by migumore         ###   ########.fr       */
+/*   Updated: 2024/06/24 18:44:04 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,22 @@ void	ft_free_env(t_data *data)
 		}
 		free(data->env);
 	}
+}
+
+void	ft_free_cmds_n_limiter_n_pids(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	if (data->commands)
+	{
+		while (data->commands[i])
+			free(data->commands[i++]);
+		free(data->commands);
+	}
+	if (data->limiter)
+		free(data->limiter);
+	// if (data->pids)
+	// 	free(data->pids);
 }
 

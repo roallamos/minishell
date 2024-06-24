@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/22 19:58:38 by migumore         ###   ########.fr       */
+/*   Updated: 2024/06/24 18:43:09 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ typedef struct s_data
 	char		*input;
 	char		*path_in_env;
 	char		**path;
+	char		**commands;
+	int			cmd_pos;
 	char		**args;
 	char		*cmd;
 	char		**env;
@@ -105,6 +107,13 @@ typedef struct s_data
 	const char	*start;
 	char		quote;
 	pid_t		pids;
+	int			num_commands;
+	char		*limiter;
+	char		*infile;
+	char		*outfile;
+	int			fd_infile;
+	int			fd_outfile;
+	int			pipefd[2];
 }	t_data;
 
 void	handler(int signal);
@@ -115,6 +124,7 @@ void	write_error(char *msg, char *arg);
 void	ft_free_args(t_data *data);
 void	ft_free_path(t_data *data);
 void	ft_free_env(t_data *data);
+void	ft_free_cmds_n_limiter_n_pids(t_data *data);
 void	read_input(t_data *data);
 void	parse(t_data *data);
 void	export(t_data *data, int pos);

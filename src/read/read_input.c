@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/22 19:25:18 by migumore         ###   ########.fr       */
+/*   Updated: 2024/06/24 19:00:53 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	read_input(t_data *data)
 			do_exit(data);
 		if (*data->input)
 			add_history(data->input);
-		data->args = ft_split_input(data->input, data);
+		data->commands = ft_split(data->input, '|');
 		parse(data);
 		data->pids = fork();
 		if (data->pids == 0)

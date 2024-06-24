@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 15:21:41 by rodralva          #+#    #+#             */
-/*   Updated: 2024/06/22 18:16:12 by migumore         ###   ########.fr       */
+/*   Updated: 2024/06/24 19:00:22 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	get_cmd_and_execute(t_data *data)
 {
 	rl_clear_history();
+	data->args = ft_split_input(data->commands[0], data);
 	data->cmd = ft_get_cmd(data->path, data->args[0]);
 	if (!data->cmd)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:24:43 by rodralva          #+#    #+#             */
-/*   Updated: 2024/06/21 15:33:33 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/24 19:25:10 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	export(t_data *data, int pos)
 	int	size;
 
 	size = env_size(data->env);
-	if (data->args[pos + 1])
+	if (data->commands[pos + 1])
 	{
 		data->env = ft_realloc(data->env, size * sizeof(char *),
 				(size + 1) * sizeof(char *));
