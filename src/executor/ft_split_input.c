@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 23:47:13 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/24 18:35:55 by migumore         ###   ########.fr       */
+/*   Updated: 2024/06/24 20:04:18 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	**ft_split_input(const char *command, t_data *data)
 	data->pos = command;
 	while (1)
 	{
-		while (*data->pos && *data->pos == ' ')
+		while (*data->pos && ft_isspace(*data->pos))
 			data->pos++;
 		if (*data->pos == '\0')
 		{

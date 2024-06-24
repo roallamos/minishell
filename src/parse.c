@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/06/24 18:41:56 by migumore         ###   ########.fr       */
+/*   Updated: 2024/06/24 21:18:30 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	parse(t_data *data)
 		else if (data->commands[i][0] == '$')
 			expand_var(data, i);
 		else
-			check_builtin(data, i);
+			check_builtin(data, i); //aqui hay un segfault tambien
 		i++;
 	}
 	data->cmd_pos = i;

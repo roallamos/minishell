@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:54:45 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/24 19:24:48 by migumore         ###   ########.fr       */
+/*   Updated: 2024/06/24 19:43:30 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	do_cd(t_data *data, int pos)
 	char	*home;
 	char	*user;
 
-	if (data->commands[pos + 1] && (*data->commands[pos + 1] != '~'))
-		res = chdir(data->commands[pos + 1]);
+	if (data->args[pos + 1] && (*data->args[pos + 1] != '~'))
+		res = chdir(data->args[pos + 1]);
 	else
 	{
 		user = getenv("USER");

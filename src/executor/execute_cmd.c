@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 15:21:41 by rodralva          #+#    #+#             */
-/*   Updated: 2024/06/24 19:00:22 by migumore         ###   ########.fr       */
+/*   Updated: 2024/06/24 20:44:53 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
