@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/06/24 21:18:30 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:23:42 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ void	parse(t_data *data)
 	int	i;
 
 	i = 0;
+	//check_tokens(data);
 	while (data->commands[i])
 	{
+		
 		if (!data->commands[i][0])
 			return ;
 		else if (data->commands[i][0] == '$')
