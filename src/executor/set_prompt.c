@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 17:25:46 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/25 17:09:23 by migumore         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:26:13 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	set_prompt(t_data *data)
 	user = getenv("USER");
 	if (data->prompt)
 		free(data->prompt);
-	data->prompt = ft_strjoin(BOLD_CYAN, user);
+	data->prompt = ft_strjoin(BOLD_GREEN, user);
 	data->prompt = ft_strjoin_free(data->prompt, "@");
 	if (!data->prompt)
 		return ;
@@ -115,7 +115,7 @@ void	set_prompt(t_data *data)
 	if (!data->prompt)
 		return ;
 	current_dir = put_tilde(data, user);
-	data->prompt = ft_strjoin_free(data->prompt, BOLD_BLUE);
+	data->prompt = ft_strjoin_free(data->prompt, BOLD_YELLOW);
 	data->prompt = ft_strjoin_free(data->prompt, current_dir);
 	free(current_dir);
 	if (!data->prompt)
