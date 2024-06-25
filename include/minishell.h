@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/24 18:43:09 by migumore         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:06:15 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,12 @@
 # define BOLD      "\033[1m"
 # define UNDERLINE "\033[4m"
 # define RESET     "\033[0m"
+
+// Macro definition for text styles & colors
+# define BOLD_CYAN	"\033[1;36m"
+# define BOLD_BLUE	"\033[1;34m"
+# define BOLD_WHITE	"\033[1;37m"
+# define BOLD_RED	"\033[1;31m"
 
 typedef struct s_data
 {
