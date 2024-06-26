@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/26 18:06:37 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:30:16 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	read_input(t_data *data)
 			printf("syntax error near unexpected token\n");
 			return ;
 		}
-		data->tokens = ft_split_input(data->input, data);// liberar despues
+		data->tokens = ft_split_input(data->input, data);// liberar despues y preguntar a migumore por la memoria que se reserva ahi en data->commands
 		data->commands = ft_join_cmd(data->tokens);
 		parse(data);
 		data->pids = fork();
