@@ -21,6 +21,7 @@ EXECUTOR	= src/executor/ft_find_path.c \
 			src/executor/env_utils.c \
 			src/executor/export.c \
 			src/read/read_input.c \
+			src/read/check_input.c \
 			src/executor/ft_pwd.c \
 			src/executor/set_prompt.c \
 			src/executor/do_exit.c \

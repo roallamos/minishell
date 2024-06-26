@@ -6,78 +6,54 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/25 19:43:09 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:06:37 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	ft_istoken(int a)
+int	nb_pipes(char **tokens)
 {
-	if (a != '|' && a != '<' && a != '>')
-		return (0);
-	return (1);
-}
-int	nb_redirections(char *input, int *i)
-{
-	int		j;
-	int		k;
-	
-	j = 0;
-	k = 0;
-	while (input[*i + k] == '<' || input[*i + k] == '>' || ft_isspace(input[*i + k]))
-	{
-		if (!ft_isspace(input[*i + k]))
-			j++;
-		if (j > 2)
-			return (1);
-		k++;
-	}
-	return (0);
-}
-
-int	check_token(char *input, int *i)
-{
-	char	last_token;
-
-	if (nb_redirections(input, i))
-		return (1);
-	last_token = input[*i];
-	while(ft_istoken(input[*i]) || ft_isspace(input[*i]))
-	{
-		*i += 1;
-		if (last_token == '|' && (input[*i] == '|' || *i - 1 == 0 || !input[*i]))
-			return (1);
-		else if (last_token == '<' && input[*i] != '<' && !ft_isspace(input[*i]) && (ft_istoken(input[*i]) || !input[*i]))
-			return	(1);
-		else if (last_token == '>' && (input[*i] != '>' || input[*i] != '|') && !ft_isspace(input[*i]) && (ft_istoken(input[*i]) || !input[*i]))
-			return	(1);
-		if (ft_istoken(input[*i]))
-			last_token = input[*i];
-	}
-	return (0);
-}
-
-int	check_input(char *input)
-{
-	int i;
+	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while (ft_isspace(input[j]))
-		j++;
-	while(input[i + j])
+	while(tokens[i])
 	{
-		if (ft_istoken(input[i + j]))
-		{
-			if (check_token(input + j, &i))
-				return (1);
-		}
-		else
-			i++;
+		if (*tokens[i] == '|')
+			j++;
+		i++;
 	}
-	return (0);
+	return (j);
+}
+
+char	**ft_join_cmd(char **tokens)
+{
+	int	i;
+	int	j;
+	char	**ret;
+	
+	i = 0;
+	j = 0;
+	ret = ft_calloc(nb_pipes(tokens) + 2, sizeof(char *));
+	if (!ret)
+		return (NULL);
+	while (tokens[i])
+	{
+		ret[j] = ft_strjoin(tokens[i], " ");
+		i++;
+		while (tokens[i] && *tokens[i] != '|')
+		{
+			ret[j] = ft_strjoin_free(ret[j], tokens[i]);
+			ret[j] = ft_strjoin_free(ret[j], " ");
+			i++;
+		}
+		if (tokens[i] && *tokens[i] == '|')
+			i++;
+		j++;
+	}
+	return (ret);
 }
 
 void	read_input(t_data *data)
@@ -95,7 +71,8 @@ void	read_input(t_data *data)
 			printf("syntax error near unexpected token\n");
 			return ;
 		}
-		data->commands = ft_split(data->input, '|');
+		data->tokens = ft_split_input(data->input, data);// liberar despues
+		data->commands = ft_join_cmd(data->tokens);
 		parse(data);
 		data->pids = fork();
 		if (data->pids == 0)

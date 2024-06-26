@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/25 17:30:18 by migumore         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:22:44 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ typedef struct s_data
 	char		*input;
 	char		*path_in_env;
 	char		**path;
+	char		**tokens;
 	char		**commands;
 	int			cmd_pos;
 	char		**args;
@@ -132,6 +133,7 @@ void	ft_free_path(t_data *data);
 void	ft_free_env(t_data *data);
 void	ft_free_cmds_n_limiter_n_pids(t_data *data);
 void	read_input(t_data *data);
+int		check_input(char *input);
 void	parse(t_data *data);
 void	export(t_data *data, int pos);
 int		env_size(char **arr);
@@ -142,5 +144,6 @@ void	ft_pwd(t_data *data);
 void	set_prompt(t_data *data);
 void	do_exit(t_data *data);
 void	do_cd(t_data *data, int pos);
+int	ft_istoken(int a);
 
 #endif // MINISHELL_H
