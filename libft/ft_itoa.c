@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid>       +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 15:34:32 by rodralva          #+#    #+#             */
-/*   Updated: 2024/01/24 22:07:58 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/06/28 17:37:52 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,10 @@ char	*ft_itoa(int n)
 {
 	int		size;
 	int		t;
-	int		i;
 	char	*str;
 
 	size = 0;
 	t = n;
-	i = 0;
 	if (n <= 0)
 		size++;
 	while (t != 0)

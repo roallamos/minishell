@@ -1,17 +1,20 @@
-BLACK		= \033[0;30m
-RED			= \033[0;31m
-GREEN		= \033[0;32m
-YELLOW		= \033[0;33m
-BLUE		= \033[0;34m
-RESET		= \033[0m
+BLACK		=	$(shell tput setaf 0)
+RED			=	$(shell tput setaf 1)
+GREEN		=	$(shell tput setaf 2)
+YELLOW		=	$(shell tput setaf 3)
+BLUE		=	$(shell tput setaf 4)
+MAGENTA		=	$(shell tput setaf 5)
+CYAN		=	$(shell tput setaf 6)
+WHITE		=	$(shell tput setaf 7)
+RESET		=	$(shell tput sgr0)
 
-CC 			= cc
-CFLAGS		= -Wall -Wextra -Werror -I include
-LIBS		= -L./libft -lft -lreadline
+CC 			=	cc
+CFLAGS		=	-Wall -Wextra -Werror -I include
+LIBS		=	-L./libft -lft -lreadline
 
-MANDATORY 	= src/main.c \
+MANDATORY 	=	src/main.c \
 			src/signals.c	
-EXECUTOR	= src/executor/ft_find_path.c \
+EXECUTOR	=	src/executor/ft_find_path.c \
 			src/executor/ft_free.c \
 			src/executor/ft_get_cmd.c \
 			src/executor/ft_split_input.c \
@@ -26,11 +29,11 @@ EXECUTOR	= src/executor/ft_find_path.c \
 			src/executor/set_prompt.c \
 			src/executor/do_exit.c \
 			src/executor/do_cd.c
-SRC 		= $(MANDATORY)$(EXECUTOR)
-OBJS 		= $(SRC:.c=.o)
-INCLS 		= -I include
+SRC 		=	$(MANDATORY)$(EXECUTOR)
+OBJS 		=	$(SRC:.c=.o)
+INCLS 		=	-I include
 
-NAME 		= minishell
+NAME 		=	minishell
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLS)
