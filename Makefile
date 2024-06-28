@@ -6,6 +6,12 @@ BLUE		=	$(shell tput setaf 4)
 MAGENTA		=	$(shell tput setaf 5)
 CYAN		=	$(shell tput setaf 6)
 WHITE		=	$(shell tput setaf 7)
+BOLD        =	$(shell tput bold)
+UNDERLINE   =	$(shell tput smul)
+REVERSE     =	$(shell tput rev)
+BLINK       =	$(shell tput blink)
+DIM         =	$(shell tput dim)
+STANDOUT    =	$(shell tput smso)
 RESET		=	$(shell tput sgr0)
 
 CC 			=	cc
@@ -39,24 +45,25 @@ NAME 		=	minishell
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLS)
 
 $(NAME): $(OBJS)
-	@echo "$(BLUE)<----compiling libft---->$(RESET)"
+	@echo "$(CYAN)$(BOLD) <----compiling libft---->$(RESET)"
 	@(cd ./libft && make)
-	@echo "$(GREEN)<----libft compiled!---->$(RESET)"
-	@echo "$(YELLOW)****/compiling $(NAME)\****$(RESET)"
+	@echo "$(GREEN)$(BOLD) <----libft compiled!---->$(RESET)"
+	@echo "$(WHITE)$(BOLD)·----------------------------·$(RESET)"
+	@echo "$(YELLOW)$(BOLD)$(UNDERLINE) ****/compiling $(NAME)\****$(RESET)"
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBS)
-	@echo "$(GREEN)****\$(NAME) compiled!/****$(RESET)"
+	@echo "$(GREEN)$(BOLD)$(REVERSE) ****\$(NAME) compiled!/****$(RESET)"
 
 all: $(NAME)
 
 clean:
 	@(cd ./libft && make clean)
 	@rm -f $(OBJS) $(OBJS_BONUS)
-	@echo "$(RED)--->objects deleted<----$(RESET)"
+	@echo "$(RED)$(BOLD)$(DIM) --->objects deleted<----$(RESET)"
 
 fclean: clean
 	@(cd ./libft && make fclean)
 	@rm -f $(NAME)
-	@echo "$(RED)---->$(NAME) deleted<----$(RESET)"
+	@echo "$(RED)$(BOLD)$(REVERSE) ---->$(NAME) deleted<----$(RESET)"
 
 re: fclean all
 
