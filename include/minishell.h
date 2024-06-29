@@ -129,7 +129,8 @@ typedef struct	s_list
 	char	**args;
 	char	**outfile;
 	char	**infile;
-	char	**heredock
+	char	**heredock;
+	char	**migu_dale_nombre;
 	t_list	*next;
 }	t_commad_list;
 
