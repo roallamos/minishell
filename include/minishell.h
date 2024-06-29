@@ -123,6 +123,16 @@ typedef struct s_data
 	int			pipefd[2];
 }	t_data;
 
+typedef struct	s_list
+{
+	char	*command;
+	char	**args;
+	char	**outfile;
+	char	**infile;
+	char	**heredock
+	t_list	*next;
+}	t_commad_list;
+
 void	handler(int signal);
 char	*ft_find_path(char *envp[]);
 char	*ft_get_cmd(char **path, char *cmd);
