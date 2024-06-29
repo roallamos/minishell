@@ -46,6 +46,7 @@ t_command_list	*ft_new_node(char *commands)
 	list->outfile = ft_redir(list->args, ">");
 	list->infile = ft_redir(list->args, "<");
 	list->heredock = ft_redir(list->args, "<<");
+	list->migu_dale_nombre = ft_redir(list->args, ">>");
 	list->next = NULL;
 	return (list);
 }
