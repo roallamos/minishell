@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 23:47:13 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/01 18:44:45 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/01 19:55:38 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 static void	process_quotes(t_data *data)
 {
-	data->quote = *data->pos++;
+	data->start = data->pos;
+	while (*data->pos && *data->pos != data->quote)
+		data->pos++;
+	if (*data->pos == data->quote)
+		data->pos++;
+	/*data->quote = *data->pos++;
 	data->start = data->pos;
 	if (*data->start == data->quote)
 	{
@@ -23,7 +28,7 @@ static void	process_quotes(t_data *data)
 		return ;
 	}
 	while (*data->pos && *data->pos != data->quote)
-		data->pos++;
+		data->pos++;*/
 }
 
 static int	proces_hashtag(t_data *data)

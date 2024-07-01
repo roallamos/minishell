@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/01 19:28:24 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:01:12 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,46 +57,46 @@ static char	**ft_join_cmd(char **tokens, t_data *data)
 	return (ret);
 }
 
-// void	print_list(t_cmd *list)
-// {
-// 	int	i;
+ /*void	print_list(t_cmd *list)
+ {
+ 	int	i;
 
-// 	while (list)
-// 	{
-// 		printf("%s\n", list->command);
-// 		i = 0;
-// 		while (list->args[i])
-// 		{
-// 			printf("%s\n", list->args[i]);
-// 			i++;
-// 		}
-// 		i = 0;
-// 		while (list->outfile && list->outfile[i])
-// 		{
-// 			printf("%s\n", list->outfile[i]);
-// 			i++;
-// 		}
-// 		i = 0;
-// 		while (list->infile && list->infile[i])
-// 		{
-// 			printf("infile %s\n", list->infile[i]);
-// 			i++;
-// 		}
-// 		i = 0;
-// 		while (list->heredock && list->heredock[i])
-// 		{
-// 			printf("%s\n", list->heredock[i]);
-// 			i++;
-// 		}
-// 		i = 0;
-// 		while (list->append && list->append[i])
-// 		{
-// 			printf("%s\n", list->append[i]);
-// 			i++;
-// 		}
-// 		list = list->next;
-// 	}
-// }
+ 	while (list)
+ 	{
+ 		printf("%s\n", list->cmd);
+ 		i = 0;
+ 		while (list->args[i])
+ 		{
+			printf("args %s\n", list->args[i]);
+ 			i++;
+ 		}
+ 		i = 0;
+ 		while (list->outfile && list->outfile[i])
+ 		{
+ 			printf("outfile %s\n", list->outfile[i]);
+ 			i++;
+ 		}
+ 		i = 0;
+		while (list->infile && list->infile[i])
+ 		{
+ 			printf("infile %s\n", list->infile[i]);
+ 			i++;
+ 		}
+ 		i = 0;
+ 		while (list->heredock && list->heredock[i])
+ 		{
+ 			printf("heredock %s\n", list->heredock[i]);
+ 			i++;
+ 		}
+ 		i = 0;
+ 		while (list->append && list->append[i])
+ 		{
+ 			printf("append %s\n", list->append[i]);
+ 			i++;
+ 		}
+ 		list = list->next;
+ 	}
+ }*/
 
 void	read_input(t_data *data)
 {
