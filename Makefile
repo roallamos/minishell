@@ -15,7 +15,7 @@ STANDOUT    =	$(shell tput smso)
 RESET		=	$(shell tput sgr0)
 
 CC 			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -I include
+CFLAGS		=	-Wall -Wextra -Werror -I include -g3 -fsanitize=address
 LIBS		=	-L./libft -lft -lreadline
 
 MANDATORY 	=	src/main.c \
@@ -31,6 +31,8 @@ EXECUTOR	=	src/executor/ft_find_path.c \
 			src/executor/export.c \
 			src/read/read_input.c \
 			src/read/check_input.c \
+			src/read/prepare_input.c \
+			src/read/lists.c \
 			src/executor/ft_pwd.c \
 			src/executor/set_prompt.c \
 			src/executor/do_exit.c \

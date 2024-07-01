@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid>       +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 19:17:57 by rodralva          #+#    #+#             */
-/*   Updated: 2024/01/16 17:12:56 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/01 12:58:58 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/26 18:30:16 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:06:41 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,11 @@ void	read_input(t_data *data)
 		}
 		data->tokens = ft_split_input(data->input, data);// liberar despues y preguntar a migumore por la memoria que se reserva ahi en data->commands
 		data->commands = ft_join_cmd(data->tokens);
+		data->list = ft_prepare_list(data);
 		parse(data);
 		data->pids = fork();
 		if (data->pids == 0)
-			get_cmd_and_execute(data);
+		get_cmd_and_execute(data);
 		else
 			waitpid(data->pids, &data->status, 0);
 		ft_free_args(data);

@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/26 18:22:44 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:04:54 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,17 @@
 # define BOLD_YELLOW	"\033[1;33m"
 # define BOLD_WHITE		"\033[1;37m"
 
+typedef struct	s_command_list
+{
+	char	*command;
+	char	**args;
+	char	**outfile;
+	char	**infile;
+	char	**heredock;
+	char	**append;
+	struct s_command_list	*next;
+}	t_command_list;
+
 typedef struct s_data
 {
 	char		*input;
@@ -121,18 +132,9 @@ typedef struct s_data
 	int			fd_infile;
 	int			fd_outfile;
 	int			pipefd[2];
+	t_command_list	*list;
 }	t_data;
 
-typedef struct	s_list
-{
-	char	*command;
-	char	**args;
-	char	**outfile;
-	char	**infile;
-	char	**heredock;
-	char	**migu_dale_nombre;
-	t_list	*next;
-}	t_commad_list;
 
 void	handler(int signal);
 char	*ft_find_path(char *envp[]);
@@ -155,6 +157,8 @@ void	ft_pwd(t_data *data);
 void	set_prompt(t_data *data);
 void	do_exit(t_data *data);
 void	do_cd(t_data *data, int pos);
-int	ft_istoken(int a);
+int		ft_istoken(int a);
+t_command_list	*ft_prepare_list(t_data *data);
+void	ft_lstcmdadd_back(t_command_list **lst, t_command_list *new);
 
 #endif // MINISHELL_H
