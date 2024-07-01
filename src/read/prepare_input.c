@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   prepare_input.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
+/*   Updated: 2024/07/01 16:41:06 by migumore         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <minishell.h>
 
@@ -19,11 +30,11 @@ int	nb_tokens(char **args, char *c)
 
 char	**ft_redir(char **args, char *token)
 {
-	int	i;
-	int j;
-	int	nb;
+	int		i;
+	int		j;
+	int		nb;
 	char	**redir;
-	
+
 	i = 0;
 	j = 0;
 	nb = nb_tokens(args, token);
@@ -39,11 +50,11 @@ char	**ft_redir(char **args, char *token)
 	return (redir);
 }
 
-t_command_list	*ft_new_node(char *commands)
+t_cmd	*ft_new_node(char *commands)
 {
-	t_command_list	*list;
+	t_cmd	*list;
 
-	list = ft_calloc(1, sizeof(t_command_list));
+	list = ft_calloc(1, sizeof(t_cmd));
 	list->command = ft_substr(commands, 0, ft_strlen(commands));
 	list->args = ft_split(commands, ' ');
 	list->outfile = ft_redir(list->args, ">");
@@ -54,10 +65,10 @@ t_command_list	*ft_new_node(char *commands)
 	return (list);
 }
 
-t_command_list	*ft_prepare_list(t_data *data)
+t_cmd	*ft_prepare_list(t_data *data)
 {
-	t_command_list	*list;
-	int	i;
+	t_cmd	*list;
+	int		i;
 
 	i = 0;
 	list = NULL;

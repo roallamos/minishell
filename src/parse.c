@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/06/25 16:23:42 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:43:36 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	parse(t_data *data)
 	//check_tokens(data);
 	while (data->commands[i])
 	{
-		
 		if (!data->commands[i][0])
 			return ;
 		else if (data->commands[i][0] == '$')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/01 15:08:03 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:42:23 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	nb_pipes(char **tokens)
 
 	i = 0;
 	j = 0;
-	while(tokens[i])
+	while (tokens[i])
 	{
 		if (*tokens[i] == '|')
 			j++;
@@ -30,10 +30,10 @@ int	nb_pipes(char **tokens)
 
 char	**ft_join_cmd(char **tokens)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	**ret;
-	
+
 	i = 0;
 	j = 0;
 	ret = ft_calloc(nb_pipes(tokens) + 2, sizeof(char *));
@@ -56,10 +56,11 @@ char	**ft_join_cmd(char **tokens)
 	return (ret);
 }
 
-void	print_list(t_command_list *list)
+void	print_list(t_cmd *list)
 {
-	int i;
-	while(list)
+	int	i;
+
+	while (list)
 	{
 		printf("%s\n", list->command);
 		i = 0;
@@ -111,7 +112,8 @@ void	read_input(t_data *data)
 			printf("syntax error near unexpected token\n");
 			return ;
 		}
-		data->tokens = ft_split_input(data->input, data);// liberar despues y preguntar a migumore por la memoria que se reserva ahi en data->commands
+		// liberar despues y preguntar a migumore por la memoria que se reserva ahi en data->commands
+		data->tokens = ft_split_input(data->input, data);
 		data->commands = ft_join_cmd(data->tokens);
 		data->list = ft_prepare_list(data);
 		print_list(data->list);

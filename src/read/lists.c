@@ -1,18 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lists.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/01 16:39:51 by migumore          #+#    #+#             */
+/*   Updated: 2024/07/01 16:40:07 by migumore         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <minishell.h>
 
-t_command_list	*ft_lstcmdlast(t_command_list *lst)
+t_cmd	*ft_lstcmdlast(t_cmd *lst)
 {
-
 	while (lst && lst->next)
-    {
+	{
 		lst = lst->next;
-    }
+	}
 	return (lst);
 }
 
-void	ft_lstcmdadd_back(t_command_list **lst, t_command_list *new)
+void	ft_lstcmdadd_back(t_cmd **lst, t_cmd *new)
 {
-	t_command_list	*last;
+	t_cmd	*last;
 
 	last = ft_lstcmdlast(*lst);
 	if (!last)

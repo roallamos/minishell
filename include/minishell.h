@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/01 13:04:54 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:37:12 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,16 +94,16 @@
 # define BOLD_YELLOW	"\033[1;33m"
 # define BOLD_WHITE		"\033[1;37m"
 
-typedef struct	s_command_list
+typedef struct s_cmd
 {
-	char	*command;
-	char	**args;
-	char	**outfile;
-	char	**infile;
-	char	**heredock;
-	char	**append;
-	struct s_command_list	*next;
-}	t_command_list;
+	char			*command;
+	char			**args;
+	char			**outfile;
+	char			**infile;
+	char			**heredock;
+	char			**append;
+	struct s_cmd	*next;
+}	t_cmd;
 
 typedef struct s_data
 {
@@ -132,9 +132,8 @@ typedef struct s_data
 	int			fd_infile;
 	int			fd_outfile;
 	int			pipefd[2];
-	t_command_list	*list;
+	t_cmd		*list;
 }	t_data;
-
 
 void	handler(int signal);
 char	*ft_find_path(char *envp[]);
@@ -158,7 +157,7 @@ void	set_prompt(t_data *data);
 void	do_exit(t_data *data);
 void	do_cd(t_data *data, int pos);
 int		ft_istoken(int a);
-t_command_list	*ft_prepare_list(t_data *data);
-void	ft_lstcmdadd_back(t_command_list **lst, t_command_list *new);
+t_cmd	*ft_prepare_list(t_data *data);
+void	ft_lstcmdadd_back(t_cmd **lst, t_cmd *new);
 
 #endif // MINISHELL_H
