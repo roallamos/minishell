@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/01 17:15:33 by migumore         ###   ########.fr       */
+/*   Updated: 2024/07/01 19:28:24 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static char	**ft_join_cmd(char **tokens, t_data *data)
 			i++;
 		j++;
 	}
-	free(data->commands);
+	ft_free_array(data->commands);
 	return (ret);
 }
 
@@ -122,7 +122,7 @@ void	read_input(t_data *data)
 			else
 				waitpid(data->pids, &data->status, 0);
 		}
-		ft_free_args(data);
+		ft_free_lst(data);
 		free(data->input);
 	}
 }

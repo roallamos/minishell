@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:54:45 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/24 19:43:30 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/01 18:38:48 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	do_cd(t_data *data, int pos)
 	char	*home;
 	char	*user;
 
-	if (data->args[pos + 1] && (*data->args[pos + 1] != '~'))
-		res = chdir(data->args[pos + 1]);
+	if (data->list->args[pos + 1] && (*data->list->args[pos + 1] != '~'))
+		res = chdir(data->list->args[pos + 1]);
 	else
 	{
 		user = getenv("USER");

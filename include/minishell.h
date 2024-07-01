@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/01 16:49:44 by migumore         ###   ########.fr       */
+/*   Updated: 2024/07/01 19:41:59 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,9 @@
 
 typedef struct s_cmd
 {
-	char			*command;
+	char			*cmd; 
 	char			**args;
-	char			**outfile;
+	char			**outfile; 
 	char			**infile;
 	char			**heredock;
 	char			**append;
@@ -110,11 +110,9 @@ typedef struct s_data
 	char		*input;
 	char		*path_in_env;
 	char		**path;
-	char		**tokens;
-	char		**commands;
+	char		**tokens; // esto es todo separadito;
+	char		**commands; // cambiar el nombre que solo lo uso yo
 	int			cmd_pos;
-	char		**args;
-	char		*cmd;
 	char		**env;
 	char		*pwd;
 	char		*prompt;
@@ -126,11 +124,8 @@ typedef struct s_data
 	char		quote;
 	pid_t		pids;
 	int			num_commands;
-	char		*limiter;
-	char		*infile;
-	char		*outfile;
-	int			fd_infile;
-	int			fd_outfile;
+	int			fd_infile; // a falta de que diga algo el migu se moveran para arriba
+	int			fd_outfile; // idem
 	int			pipefd[2];
 	t_cmd		*list;
 }	t_data;
@@ -140,7 +135,8 @@ char	*ft_find_path(char *envp[]);
 char	*ft_get_cmd(char **path, char *cmd);
 char	**ft_split_input(const char *command, t_data *data);
 void	write_error(char *msg, char *arg);
-void	ft_free_args(t_data *data);
+void	ft_free_lst(t_data *data);
+void	ft_free_array(char **array);
 void	ft_free_path(t_data *data);
 void	ft_free_env(t_data *data);
 void	ft_free_cmds_n_limiter_n_pids(t_data *data);

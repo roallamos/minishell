@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/07/01 16:50:01 by migumore         ###   ########.fr       */
+/*   Updated: 2024/07/01 18:33:39 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	expand_var(t_data *data, int pos)
 {
 	char	*temp;
 
-	temp = data->commands[pos];
-	data->commands[pos] = getenv(&data->commands[pos][1]);
+	temp = data->list->args[pos];
+	data->list->args[pos] = getenv(&data->commands[pos][1]);
 	free(temp);
 }
 
@@ -41,11 +41,11 @@ void	parse(t_data *data)
 
 	i = 0;
 	//check_tokens(data);
-	while (data->commands[i])
+	while (data->list->args[i])
 	{
-		if (!data->commands[i][0])
+		if (!data->list->args[i][0])
 			return ;
-		else if (data->commands[i][0] == '$')
+		else if (data->list->args[i][0] == '$')
 			expand_var(data, i);
 		else
 			check_builtin(data, i); //aqui hay un segfault tambien
