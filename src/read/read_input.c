@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/01 13:06:41 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:08:03 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,46 @@ char	**ft_join_cmd(char **tokens)
 	return (ret);
 }
 
+void	print_list(t_command_list *list)
+{
+	int i;
+	while(list)
+	{
+		printf("%s\n", list->command);
+		i = 0;
+		while (list->args[i])
+		{
+			printf("%s\n", list->args[i]);
+			i++;
+		}
+		i = 0;
+		while (list->outfile && list->outfile[i])
+		{
+			printf("%s\n", list->outfile[i]);
+			i++;
+		}
+		i = 0;
+		while (list->infile && list->infile[i])
+		{
+			printf("infile %s\n", list->infile[i]);
+			i++;
+		}
+		i = 0;
+		while (list->heredock && list->heredock[i])
+		{
+			printf("%s\n", list->heredock[i]);
+			i++;
+		}
+		i = 0;
+		while (list->append && list->append[i])
+		{
+			printf("%s\n", list->append[i]);
+			i++;
+		}
+		list = list->next;
+	}
+}
+
 void	read_input(t_data *data)
 {
 	while (1)
@@ -74,10 +114,11 @@ void	read_input(t_data *data)
 		data->tokens = ft_split_input(data->input, data);// liberar despues y preguntar a migumore por la memoria que se reserva ahi en data->commands
 		data->commands = ft_join_cmd(data->tokens);
 		data->list = ft_prepare_list(data);
+		print_list(data->list);
 		parse(data);
 		data->pids = fork();
 		if (data->pids == 0)
-		get_cmd_and_execute(data);
+			get_cmd_and_execute(data);
 		else
 			waitpid(data->pids, &data->status, 0);
 		ft_free_args(data);

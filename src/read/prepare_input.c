@@ -20,10 +20,12 @@ int	nb_tokens(char **args, char *c)
 char	**ft_redir(char **args, char *token)
 {
 	int	i;
+	int j;
 	int	nb;
 	char	**redir;
 	
 	i = 0;
+	j = 0;
 	nb = nb_tokens(args, token);
 	if (nb == 0)
 		return (NULL);
@@ -31,7 +33,7 @@ char	**ft_redir(char **args, char *token)
 	while (args[i])
 	{
 		if (!ft_strcmp(args[i], token))
-			redir[i] = ft_strdup(args[i + 1]);
+			redir[j++] = ft_strdup(args[i + 1]);
 		i++;
 	}
 	return (redir);
