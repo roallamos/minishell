@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 17:25:46 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/25 17:26:13 by migumore         ###   ########.fr       */
+/*   Updated: 2024/07/01 17:17:13 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ static char	*put_tilde(t_data *data, char *user)
 	char	*cu;
 	int		len;
 
+	if (data->pwd)
+		free(data->pwd);
 	data->pwd = getcwd(NULL, 0);
 	cu = ft_strjoin("/home/", user);
 	len = ft_strlen(cu);

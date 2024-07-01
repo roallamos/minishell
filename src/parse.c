@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/07/01 16:43:36 by migumore         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:50:01 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ void	expand_var(t_data *data, int pos)
 
 static void	check_builtin(t_data *data, int pos)
 {
-	if (!ft_strcmp(data->commands[pos], "export"))
+	if (!ft_strcmp(data->list->args[pos], "export"))
 		export(data, pos);
-	else if (!ft_strcmp(data->commands[pos], "env"))
+	else if (!ft_strcmp(data->list->args[pos], "env"))
 		print_env(data);
-	else if (!ft_strcmp(data->commands[pos], "exit"))
+	else if (!ft_strcmp(data->list->args[pos], "exit"))
 		do_exit(data);
-	else if (!ft_strcmp(data->commands[pos], "pwd"))
+	else if (!ft_strcmp(data->list->args[pos], "pwd"))
 		printf("%s\n", getcwd(NULL, 0));
-	else if (!ft_strcmp(data->commands[pos], "cd"))
+	else if (!ft_strcmp(data->list->args[pos], "cd"))
 		do_cd(data, pos);
 }
 
