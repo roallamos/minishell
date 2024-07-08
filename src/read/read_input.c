@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/01 20:01:12 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:28:17 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ static char	**ft_join_cmd(char **tokens, t_data *data)
 		return (NULL);
 	while (tokens[i])
 	{
-		ret[j] = ft_strjoin(tokens[i], " ");
-		i++;
 		while (tokens[i] && *tokens[i] != '|')
 		{
 			ret[j] = ft_strjoin_free(ret[j], tokens[i]);
@@ -57,7 +55,7 @@ static char	**ft_join_cmd(char **tokens, t_data *data)
 	return (ret);
 }
 
- /*void	print_list(t_cmd *list)
+ void	print_list(t_cmd *list)
  {
  	int	i;
 
@@ -96,7 +94,7 @@ static char	**ft_join_cmd(char **tokens, t_data *data)
  		}
  		list = list->next;
  	}
- }*/
+ }
 
 void	read_input(t_data *data)
 {
@@ -112,9 +110,11 @@ void	read_input(t_data *data)
 			printf("syntax error near unexpected token\n");
 		else
 		{
+			printf("input %s\n", data->input);
 			data->tokens = ft_split_input(data->input, data);
 			data->commands = ft_join_cmd(data->tokens, data);
 			data->list = ft_prepare_list(data);
+			print_list(data->list);
 			parse(data);
 			data->pids = fork();
 			if (data->pids == 0)
