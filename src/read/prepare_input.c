@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/09 17:54:56 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/09 19:42:06 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ t_cmd	*ft_new_node(char *commands)
 	//expansor(list->args);
 	list->outfile = ft_redir(list->args, ">");
 	list->infile = ft_redir(list->args, "<");
-	list->heredock = ft_redir(list->args, "<<");
+	list->heredoc = ft_redir(list->args, "<<");
 	list->append = ft_redir(list->args, ">>");
 	list->next = NULL;
 	return (list);

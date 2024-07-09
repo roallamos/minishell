@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/09 16:52:27 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/09 19:42:01 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ void	print_list(t_cmd *list)
 			i++;
 		}
 		i = 0;
-		while (list->heredock && list->heredock[i])
+		while (list->heredoc && list->heredoc[i])
 		{
-			printf("heredock %s\n", list->heredock[i]);
+			printf("heredoc %s\n", list->heredoc[i]);
 			i++;
 		}
 		i = 0;

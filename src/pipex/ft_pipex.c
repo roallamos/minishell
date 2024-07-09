@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:38:30 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/09 14:46:16 by migumore         ###   ########.fr       */
+/*   Updated: 2024/07/09 19:51:57 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	do_pipe(t_data *data, int i)
 			// ft_free_cmds_n_limiter_n_pids(data);
 			// ft_free_path(data);
 			perror("pipe");
-			exit(-1);
+			// exit(-1);
 		}
 	}
 }
@@ -34,20 +34,20 @@ static void	do_fork(pid_t *pid)//, t_data *data)
 		// ft_free_cmds_n_limiter_n_pids(data);
 		// ft_free_path(data);
 		perror("fork");
-		exit(-1);
+		// exit(-1);
 	}
 }
 
 static void	allocate_pids(t_data *data)
 {
 	data->pids = malloc(sizeof(pid_t) * data->num_commands);
-	// if (!data->pids)
-	// {
+	if (!data->pids)
+	{
 	// 	ft_free_cmds_n_limiter_n_pids(data);
 	// 	ft_free_path(data);
-	// 	perror("malloc");
+		perror("malloc");
 	// 	exit(1);
-	// }
+	}
 }
 
 static void	pipex(t_data *data, int i)
@@ -59,12 +59,12 @@ static void	pipex(t_data *data, int i)
 	do_fork(&pid);//, data);
 	if (pid == 0)
 	{
-		// if (i == 0)
-		// 	dup_infile_n_close(data);
-		// else if (i == data->num_commands - 1)
-		// 	dup_outfile_n_close(data);
-		// else
-		dup_cmds_n_close(data, &prev_pipefd);
+		if (data->list->infile || data->list->heredoc)
+			dup_infile_n_close(data);
+		else if (data->list->outfile || data->list->append)
+			dup_outfile_n_close(data);
+		else
+			dup_cmds_n_close(data, &prev_pipefd);
 		get_cmd_and_execute(data);
 	}
 	else

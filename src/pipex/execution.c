@@ -6,29 +6,43 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:10:33 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/09 13:41:41 by migumore         ###   ########.fr       */
+/*   Updated: 2024/07/09 19:50:29 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-// void	dup_infile_n_close(t_data *data)
-// {
-// 	infile(data);
-// 	close(data->pipefd[0]);
-// 	dup2(data->fd_infile, STDIN_FILENO);
-// 	dup2(data->pipefd[1], STDOUT_FILENO);
-// 	close(data->fd_infile);
-// }
+void	dup_infile_n_close(t_data *data)
+{
+	int	i;
 
-// void	dup_outfile_n_close(t_data *data)
-// {
-// 	outfile(data);
-// 	dup2(data->fd_outfile, STDOUT_FILENO);
-// 	dup2(data->pipefd[0], STDIN_FILENO);
-// 	close(data->pipefd[1]);
-// 	close(data->fd_outfile);
-// }
+	i = 0;
+	while (data->list->infile[i] || data->list->heredoc[i])
+	{
+		infile(data, i);
+		i++;
+	}
+	close(data->pipefd[0]);
+	dup2(data->fd_infile, STDIN_FILENO);
+	dup2(data->pipefd[1], STDOUT_FILENO);
+	close(data->fd_infile);
+}
+
+void	dup_outfile_n_close(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->list->outfile[i] || data->list->append[i])
+	{
+		outfile(data, i);
+		i++;
+	}
+	dup2(data->fd_outfile, STDOUT_FILENO);
+	dup2(data->pipefd[0], STDIN_FILENO);
+	close(data->pipefd[1]);
+	close(data->fd_outfile);
+}
 
 void	dup_cmds_n_close(t_data *data, int (*prev_pipefd)[2])
 {
