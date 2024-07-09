@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/09 14:56:30 by migumore         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:50:38 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ void	handler(int signal);
 char	*ft_find_path(char *envp[]);
 char	*ft_get_cmd(char **path, char *cmd);
 char	**ft_split_input(const char *command, t_data *data);
+char	**ft_split_args(char const *s, char c);
 void	write_error(char *msg, char *arg);
 void	ft_free_lst(t_data *data);
 void	ft_free_array(char **array);

@@ -30,6 +30,7 @@ EXECUTOR	=	src/executor/ft_find_path.c \
 			src/executor/env_utils.c \
 			src/executor/export.c \
 			src/read/read_input.c \
+			src/read/ft_split_args.c \
 			src/read/check_input.c \
 			src/read/prepare_input.c \
 			src/read/lists.c \
