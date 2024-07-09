@@ -36,7 +36,10 @@ EXECUTOR	=	src/executor/ft_find_path.c \
 			src/executor/ft_pwd.c \
 			src/executor/set_prompt.c \
 			src/executor/do_exit.c \
-			src/executor/do_cd.c
+			src/executor/do_cd.c \
+			src/pipex/ft_pipex.c \
+			src/pipex/execution.c \
+			src/pipex/wait_pids.c
 SRC 		=	$(MANDATORY)$(EXECUTOR)
 OBJS 		=	$(SRC:.c=.o)
 INCLS 		=	-I include

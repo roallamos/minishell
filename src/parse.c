@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/07/01 18:33:39 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:03:14 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,20 @@ void	expand_var(t_data *data, int pos)
 
 static void	check_builtin(t_data *data, int pos)
 {
-	if (!ft_strcmp(data->list->args[pos], "export"))
+	if (!ft_strcmp(data->list->args[pos], "echo"))
+		export(data, pos); //Hacer built-in
+	else if (!ft_strcmp(data->list->args[pos], "cd"))
+		do_cd(data, pos);
+	else if (!ft_strcmp(data->list->args[pos], "pwd"))
+		printf("%s\n", getcwd(NULL, 0));
+	else if (!ft_strcmp(data->list->args[pos], "export"))
 		export(data, pos);
+	else if (!ft_strcmp(data->list->args[pos], "unset"))
+		export(data, pos); //Hacer built-in
 	else if (!ft_strcmp(data->list->args[pos], "env"))
 		print_env(data);
 	else if (!ft_strcmp(data->list->args[pos], "exit"))
 		do_exit(data);
-	else if (!ft_strcmp(data->list->args[pos], "pwd"))
-		printf("%s\n", getcwd(NULL, 0));
-	else if (!ft_strcmp(data->list->args[pos], "cd"))
-		do_cd(data, pos);
 }
 
 void	parse(t_data *data)
@@ -48,7 +52,17 @@ void	parse(t_data *data)
 		else if (data->list->args[i][0] == '$')
 			expand_var(data, i);
 		else
-			check_builtin(data, i); //aqui hay un segfault tambien
+			check_builtin(data, i);
+		if (data->num_commands == 1)
+		{
+			data->pid = fork();
+			if (data->pid == 0)
+				get_cmd_and_execute(data);
+			else
+				waitpid(data->pid, &data->status, 0);
+		}
+		else
+			exec_pipex(data);
 		i++;
 	}
 	data->cmd_pos = i;

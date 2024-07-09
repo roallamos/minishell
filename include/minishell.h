@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/01 19:41:59 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/09 13:35:23 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,9 @@
 
 typedef struct s_cmd
 {
-	char			*cmd; 
+	char			*cmd;
 	char			**args;
-	char			**outfile; 
+	char			**outfile;
 	char			**infile;
 	char			**heredock;
 	char			**append;
@@ -122,7 +122,8 @@ typedef struct s_data
 	const char	*pos;
 	const char	*start;
 	char		quote;
-	pid_t		pids;
+	pid_t		pid;
+	pid_t		*pids;
 	int			num_commands;
 	int			fd_infile; // a falta de que diga algo el migu se moveran para arriba
 	int			fd_outfile; // idem
@@ -155,5 +156,9 @@ void	do_cd(t_data *data, int pos);
 int		ft_istoken(int a);
 t_cmd	*ft_prepare_list(t_data *data);
 void	ft_lstcmdadd_back(t_cmd **lst, t_cmd *new);
+void	exec_pipex(t_data *data);
+void	wait_pids(t_data *data, int i);
+void	dup_cmds_n_close(t_data *data, int (*prev_pipefd)[2]);
+void	close_pipes(t_data *data, int (*prev_pipe)[2], int i);
 
 #endif // MINISHELL_H

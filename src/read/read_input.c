@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/08 17:28:17 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/09 13:08:49 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,46 +55,46 @@ static char	**ft_join_cmd(char **tokens, t_data *data)
 	return (ret);
 }
 
- void	print_list(t_cmd *list)
- {
- 	int	i;
+// void	print_list(t_cmd *list)
+// {
+// 	int	i;
 
- 	while (list)
- 	{
- 		printf("%s\n", list->cmd);
- 		i = 0;
- 		while (list->args[i])
- 		{
-			printf("args %s\n", list->args[i]);
- 			i++;
- 		}
- 		i = 0;
- 		while (list->outfile && list->outfile[i])
- 		{
- 			printf("outfile %s\n", list->outfile[i]);
- 			i++;
- 		}
- 		i = 0;
-		while (list->infile && list->infile[i])
- 		{
- 			printf("infile %s\n", list->infile[i]);
- 			i++;
- 		}
- 		i = 0;
- 		while (list->heredock && list->heredock[i])
- 		{
- 			printf("heredock %s\n", list->heredock[i]);
- 			i++;
- 		}
- 		i = 0;
- 		while (list->append && list->append[i])
- 		{
- 			printf("append %s\n", list->append[i]);
- 			i++;
- 		}
- 		list = list->next;
- 	}
- }
+// 	while (list)
+// 	{
+// 		printf("%s\n", list->cmd);
+// 		i = 0;
+// 		while (list->args[i])
+// 		{
+// 			printf("args %s\n", list->args[i]);
+// 			i++;
+// 		}
+// 		i = 0;
+// 		while (list->outfile && list->outfile[i])
+// 		{
+// 			printf("outfile %s\n", list->outfile[i]);
+// 			i++;
+// 		}
+// 		i = 0;
+// 		while (list->infile && list->infile[i])
+// 		{
+// 			printf("infile %s\n", list->infile[i]);
+// 			i++;
+// 		}
+// 		i = 0;
+// 		while (list->heredock && list->heredock[i])
+// 		{
+// 			printf("heredock %s\n", list->heredock[i]);
+// 			i++;
+// 		}
+// 		i = 0;
+// 		while (list->append && list->append[i])
+// 		{
+// 			printf("append %s\n", list->append[i]);
+// 			i++;
+// 		}
+// 		list = list->next;
+// 	}
+// }
 
 void	read_input(t_data *data)
 {
@@ -110,17 +110,12 @@ void	read_input(t_data *data)
 			printf("syntax error near unexpected token\n");
 		else
 		{
-			printf("input %s\n", data->input);
+			//printf("input %s\n", data->input);
 			data->tokens = ft_split_input(data->input, data);
 			data->commands = ft_join_cmd(data->tokens, data);
 			data->list = ft_prepare_list(data);
-			print_list(data->list);
+			//print_list(data->list);
 			parse(data);
-			data->pids = fork();
-			if (data->pids == 0)
-				get_cmd_and_execute(data);
-			else
-				waitpid(data->pids, &data->status, 0);
 		}
 		ft_free_lst(data);
 		free(data->input);

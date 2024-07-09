@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/01 18:51:59 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/09 13:55:53 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ t_cmd	*ft_prepare_list(t_data *data)
 		ft_lstcmdadd_back(&list, ft_new_node(data->commands[i]));
 		i++;
 	}
+	data->num_commands = i;
 	return (list);
 }
