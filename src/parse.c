@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/07/09 14:03:14 by migumore         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:57:18 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,23 @@ void	expand_var(t_data *data, int pos)
 	free(temp);
 }
 
-static void	check_builtin(t_data *data, int pos)
+int	check_builtin(t_data *data, int pos)
 {
 	if (!ft_strcmp(data->list->args[pos], "echo"))
-		export(data, pos); //Hacer built-in
+		return (export(data, pos), 1); //Hacer built-in
 	else if (!ft_strcmp(data->list->args[pos], "cd"))
-		do_cd(data, pos);
+		return (do_cd(data, pos), 1);
 	else if (!ft_strcmp(data->list->args[pos], "pwd"))
-		printf("%s\n", getcwd(NULL, 0));
+		return (printf("%s\n", getcwd(NULL, 0)), 1);
 	else if (!ft_strcmp(data->list->args[pos], "export"))
-		export(data, pos);
+		return (export(data, pos), 1);
 	else if (!ft_strcmp(data->list->args[pos], "unset"))
-		export(data, pos); //Hacer built-in
+		return (export(data, pos), 1); //Hacer built-in
 	else if (!ft_strcmp(data->list->args[pos], "env"))
-		print_env(data);
+		return (print_env(data), 1);
 	else if (!ft_strcmp(data->list->args[pos], "exit"))
 		do_exit(data);
+	return (0);
 }
 
 void	parse(t_data *data)
@@ -47,19 +48,23 @@ void	parse(t_data *data)
 	//check_tokens(data);
 	while (data->list->args[i])
 	{
-		if (!data->list->args[i][0])
-			return ;
-		else if (data->list->args[i][0] == '$')
-			expand_var(data, i);
-		else
-			check_builtin(data, i);
+		// if (!data->list->args[i][0])
+		// 	return ;
+		// else if (data->list->args[i][0] == '$')
+		// 	expand_var(data, i);
+		// else
 		if (data->num_commands == 1)
 		{
-			data->pid = fork();
-			if (data->pid == 0)
-				get_cmd_and_execute(data);
+			if (check_builtin(data, i))
+				return ;
 			else
-				waitpid(data->pid, &data->status, 0);
+			{	
+				data->pid = fork();
+				if (data->pid == 0)
+					get_cmd_and_execute(data);
+				else
+					waitpid(data->pid, &data->status, 0);
+			}
 		}
 		else
 			exec_pipex(data);

@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:38:30 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/09 14:14:53 by migumore         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:46:16 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,7 @@ void	exec_pipex(t_data *data)
 	while (i < data->num_commands)
 	{
 		pipex(data, i);
-		if (data->list)
-			data->list = data->list->next;
+		data->list = data->list->next;
 		i++;
 	}
 	wait_pids(data, 0);
