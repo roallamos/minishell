@@ -6,11 +6,24 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/09 16:50:19 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/09 17:54:56 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+// void	expansor(char **args)
+// {
+// 	int i;
+
+// 	i = 0;
+// 	while (args[i])
+// 	{
+// 		if (args[i][0] && args[i][0] == '$')
+// 	//		expand_var();
+		
+// 	}
+// }
 
 int	nb_tokens(char **args, char *c)
 {
@@ -57,6 +70,7 @@ t_cmd	*ft_new_node(char *commands)
 	list = ft_calloc(1, sizeof(t_cmd));
 	list->cmd = NULL;
 	list->args = ft_split_args(commands, ' '); // aqui es donde hay que modificar el split y llamar al expansor
+	//expansor(list->args);
 	list->outfile = ft_redir(list->args, ">");
 	list->infile = ft_redir(list->args, "<");
 	list->heredock = ft_redir(list->args, "<<");
