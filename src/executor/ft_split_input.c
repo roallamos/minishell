@@ -6,11 +6,18 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 23:47:13 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/08 17:24:49 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:47:33 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+static void	process_tokens(t_data *data)
+{
+	data->start = data->pos++;
+	while (ft_istoken(*data->pos))
+		data->pos++;
+}
 
 static void	process_quotes(t_data *data)
 {
@@ -47,9 +54,11 @@ static int	process(t_data *data)
 		return (proces_hashtag(data));
 	else if (*data->pos == '"' || *data->pos == '\'')
 		process_quotes(data);
+	else if (ft_istoken(*data->pos))
+		process_tokens(data);
 	else
 	{
-		while (*data->pos && *data->pos != ' ')
+		while (*data->pos && *data->pos != ' ' && !ft_istoken(*data->pos))
 			data->pos++;
 	}
 	if (data->size >= data->cap - 1)
@@ -64,8 +73,8 @@ static int	process(t_data *data)
 	if (!data->commands[data->size])
 		return (1);
 	data->size++;
-	if (*data->pos)
-		data->pos++;
+//	if (*data->pos)
+//		data->pos++;
 	return (0);
 }
 
