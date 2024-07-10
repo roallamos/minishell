@@ -11,7 +11,11 @@ static int  advance_quotes(const char *s)
     while (s[i] && s[i] != quote)
         i++;
     if (s[i])
+	{
         i++;
+		if (s[i] && (s[i] == '\'' || s[i] == '"'))
+			i += advance_quotes(&s[i]);
+	}
     return (i);
 }
 
@@ -44,6 +48,7 @@ static int	ft_wordcount(char const *s, char c)
         {
             i += advance_quotes(&s[i]);
             w++;
+			f = 1;
         }
 		else if (s[i] != c && f == 0)
 		{
@@ -52,7 +57,8 @@ static int	ft_wordcount(char const *s, char c)
 		}
 		else if (s[i] == c && f == 1)
 			f = 0;
-		i++;
+		if (s[i])
+			i++;
 	}
 	return (w);
 }
@@ -61,12 +67,13 @@ static int	ft_length(char const *s, char c)
 {
 	int	i;
 
+	(void) c;
 	i = 0;
     if (s[i] == '\'' || s[i] == '"')
         i += advance_quotes(&s[i]);
-    else
+    if (s[i] && !ft_isspace(s[i]))
     {
-	    while (s[i] != c && s[i])
+	    while (s[i] && !ft_isspace(s[i]))
 	    	i++;
     }
 	return (i);

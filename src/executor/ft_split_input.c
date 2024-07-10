@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 23:47:13 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/09 15:47:33 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/10 18:10:36 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,18 @@ static void	process_tokens(t_data *data)
 
 static void	process_quotes(t_data *data)
 {
-	data->start = data->pos++;
-	data->quote = *data->start;
-	while (*data->pos && *data->pos != data->quote)
-		data->pos++;
-	if (*data->pos == data->quote)
-		data->pos++;
-	/*data->quote = *data->pos++;
 	data->start = data->pos;
-	if (*data->start == data->quote)
+	while(*data->pos == '\'' || *data->pos == '"')
 	{
+		data->quote = *data->pos;
 		data->pos++;
-		data->start++;
-		return ;
+		while (*data->pos && *data->pos != data->quote)
+			data->pos++;
+		if (*data->pos == data->quote)
+			data->pos++;
+		while(*data->pos && !ft_isspace(*data->pos))
+			data->pos++;
 	}
-	while (*data->pos && *data->pos != data->quote)
-		data->pos++;*/
 }
 
 static int	proces_hashtag(t_data *data)

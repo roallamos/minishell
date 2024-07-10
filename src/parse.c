@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/07/09 14:57:18 by migumore         ###   ########.fr       */
+/*   Updated: 2024/07/10 17:12:32 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

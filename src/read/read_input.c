@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/09 19:42:01 by migumore         ###   ########.fr       */
+/*   Updated: 2024/07/10 18:18:16 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	read_input(t_data *data)
 			data->tokens = ft_split_input(data->input, data);
 			data->commands = ft_join_cmd(data->tokens, data);
 			data->list = ft_prepare_list(data);
-			print_list(data->list);
+			//print_list(data->list);
 			parse(data);
 		}
 		ft_free_lst(data);
