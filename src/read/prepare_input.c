@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/09 19:42:06 by migumore         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:17:42 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,38 @@
 		
 // 	}
 // }
+
+char	**ft_args(char **args)
+{
+	int	i;
+	int	j;
+	int nb;
+	char **ret;
+
+	i = 0;
+	j = 0;
+	nb = 0;
+	while(args[i])
+	{
+		if (!ft_strcmp(args[i], "<") || !ft_strcmp(args[i], ">") || !ft_strcmp(args[i], "<<") || !ft_strcmp(args[i], ">>"))
+			nb++;
+		i++;
+	}
+	ret = ft_calloc((nb + 1), sizeof(char *));
+	i = 0;
+	while (args[i])
+	{
+		if (!ft_strcmp(args[i], "<") || !ft_strcmp(args[i], ">") || !ft_strcmp(args[i], "<<") || !ft_strcmp(args[i], ">>"))
+			i += 2;
+		else
+		{
+			ret[j] = ft_strdup(args[i]);
+			j++;
+			i++;
+		}
+	}
+	return (ret);
+}
 
 int	nb_tokens(char **args, char *c)
 {
@@ -57,7 +89,12 @@ char	**ft_redir(char **args, char *token)
 	while (args[i])
 	{
 		if (!ft_strcmp(args[i], token))
-			redir[j++] = ft_strdup(args[i + 1]);
+		{
+			if (!ft_strcmp(args[i], "<<"))
+				redir[j++] = ft_strjoin(args[i + 1], "\n");
+			else
+				redir[j++] = ft_strdup(args[i + 1]);
+		}
 		i++;
 	}
 	return (redir);
@@ -75,6 +112,7 @@ t_cmd	*ft_new_node(char *commands)
 	list->infile = ft_redir(list->args, "<");
 	list->heredoc = ft_redir(list->args, "<<");
 	list->append = ft_redir(list->args, ">>");
+	list->args = ft_args(list->args);
 	list->next = NULL;
 	return (list);
 }
