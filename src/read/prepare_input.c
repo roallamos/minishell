@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/10 15:17:42 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:19:21 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ char	**ft_args(char **args)
 			i++;
 		}
 	}
+	ft_free_array(args);
 	return (ret);
 }
 
