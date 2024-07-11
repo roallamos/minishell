@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/11 16:42:37 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:24:39 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,10 @@ typedef struct s_data
 	pid_t		pid;
 	pid_t		*pids;
 	int			num_commands;
-	int			fd_infile; // a falta de que diga algo el migu se moveran para arriba
-	int			fd_outfile; // idem
+	int			fd_infile;
+	int			fd_heredoc;
+	int			fd_outfile;
+	int			fd_append;
 	int			pipefd[2];
 	t_cmd		*list;
 }	t_data;
@@ -161,6 +163,7 @@ void	exec_pipex(t_data *data);
 void	wait_pids(t_data *data, int i);
 void	dup_infile_n_close(t_data *data);
 void	infile(t_data *data, int i);
+void	heredoc(t_data *data, int i);
 void	dup_outfile_n_close(t_data *data);
 void	outfile(t_data *data, int i);
 void	dup_cmds_n_close(t_data *data, int (*prev_pipefd)[2]);
