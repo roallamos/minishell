@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/11 17:32:45 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/11 19:03:56 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	**ft_args(char **args)
 		if (!ft_strcmp(args[i], "<") || !ft_strcmp(args[i], ">") || !ft_strcmp(args[i], "<<") || !ft_strcmp(args[i], ">>"))
 			i += 2;
 		else
-			ret[j++] = ft_strdup(args[i++]);
+			ret[j++] = ft_strtrim(args[i++], " \t \n \f \r \v");
 	}
 	ft_free_array(args);
 	return (ret);

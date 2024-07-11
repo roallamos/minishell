@@ -159,6 +159,8 @@ void	ft_cut_cmd(char *command, char **ret)
 	while (command[i])
 	{
 		start = &command[i];
+		while (ft_isspace(command[i]))
+			i++;
 		while (command[i] && (!ft_isspace(command[i]) || quote))
 		{
 			if (command[i] == '\'' || command[i] == '"')
@@ -176,11 +178,30 @@ void	ft_cut_cmd(char *command, char **ret)
 		if (ft_istoken(command[i]))
 		{
 			start = &command[i];
-			while (ft_istoken(command[i]))
+			while (ft_istoken(command[i]) || ft_isspace(command[i]))
 				i++;
 			ret[j++] = ft_strndup(start, &command[i] - start);
 		}
 	}
+}
+
+char **trim_spaces(char **args)
+{
+	int i;
+	char	**ret;
+
+	i = 0;
+	while (args[i])
+		i++;
+	ret = ft_calloc(i + 1, sizeof(char *));
+	i = 0;
+	while (args[i])
+	{
+		ret[i] = ft_strtrim(args[i], " \t \n \f \r \v");
+		i++;
+	}
+	ft_free_array(args);
+	return (ret);
 }
 
 char **ft_split_args(char *command)
@@ -191,5 +212,6 @@ char **ft_split_args(char *command)
 	i = 0;
 	ret = ft_calloc(args_nb(command) + 1, sizeof(char *));
 	ft_cut_cmd(command, ret);
+	ret = trim_spaces(ret);
 	return (ret);
 }

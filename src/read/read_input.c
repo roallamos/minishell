@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/11 17:37:06 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:49:15 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	read_input(t_data *data)
 			//printf("input %s\n", data->input);
 			data->commands = ft_split_input(data->input);
 			data->list = ft_prepare_list(data);
-			//print_list(data->list);
+			print_list(data->list);
 			parse(data);
 		}
 		ft_free_lst(data);
