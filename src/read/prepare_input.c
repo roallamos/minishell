@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/10 15:38:49 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:32:45 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	**ft_args(char **args)
 	nb = 0;
 	while(args[i])
 	{
-		if (!ft_strcmp(args[i], "<") || !ft_strcmp(args[i], ">") || !ft_strcmp(args[i], "<<") || !ft_strcmp(args[i], ">>"))
+		if (!(!ft_strcmp(args[i], "<") || !ft_strcmp(args[i], ">") || !ft_strcmp(args[i], "<<") || !ft_strcmp(args[i], ">>")))
 			nb++;
 		i++;
 	}
@@ -103,7 +103,7 @@ t_cmd	*ft_new_node(char *commands)
 
 	list = ft_calloc(1, sizeof(t_cmd));
 	list->cmd = NULL;
-	list->args = ft_split_args(commands, ' '); // aqui es donde hay que modificar el split y llamar al expansor
+	list->args = ft_split_args(commands); // aqui es donde hay que modificar el split y llamar al expansor
 	//expansor(list->args);
 	list->outfile = ft_redir(list->args, ">");
 	list->infile = ft_redir(list->args, "<");

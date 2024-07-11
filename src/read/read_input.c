@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/10 18:18:16 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:37:06 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	nb_pipes(char **tokens)
 	return (j);
 }
 
-static char	**ft_join_cmd(char **tokens, t_data *data)
+/*static char	**ft_join_cmd(char **tokens, t_data *data)
 {
 	int		i;
 	int		j;
@@ -53,7 +53,7 @@ static char	**ft_join_cmd(char **tokens, t_data *data)
 	}
 	ft_free_array(data->commands);
 	return (ret);
-}
+}*/
 
 void	print_list(t_cmd *list)
 {
@@ -111,13 +111,12 @@ void	read_input(t_data *data)
 		else
 		{
 			//printf("input %s\n", data->input);
-			data->tokens = ft_split_input(data->input, data);
-			data->commands = ft_join_cmd(data->tokens, data);
+			data->commands = ft_split_input(data->input);
 			data->list = ft_prepare_list(data);
 			//print_list(data->list);
 			parse(data);
 		}
 		ft_free_lst(data);
-		free(data->input);
+		//free(data->input);
 	}
 }

@@ -1,7 +1,7 @@
 
 #include <minishell.h>
 
-static int  advance_quotes(const char *s)
+/*static int  advance_quotes(const char *s)
 {
     char quote;
     int i;
@@ -105,4 +105,91 @@ char	**ft_split_args(char const *s, char c)
 		w_len += ft_length(w_len, c);
     }
 	return (splt);
+}*/
+
+int	args_nb(const char *command)
+{
+	int i;
+	int	args;
+	char	quote;
+	int		f;
+
+	i = 0;
+	args = 0;
+	quote = 0;
+	f = 1;
+	while (command[i])
+	{
+		if (command[i] == '\'' || command[i] == '"')
+		{
+			if (!quote)
+				quote = command[i];
+			else if (quote == command[i])
+				quote = 0;
+		}
+		else if (ft_istoken(command[i]))
+		{
+			args++;
+			while (ft_istoken(command[i]))
+				i++;
+			i--;
+		}
+		else if (!ft_isspace(command[i]) && f == 1)
+		{
+			args++;
+			f = 0;
+		}
+		else if (ft_isspace(command[i]) && !quote)
+			f = 1;
+		i++;
+	}
+	return (args);
+}
+
+void	ft_cut_cmd(char *command, char **ret)
+{
+	int i;
+	int	j;
+	char	quote;
+	char	*start;
+
+	i = 0;
+	j = 0;
+	quote = 0;
+	while (command[i])
+	{
+		start = &command[i];
+		while (command[i] && (!ft_isspace(command[i]) || quote))
+		{
+			if (command[i] == '\'' || command[i] == '"')
+			{
+				if (!quote)
+					quote = command[i];
+				else if (quote == command[i])
+					quote = 0;
+			}
+			i++;
+		}
+		ret[j++] = ft_strndup(start, &command[i] - start + 1);
+		while (command[i] && ft_isspace(command[i]) && !ft_istoken(command[i]))
+			i++;
+		if (ft_istoken(command[i]))
+		{
+			start = &command[i];
+			while (ft_istoken(command[i]))
+				i++;
+			ret[j++] = ft_strndup(start, &command[i] - start);
+		}
+	}
+}
+
+char **ft_split_args(char *command)
+{
+	int	i;
+	char **ret;
+
+	i = 0;
+	ret = ft_calloc(args_nb(command) + 1, sizeof(char *));
+	ft_cut_cmd(command, ret);
+	return (ret);
 }
