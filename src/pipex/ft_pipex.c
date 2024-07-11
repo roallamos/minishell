@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:38:30 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/09 19:51:57 by migumore         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:02:47 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ static void	pipex(t_data *data, int i)
 	do_fork(&pid);//, data);
 	if (pid == 0)
 	{
-		if (data->list->infile || data->list->heredoc)
+		if (data->fd_infile)
 			dup_infile_n_close(data);
-		else if (data->list->outfile || data->list->append)
+		else if (data->fd_outfile)
 			dup_outfile_n_close(data);
 		else
 			dup_cmds_n_close(data, &prev_pipefd);

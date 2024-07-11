@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:07:31 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/09 19:55:35 by migumore         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:01:59 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,8 @@ void	infile(t_data *data, int i)
 		data->fd_infile = open(data->list->infile[i], O_RDONLY);
 		if (data->fd_infile < 0)
 		{
-			write_error("minishell: No such file or directory: ", data->list->infile[i]);
-			// ft_free_cmds_n_limiter_n_pids(data);
-			// ft_free_path(data);
+			write_error("minishell: No such file or directory: ",
+				data->list->infile[i]);
 			exit(1);
 		}
 	}
@@ -56,14 +55,14 @@ void	infile(t_data *data, int i)
 		if (data->fd_infile < 0)
 		{
 			write_error("minishell: No such file or directory: ", "here_doc");
-			// ft_free_cmds_n_limiter_n_pids(data);
-			// ft_free_path(data);
 			unlink("here_doc");
 			exit(1);
 		}
 		here_doc(data, i);
 	}
+	here_doc(data, pos);
 }
+
 
 void	outfile(t_data *data, int i)
 {
@@ -88,5 +87,21 @@ void	outfile(t_data *data, int i)
 			// ft_free_path(data);
 			exit(1);
 		}
+	}
+}
+
+void	check_redirs(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	if (data->list->heredoc || data->list->infile)
+	{
+		if (data->list->heredoc)
+			while (data->list->heredoc[i])
+				infile(data, i++);
+		if (data->list->infile)
+			while (data->list->infile[i])
+				infile(data, i++);
 	}
 }
