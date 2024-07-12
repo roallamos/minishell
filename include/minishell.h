@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/12 12:35:59 by migumore         ###   ########.fr       */
+/*   Updated: 2024/07/12 13:52:33 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,6 @@ void	ft_free_lst(t_data *data);
 void	ft_free_array(char **array);
 void	ft_free_path(t_data *data);
 void	ft_free_env(t_data *data);
-void	ft_free_cmds_n_limiter_n_pids(t_data *data);
 void	read_input(t_data *data);
 int		check_input(char *input);
 void	parse(t_data *data);
