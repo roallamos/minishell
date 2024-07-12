@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/11 18:24:39 by migumore         ###   ########.fr       */
+/*   Updated: 2024/07/12 12:35:59 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,10 @@ typedef struct s_cmd
 	char			**heredoc;
 	char			**append;
 	struct s_cmd	*next;
+	int				fd_infile;
+	int				fd_heredoc;
+	int				fd_outfile;
+	int				fd_append;
 }	t_cmd;
 
 typedef struct s_data
@@ -125,10 +129,6 @@ typedef struct s_data
 	pid_t		pid;
 	pid_t		*pids;
 	int			num_commands;
-	int			fd_infile;
-	int			fd_heredoc;
-	int			fd_outfile;
-	int			fd_append;
 	int			pipefd[2];
 	t_cmd		*list;
 }	t_data;
