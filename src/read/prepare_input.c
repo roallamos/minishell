@@ -6,24 +6,32 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/12 10:57:34 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/12 14:46:43 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-// void	expansor(char **args)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	while (args[i])
-// 	{
-// 		if (args[i][0] && args[i][0] == '$')
-// 	//		expand_var();
-		
-// 	}
-// }
+void	in_out_last(int *in, int *out, char **args)
+{
+	int	i;
+	
+	i = 0;
+	*in = 0;
+	*out = 0;
+	while(args[i])
+	{
+		if (ft_strcmp(args[i], "<"))
+			*in = 1;
+		else if (ft_strcmp(args[i], "<<"))
+			*in = 2;
+		else if (ft_strcmp(args[i], ">"))
+			*out = 1;
+		else if (ft_strcmp(args[i], ">>"))
+			*out = 2;
+		i++;
+	}
+}
 
 char	**ft_args(char **args)
 {
@@ -97,19 +105,25 @@ char	**ft_redir(char **args, char *token)
 	return (redir);
 }
 
-t_cmd	*ft_new_node(char *commands)
+t_cmd	*ft_new_node(char *commands, t_data *data)
 {
 	t_cmd	*list;
 
+	(void) data;
 	list = ft_calloc(1, sizeof(t_cmd));
 	list->cmd = NULL;
 	list->args = ft_split_args(commands); // aqui es donde hay que modificar el split y llamar al expansor
-	//expansor(list->args);
+	in_out_last(&list->in_flag, &list->out_flag, list->args);
+	//expansor(list->args, data);
 	list->outfile = ft_redir(list->args, ">");
 	list->infile = ft_redir(list->args, "<");
 	list->heredoc = ft_redir(list->args, "<<");
 	list->append = ft_redir(list->args, ">>");
 	list->args = ft_args(list->args);
+	list->fd_infile = 0;
+	list->fd_heredoc = 0;
+	list->fd_outfile = 0;
+	list->fd_append = 0;
 	list->next = NULL;
 	return (list);
 }
@@ -123,7 +137,7 @@ t_cmd	*ft_prepare_list(t_data *data)
 	list = NULL;
 	while (data->commands[i])
 	{
-		ft_lstcmdadd_back(&list, ft_new_node(data->commands[i]));
+		ft_lstcmdadd_back(&list, ft_new_node(data->commands[i], data));
 		i++;
 	}
 	data->num_commands = i;

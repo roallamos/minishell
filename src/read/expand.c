@@ -9,23 +9,26 @@ void	expand_var(t_data *data, int pos)
 	free(temp);
 }
 
- void	expansor(t_data *data)
+ char	**expansor(t_data *data)
  {
  	int i;
     int j;
+	char	quote;
 
  	i = 0;
     j = 0;
- 	while (data->list->args && data->list->args[i])
+	quote = 0;
+ 	/*while (data->list->args && data->list->args[i])
  	{
-        while (data->list->args[i][j])
-        {
-            if ()
-            j++;
-        }
-        j = 0;
- 		i++;
-    		//expand_var();
-		
- 	}
+		if (data->list->args[i][j] == '\'' || data->list->args[i][j] == '"')
+		{
+			if (!quote)
+				quote = data->list->args[i][j];
+			else if (quote == data->list->args[i][j])
+				quote = 0;
+		}
+		else if (data->list->args[i][j] == '$' && quote != '\'')
+			expand_var
+
+ 	}*/
 }
