@@ -113,7 +113,7 @@ void	read_input(t_data *data)
 			//printf("input %s\n", data->input);
 			data->commands = ft_split_input(data->input);
 			data->list = ft_prepare_list(data);
-			print_list(data->list);
+		//	print_list(data->list);
 			parse(data);
 		}
 		ft_free_lst(data);

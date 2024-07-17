@@ -114,7 +114,7 @@ t_cmd	*ft_new_node(char *commands, t_data *data)
 	list->cmd = NULL;
 	list->args = ft_split_args(commands); // aqui es donde hay que modificar el split y llamar al expansor
 	in_out_last(&list->in_flag, &list->out_flag, list->args);
-	//expansor(list->args, data);
+	expansor(list->args, data);
 	list->outfile = ft_redir(list->args, ">");
 	list->infile = ft_redir(list->args, "<");
 	list->heredoc = ft_redir(list->args, "<<");

@@ -206,10 +206,8 @@ char **trim_spaces(char **args)
 
 char **ft_split_args(char *command)
 {
-	int	i;
 	char **ret;
 
-	i = 0;
 	ret = ft_calloc(args_nb(command) + 1, sizeof(char *));
 	ft_cut_cmd(command, ret);
 	ret = trim_spaces(ret);

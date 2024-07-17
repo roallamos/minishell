@@ -170,6 +170,7 @@ void	outfile(t_data *data, int i);
 void	dup_cmds_n_close(t_data *data, int (*prev_pipefd)[2]);
 void	close_pipes(t_data *data, int (*prev_pipe)[2], int i);
 int		check_builtin(t_data *data, int pos);
-void	expand_var(t_data *data, int pos);
+void	expansor(char **args, t_data *data);
+char	*expand_var(t_data *data, char *args);
 
 #endif // MINISHELL_H

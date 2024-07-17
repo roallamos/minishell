@@ -12,15 +12,6 @@
 
 #include <minishell.h>
 
-void	expand_var(t_data *data, int pos)
-{
-	char	*temp;
-
-	temp = data->list->args[pos];
-	data->list->args[pos] = getenv(&data->commands[pos][1]);
-	free(temp);
-}
-
 int	check_builtin(t_data *data, int pos)
 {
 	if (!ft_strcmp(data->list->args[pos], "echo"))

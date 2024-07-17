@@ -34,6 +34,7 @@ EXECUTOR	=	src/executor/ft_find_path.c \
 			src/read/check_input.c \
 			src/read/prepare_input.c \
 			src/read/lists.c \
+			src/read/expand.c \
 			src/executor/ft_pwd.c \
 			src/executor/set_prompt.c \
 			src/executor/do_exit.c \
