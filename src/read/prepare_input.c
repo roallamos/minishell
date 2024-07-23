@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/12 14:46:43 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:48:23 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ t_cmd	*ft_new_node(char *commands, t_data *data)
 	(void) data;
 	list = ft_calloc(1, sizeof(t_cmd));
 	list->cmd = NULL;
-	list->args = ft_split_args(commands); // aqui es donde hay que modificar el split y llamar al expansor
+	list->args = ft_split_args(commands);
 	in_out_last(&list->in_flag, &list->out_flag, list->args);
 	expansor(list->args, data);
 	list->outfile = ft_redir(list->args, ">");

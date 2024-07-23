@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/07/10 17:12:32 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:51:54 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,19 @@ void	parse(t_data *data)
 	int	i;
 
 	i = 0;
-	//check_tokens(data);
-	while (data->list->args[i])
+	if (data->num_commands == 1)
 	{
-		// if (!data->list->args[i][0])
-		// 	return ;
-		// else if (data->list->args[i][0] == '$')
-		// 	expand_var(data, i);
-		// else
-		if (data->num_commands == 1)
-		{
-			if (check_builtin(data, i))
-				return ;
-			else
-			{	
-				data->pid = fork();
-				if (data->pid == 0)
-					get_cmd_and_execute(data);
-				else
-					waitpid(data->pid, &data->status, 0);
-			}
-		}
+		if (check_builtin(data, i))
+			return ;
 		else
-			exec_pipex(data);
-		i++;
+		{	
+			data->pid = fork();
+			if (data->pid == 0)
+				get_cmd_and_execute(data);
+			else
+				waitpid(data->pid, &data->status, 0);
+		}
 	}
-	data->cmd_pos = i;
+	else
+		exec_pipex(data);
 }

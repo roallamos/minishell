@@ -6,6 +6,7 @@ char	*ft_replace(char *var, char *value, char *args)
 	char	*ret;
 
 	i = 0;
+	ret = NULL;
 	while (args[i] && args[i] != '$')
 		i++;
 	if (args[i])
