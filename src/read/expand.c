@@ -46,9 +46,12 @@ char	*expand_var(t_data *data, char *args)
 	j = 0;
 	while (args[i] != '$')
 		i++;
-	while (args[i + j] && (!ft_isspace(args[i + j]) || args[i + j] == '$'))
+	if (args[i])
 		j++;
-	var = ft_strndup(&args[i], i - j + 1);
+	while (args[i + j] && (!ft_isspace(args[i + j]) && args[i + j] != '$' && args[i + j] != '"'))
+		j++;
+	var = ft_strndup(&args[i], &args[i + j] - &args[i]);
+	printf("var %s\n", var);
 	args = ft_replace(var, get_from_env(data, var), args);
 	return (args);
 }
@@ -57,23 +60,29 @@ char	*expand_var(t_data *data, char *args)
  {
  	int i;
     int j;
-	char	quote;
+	char	d_quote;
+	char	s_quote;
 
  	i = 0;
     j = 0;
-	quote = 0;
+	d_quote = 0;
+	s_quote = 0;
  	while (args && args[i])
  	{
 		while (args[i][j])
 		{
 			if (args[i][j] == '\'' || args[i][j] == '"')
 			{
-				if (!quote)
-					quote = args[i][j];
-				else if (quote == args[i][j])
-					quote = 0;
+				if (args[i][j] == '\'' && !s_quote)
+					s_quote = 1;
+				else if (args[i][j] == '\'' && s_quote)
+					s_quote = 0;
+				if (args[i][j] == '"' && !d_quote)
+					d_quote = 1;
+				else if (args[i][j] == '"' && d_quote)
+					d_quote = 0;
 			}
-			else if (args[i][j] == '$' && quote != '\'')
+			else if (args[i][j] == '$' && !s_quote)
 			{
 				args[i] = expand_var(data, args[i]);//expand_var(data, args[i], i); esto va a ser la funcion de sustituir y plantea que igual hay que resetear j 
 				printf("%s\n",args[i]);
