@@ -31,9 +31,12 @@ char *get_from_env(t_data *data, char *var)
 		i++;
 	while (data->env[i] && data->env[i][j] != '=')
 		j++;
-	if (data->env[i][j] == '=')
+	if (data->env[i] && data->env[i][j] == '=')
+	{
 		j++;
-	return (&data->env[i][j]);
+		return (&data->env[i][j]);
+	}
+	return (NULL);
 }
 
 char	*expand_var(t_data *data, char *args)
