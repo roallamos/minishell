@@ -85,7 +85,7 @@ char	*expand_var(t_data *data, char *args)
 					d_quote = 0;
 			}
 			else if (args[i][j] == '$' && !s_quote)
-				args[i] = expand_var(data, args[i]);//expand_var(data, args[i], i); esto va a ser la funcion de sustituir y plantea que igual hay que resetear j 
+				args[i] = expand_var(data, args[i]);
 			if (args[i][j])
 				j++;
 		}
