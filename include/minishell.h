@@ -148,7 +148,7 @@ void	ft_free_env(t_data *data);
 void	read_input(t_data *data);
 int		check_input(char *input);
 void	parse(t_data *data);
-void	export(t_data *data, int pos);
+void	export(t_data *data);
 int		env_size(char **arr);
 void	dup_env(t_data *data, char **env);
 void	get_cmd_and_execute(t_data *data);
@@ -169,7 +169,7 @@ void	dup_outfile_n_close(t_data *data);
 void	outfile(t_data *data, int i);
 void	dup_cmds_n_close(t_data *data, int (*prev_pipefd)[2]);
 void	close_pipes(t_data *data, int (*prev_pipe)[2], int i);
-int		check_builtin(t_data *data, int pos);
+int		check_builtin(t_data *data);
 void	expansor(char **args, t_data *data);
 char	*expand_var(t_data *data, char *args);
 

@@ -12,17 +12,17 @@
 
 #include <minishell.h>
 
-void	export(t_data *data, int pos)
+void	export(t_data *data)
 {
 	int	size;
 
 	size = env_size(data->env);
-	if (data->commands[pos + 1])
+	if (data->list->args[1])
 	{
 		data->env = ft_realloc(data->env, size * sizeof(char *),
 				(size + 1) * sizeof(char *));
-		data->env[size] = ft_strndup(data->list->args[pos + 1],
-				ft_strlen(data->list->args[pos + 1]));
+		data->env[size] = ft_strndup(data->list->args[1],
+				ft_strlen(data->list->args[1]));
 		data->env[size + 1] = NULL;
 	}
 }

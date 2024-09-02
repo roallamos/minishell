@@ -12,33 +12,30 @@
 
 #include <minishell.h>
 
-int	check_builtin(t_data *data, int pos)
+int	check_builtin(t_data *data)
 {
-	if (!ft_strcmp(data->list->args[pos], "echo"))
-		return (export(data, pos), 1); //Hacer built-in
-	else if (!ft_strcmp(data->list->args[pos], "cd"))
-		return (do_cd(data, pos), 1);
-	else if (!ft_strcmp(data->list->args[pos], "pwd"))
+	if (!ft_strcmp(data->list->args[0], "echo"))
+		return (export(data), 1); // falla no se crea la variable
+	else if (!ft_strcmp(data->list->args[0], "cd"))
+		return (do_cd(data, 0), 1);
+	else if (!ft_strcmp(data->list->args[0], "pwd"))
 		return (printf("%s\n", getcwd(NULL, 0)), 1);
-	else if (!ft_strcmp(data->list->args[pos], "export"))
-		return (export(data, pos), 1);
-	else if (!ft_strcmp(data->list->args[pos], "unset"))
-		return (export(data, pos), 1); //Hacer built-in
-	else if (!ft_strcmp(data->list->args[pos], "env"))
+	else if (!ft_strcmp(data->list->args[0], "export"))
+		return (export(data), 1);
+	else if (!ft_strcmp(data->list->args[0], "unset"))
+		return (export(data), 1); //Hacer built-in
+	else if (!ft_strcmp(data->list->args[0], "env"))
 		return (print_env(data), 1);
-	else if (!ft_strcmp(data->list->args[pos], "exit"))
+	else if (!ft_strcmp(data->list->args[0], "exit"))
 		do_exit(data);
 	return (0);
 }
 
 void	parse(t_data *data)
 {
-	int	i;
-
-	i = 0;
 	if (data->num_commands == 1)
 	{
-		if (check_builtin(data, i))
+		if (check_builtin(data))
 			return ;
 		else
 		{	
