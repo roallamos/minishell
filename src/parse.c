@@ -38,7 +38,7 @@ void	parse(t_data *data)
 		if (check_builtin(data))
 			return ;
 		else
-		{	
+		{
 			data->pid = fork();
 			if (data->pid == 0)
 				get_cmd_and_execute(data);

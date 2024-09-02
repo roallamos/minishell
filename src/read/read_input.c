@@ -110,11 +110,12 @@ void	read_input(t_data *data)
 			printf("syntax error near unexpected token\n");
 		else
 		{
-			//printf("input %s\n", data->input);
 			data->commands = ft_split_input(data->input);
-			data->list = ft_prepare_list(data);
-		//	print_list(data->list);
-			parse(data);
+			if (ft_strcmp(data->commands[0], "\0"))
+			{
+				data->list = ft_prepare_list(data);
+				parse(data);
+			}
 		}
 		ft_free_lst(data);
 		//free(data->input);

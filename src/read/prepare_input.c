@@ -135,7 +135,7 @@ t_cmd	*ft_prepare_list(t_data *data)
 
 	i = 0;
 	list = NULL;
-	while (data->commands[i])
+	while (data->commands && data->commands[i])
 	{
 		ft_lstcmdadd_back(&list, ft_new_node(data->commands[i], data));
 		i++;
