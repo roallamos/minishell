@@ -15,7 +15,7 @@
 int	check_builtin(t_data *data)
 {
 	if (!ft_strcmp(data->list->args[0], "echo"))
-		return (export(data), 1); // falla no se crea la variable
+		return (export(data), 1); // fañta built in
 	else if (!ft_strcmp(data->list->args[0], "cd"))
 		return (do_cd(data, 0), 1);
 	else if (!ft_strcmp(data->list->args[0], "pwd"))
