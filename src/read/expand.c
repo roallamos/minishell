@@ -51,7 +51,7 @@ char	*expand_var(t_data *data, char *args)
 		i++;
 	if (args[i])
 		j++;
-	while (args[i + j] && (!ft_isspace(args[i + j]) && args[i + j] != '$' && args[i + j] != '"'))
+	while (args[i + j] && (!ft_isspace(args[i + j]) && args[i + j] != '$' && args[i + j] != '"' && args[i + j] != '\''))
 		j++;
 	var = ft_strndup(&args[i], &args[i + j] - &args[i]);
 	args = ft_replace(var, get_from_env(data, var), args);
@@ -75,11 +75,11 @@ char	*expand_var(t_data *data, char *args)
 		{
 			if (args[i][j] == '\'' || args[i][j] == '"')
 			{
-				if (args[i][j] == '\'' && !s_quote)
+				if (args[i][j] == '\'' && !s_quote && !d_quote)
 					s_quote = 1;
 				else if (args[i][j] == '\'' && s_quote)
 					s_quote = 0;
-				if (args[i][j] == '"' && !d_quote)
+				if (args[i][j] == '"' && !d_quote && !s_quote)
 					d_quote = 1;
 				else if (args[i][j] == '"' && d_quote)
 					d_quote = 0;
