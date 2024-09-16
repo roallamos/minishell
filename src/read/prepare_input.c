@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/16 17:57:40 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:39:56 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,14 +108,14 @@ t_cmd	*ft_new_node(char *commands, t_data *data)
 	list = ft_calloc(1, sizeof(t_cmd));
 	list->cmd = NULL;
 	list->args = ft_split_args(commands);
-//	in_out_last(&list->in_flag, &list->out_flag, list->args);
 	list->docs = ft_redir(list->args);
 	expansor(list->args, data);
+//	in_out_last(&list->in_flag, &list->out_flag, list->args); BORRAR
 	/*list->outfile = ft_redir(list->args, ">");
 	list->infile = ft_redir(list->args, "<");
 	list->heredoc = ft_redir(list->args, "<<");
 	list->append = ft_redir(list->args, ">>");
-	list->args = ft_args(list->args);*/
+	list->args = ft_args(list->args);*/ //BORRAR
 	list->next = NULL;
 	return (list);
 }
