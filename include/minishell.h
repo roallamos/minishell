@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/12 14:03:05 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/16 10:49:09 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,5 +172,6 @@ void	close_pipes(t_data *data, int (*prev_pipe)[2], int i);
 int		check_builtin(t_data *data);
 void	expansor(char **args, t_data *data);
 char	*expand_var(t_data *data, char *args);
+void	check_redirs(t_data *data);
 
 #endif // MINISHELL_H
