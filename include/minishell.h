@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/16 10:49:09 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/16 12:54:01 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,21 +94,29 @@
 # define BOLD_YELLOW	"\033[1;33m"
 # define BOLD_WHITE		"\033[1;37m"
 
+typedef struct s_docs
+{
+	char	*doc;
+	int		flag;
+	int		fd;
+}	t_docs;
+
 typedef struct s_cmd
 {
 	char			*cmd;
 	char			**args;
-	char			**outfile;
-	char			**infile;
-	char			**heredoc;
-	char			**append;
+	t_docs			*docs;
+	// char			**outfile;
+	// char			**infile;
+	// char			**heredoc;
+	// char			**append;
 	struct s_cmd	*next;
-	int				fd_infile;
-	int				fd_heredoc;
-	int				fd_outfile;
-	int				fd_append;
-	int				out_flag;
-	int				in_flag;
+	// int				fd_infile;
+	// int				fd_heredoc;
+	// int				fd_outfile;
+	// int				fd_append;
+	// int				in_flag;
+	// int				out_flag;
 }	t_cmd;
 
 typedef struct s_data
