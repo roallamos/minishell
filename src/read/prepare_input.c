@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/23 15:48:23 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/16 10:39:37 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	in_out_last(int *in, int *out, char **args)
 {
 	int	i;
-	
+
 	i = 0;
 	*in = 0;
 	*out = 0;
-	while(args[i])
+	while (args[i])
 	{
 		if (ft_strcmp(args[i], "<"))
 			*in = 1;
@@ -35,17 +35,18 @@ void	in_out_last(int *in, int *out, char **args)
 
 char	**ft_args(char **args)
 {
-	int	i;
-	int	j;
-	int nb;
-	char **ret;
+	int		i;
+	int		j;
+	int		nb;
+	char	**ret;
 
 	i = 0;
 	j = 0;
 	nb = 0;
-	while(args[i])
+	while (args[i])
 	{
-		if (!(!ft_strcmp(args[i], "<") || !ft_strcmp(args[i], ">") || !ft_strcmp(args[i], "<<") || !ft_strcmp(args[i], ">>")))
+		if (!(!ft_strcmp(args[i], "<") || !ft_strcmp(args[i], ">")
+				|| !ft_strcmp(args[i], "<<") || !ft_strcmp(args[i], ">>")))
 			nb++;
 		i++;
 	}
@@ -53,7 +54,8 @@ char	**ft_args(char **args)
 	i = 0;
 	while (args[i])
 	{
-		if (!ft_strcmp(args[i], "<") || !ft_strcmp(args[i], ">") || !ft_strcmp(args[i], "<<") || !ft_strcmp(args[i], ">>"))
+		if (!ft_strcmp(args[i], "<") || !ft_strcmp(args[i], ">")
+			|| !ft_strcmp(args[i], "<<") || !ft_strcmp(args[i], ">>"))
 			i += 2;
 		else
 			ret[j++] = ft_strdup(args[i++]);

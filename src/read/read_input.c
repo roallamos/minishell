@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/11 18:49:15 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/16 10:35:30 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	nb_pipes(char **tokens)
-{
-	int	i;
-	int	j;
+// int	nb_pipes(char **tokens)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = 0;
-	j = 0;
-	while (tokens[i])
-	{
-		if (*tokens[i] == '|')
-			j++;
-		i++;
-	}
-	return (j);
-}
+// 	i = 0;
+// 	j = 0;
+// 	while (tokens[i])
+// 	{
+// 		if (*tokens[i] == '|')
+// 			j++;
+// 		i++;
+// 	}
+// 	return (j);
+// }
 
 /*static char	**ft_join_cmd(char **tokens, t_data *data)
 {
@@ -55,46 +55,46 @@ int	nb_pipes(char **tokens)
 	return (ret);
 }*/
 
-void	print_list(t_cmd *list)
-{
-	int	i;
+// void	print_list(t_cmd *list)
+// {
+// 	int	i;
 
-	while (list)
-	{
-		printf("%s\n", list->cmd);
-		i = 0;
-		while (list->args[i])
-		{
-			printf("args %s\n", list->args[i]);
-			i++;
-		}
-		i = 0;
-		while (list->outfile && list->outfile[i])
-		{
-			printf("outfile %s\n", list->outfile[i]);
-			i++;
-		}
-		i = 0;
-		while (list->infile && list->infile[i])
-		{
-			printf("infile %s\n", list->infile[i]);
-			i++;
-		}
-		i = 0;
-		while (list->heredoc && list->heredoc[i])
-		{
-			printf("heredoc %s\n", list->heredoc[i]);
-			i++;
-		}
-		i = 0;
-		while (list->append && list->append[i])
-		{
-			printf("append %s\n", list->append[i]);
-			i++;
-		}
-		list = list->next;
-	}
-}
+// 	while (list)
+// 	{
+// 		printf("%s\n", list->cmd);
+// 		i = 0;
+// 		while (list->args[i])
+// 		{
+// 			printf("args %s\n", list->args[i]);
+// 			i++;
+// 		}
+// 		i = 0;
+// 		while (list->outfile && list->outfile[i])
+// 		{
+// 			printf("outfile %s\n", list->outfile[i]);
+// 			i++;
+// 		}
+// 		i = 0;
+// 		while (list->infile && list->infile[i])
+// 		{
+// 			printf("infile %s\n", list->infile[i]);
+// 			i++;
+// 		}
+// 		i = 0;
+// 		while (list->heredoc && list->heredoc[i])
+// 		{
+// 			printf("heredoc %s\n", list->heredoc[i]);
+// 			i++;
+// 		}
+// 		i = 0;
+// 		while (list->append && list->append[i])
+// 		{
+// 			printf("append %s\n", list->append[i]);
+// 			i++;
+// 		}
+// 		list = list->next;
+// 	}
+// }
 
 void	read_input(t_data *data)
 {

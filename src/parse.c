@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/07/23 15:51:54 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/16 10:40:26 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_builtin(t_data *data)
 {
 	if (!ft_strcmp(data->list->args[0], "echo"))
-		return (export(data), 1); // fañta built in
+		return (export(data), 1); // falta built in
 	else if (!ft_strcmp(data->list->args[0], "cd"))
 		return (do_cd(data, 0), 1);
 	else if (!ft_strcmp(data->list->args[0], "pwd"))

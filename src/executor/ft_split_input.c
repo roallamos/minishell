@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 23:47:13 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/11 18:44:23 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/16 10:37:25 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ char	**split_pipes(char *input)
 		return (ret);
 	}
 	start = input;
-	while(input[i])
+	while (input[i])
 	{
 		if (input[i] == '|')
 		{
@@ -158,7 +158,7 @@ char	**split_pipes(char *input)
 
 char	**ft_split_input(char *input)
 {
-	char **ret;
+	char	**ret;
 
 	ret = split_pipes(input);
 	return (ret);
