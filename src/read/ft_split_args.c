@@ -161,7 +161,7 @@ void	ft_cut_cmd(char *command, char **ret)
 		start = &command[i];
 		while (ft_isspace(command[i]))
 			i++;
-		while (command[i] && (!ft_isspace(command[i]) || quote))
+		while (command[i] && (!ft_isspace(command[i]) || quote)) //aqui hacer la funcion de quotes
 		{
 			if (command[i] == '\'' || command[i] == '"')
 			{

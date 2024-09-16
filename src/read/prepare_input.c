@@ -3,34 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/16 10:39:37 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/16 17:57:40 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	in_out_last(int *in, int *out, char **args)
+void	redirection_type(t_docs *redir, char *args, int pos)
 {
-	int	i;
-
-	i = 0;
-	*in = 0;
-	*out = 0;
-	while (args[i])
-	{
-		if (ft_strcmp(args[i], "<"))
-			*in = 1;
-		else if (ft_strcmp(args[i], "<<"))
-			*in = 2;
-		else if (ft_strcmp(args[i], ">"))
-			*out = 1;
-		else if (ft_strcmp(args[i], ">>"))
-			*out = 2;
-		i++;
-	}
+	if (!ft_strcmp(args, "<"))
+		redir[pos].flag = 0;
+	if (!ft_strcmp(args, "<<"))
+		redir[pos].flag = 1;
+	if (!ft_strcmp(args, ">"))
+		redir[pos].flag = 2;
+	if (!ft_strcmp(args, ">>"))
+		redir[pos].flag = 3;
 }
 
 char	**ft_args(char **args)
@@ -80,30 +71,32 @@ int	nb_tokens(char **args, char *c)
 	return (nb);
 }
 
-char	**ft_redir(char **args, char *token)
+t_docs	*ft_redir(char **args)
 {
 	int		i;
 	int		j;
 	int		nb;
-	char	**redir;
+	t_docs	*redir;
 
 	i = 0;
 	j = 0;
-	nb = nb_tokens(args, token);
+	nb = nb_tokens(args, ">");
+	nb += nb_tokens(args, ">>");
+	nb += nb_tokens(args, "<<");
+	nb += nb_tokens(args, "<");
 	if (nb == 0)
 		return (NULL);
-	redir = ft_calloc(nb + 1, sizeof(char *));
+	redir = ft_calloc(nb + 1, sizeof(t_docs *));
 	while (args[i])
 	{
-		if (!ft_strcmp(args[i], token))
+		if (!ft_strcmp(args[i], "<") || !ft_strcmp(args[i], "<<") || !ft_strcmp(args[i], ">") || !ft_strcmp(args[i], ">>"))
 		{
-			if (!ft_strcmp(args[i], "<<"))
-				redir[j++] = ft_strjoin(args[i + 1], "\n");
-			else
-				redir[j++] = ft_strdup(args[i + 1]);
+			redir[j].doc = ft_strdup(args[i + 1]);
+			redirection_type(redir, args[i], j);
+			j++;
 		}
 		i++;
-	}
+	}	
 	return (redir);
 }
 
@@ -115,17 +108,14 @@ t_cmd	*ft_new_node(char *commands, t_data *data)
 	list = ft_calloc(1, sizeof(t_cmd));
 	list->cmd = NULL;
 	list->args = ft_split_args(commands);
-	in_out_last(&list->in_flag, &list->out_flag, list->args);
+//	in_out_last(&list->in_flag, &list->out_flag, list->args);
+	list->docs = ft_redir(list->args);
 	expansor(list->args, data);
-	list->outfile = ft_redir(list->args, ">");
+	/*list->outfile = ft_redir(list->args, ">");
 	list->infile = ft_redir(list->args, "<");
 	list->heredoc = ft_redir(list->args, "<<");
 	list->append = ft_redir(list->args, ">>");
-	list->args = ft_args(list->args);
-	list->fd_infile = 0;
-	list->fd_heredoc = 0;
-	list->fd_outfile = 0;
-	list->fd_append = 0;
+	list->args = ft_args(list->args);*/
 	list->next = NULL;
 	return (list);
 }

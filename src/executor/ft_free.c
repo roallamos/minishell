@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:50:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/16 10:40:03 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/16 17:57:11 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,8 @@ void	ft_free_lst(t_data *data)
 	{
 		next = data->list->next;
 		ft_free_array(data->list->args);
-		ft_free_array(data->list->outfile);
-		ft_free_array(data->list->infile);
-		ft_free_array(data->list->heredoc);
-		ft_free_array(data->list->append);
+		free(data->list->docs->doc);
+		free(data->list->docs);
 		free(data->list);
 		data->list = next;
 	}
