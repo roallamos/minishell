@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 23:47:13 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/16 10:37:25 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/17 11:36:17 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,4 +163,4 @@ char	**ft_split_input(char *input)
 	ret = split_pipes(input);
 	return (ret);
 }
-
+// esto revisarlo porque probablemente se pueda borrar

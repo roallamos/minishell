@@ -1,116 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split_args.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rodralva <rodralva@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/17 11:18:15 by rodralva          #+#    #+#             */
+/*   Updated: 2024/09/17 11:37:47 by rodralva         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <minishell.h>
 
-/*static int  advance_quotes(const char *s)
-{
-    char quote;
-    int i;
-
-    i = 0;
-    quote = s[i++];
-    while (s[i] && s[i] != quote)
-        i++;
-    if (s[i])
-	{
-        i++;
-		if (s[i] && (s[i] == '\'' || s[i] == '"'))
-			i += advance_quotes(&s[i]);
-	}
-    return (i);
-}
-
-static char	**ft_free(char **splt)
-{
-	int	i;
-
-	i = 0;
-	while (splt && splt[i])
-	{
-		free (splt[i]);
-		i++;
-	}
-	free (splt);
-	return (NULL);
-}
-
-static int	ft_wordcount(char const *s, char c)
-{
-	int	i;
-	int	w;
-	int	f;
-
-	i = 0;
-	w = 0;
-	f = 0;
-	while (s[i])
-	{
-        if (s[i] == '\'' || s[i] == '"')
-        {
-            i += advance_quotes(&s[i]);
-            w++;
-			f = 1;
-        }
-		else if (s[i] != c && f == 0)
-		{
-			w++;
-			f = 1;
-		}
-		else if (s[i] == c && f == 1)
-			f = 0;
-		if (s[i])
-			i++;
-	}
-	return (w);
-}
-
-static int	ft_length(char const *s, char c)
-{
-	int	i;
-
-	(void) c;
-	i = 0;
-    if (s[i] == '\'' || s[i] == '"')
-        i += advance_quotes(&s[i]);
-    if (s[i] && !ft_isspace(s[i]))
-    {
-	    while (s[i] && !ft_isspace(s[i]))
-	    	i++;
-    }
-	return (i);
-}
-
-char	**ft_split_args(char const *s, char c)
-{
-	int		i;
-	int		w;
-	char	*w_len;
-	char	**splt;
-
-	if (!s)
-		return (NULL);
-	w = ft_wordcount(s, c);
-	i = 0;
-	w_len = (char *)s;
-	splt = ft_calloc(w + 1, 8);
-	if (splt == 0)
-		return (ft_free((splt)));
-	while (i < w)
-	{
-		while (*w_len == c)
-			w_len++;
-		splt[i] = ft_calloc(ft_length(w_len, c) + 1, 1);
-		if (splt[i] == 0)
-			return (ft_free(splt));
-		ft_strlcpy(splt[i++], w_len, ft_length(w_len, c) + 1);
-		w_len += ft_length(w_len, c);
-    }
-	return (splt);
-}*/
-
 int	args_nb(const char *command)
 {
-	int i;
-	int	args;
+	int		i;
+	int		args;
 	char	quote;
 	int		f;
 
@@ -148,8 +53,8 @@ int	args_nb(const char *command)
 
 void	ft_cut_cmd(char *command, char **ret)
 {
-	int i;
-	int	j;
+	int		i;
+	int		j;
 	char	quote;
 	char	*start;
 
@@ -185,9 +90,9 @@ void	ft_cut_cmd(char *command, char **ret)
 	}
 }
 
-char **trim_spaces(char **args)
+char	**trim_spaces(char **args)
 {
-	int i;
+	int		i;
 	char	**ret;
 
 	i = 0;
@@ -204,9 +109,9 @@ char **trim_spaces(char **args)
 	return (ret);
 }
 
-char **ft_split_args(char *command)
+char	**ft_split_args(char *command)
 {
-	char **ret;
+	char	**ret;
 
 	ret = ft_calloc(args_nb(command) + 1, sizeof(char *));
 	ft_cut_cmd(command, ret);

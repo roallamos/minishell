@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expand.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rodralva <rodralva@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/17 11:12:50 by rodralva          #+#    #+#             */
+/*   Updated: 2024/09/17 11:42:41 by rodralva         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <minishell.h>
 
 void	set_quotes(char c, int *d_quote, int *s_quote)
@@ -11,9 +23,10 @@ void	set_quotes(char c, int *d_quote, int *s_quote)
 	else if (c == '"' && *d_quote)
 		*d_quote = 0;
 }
+
 char	*ft_replace(char *var, char *value, char *args)
 {
-	int	i;
+	int		i;
 	char	*ret;
 
 	i = 0;
@@ -31,7 +44,7 @@ char	*ft_replace(char *var, char *value, char *args)
 	return (ret);
 }
 
-char *get_from_env(t_data *data, char *var)
+char	*get_from_env(t_data *data, char *var)
 {
 	int	i;
 	int	j;
@@ -52,9 +65,9 @@ char *get_from_env(t_data *data, char *var)
 
 char	*expand_var(t_data *data, char *args)
 {
-	int	i;
-	int	j;
-	char *var;
+	int		i;
+	int		j;
+	char	*var;
 
 	i = 0;
 	j = 0;
@@ -69,19 +82,19 @@ char	*expand_var(t_data *data, char *args)
 	return (args);
 }
 
- void	expansor(char **args, t_data *data)
- {
- 	int i;
-    int j;
+void	expansor(char **args, t_data *data)
+{
+	int	i;
+	int	j;
 	int	d_quote;
 	int	s_quote;
 
- 	i = 0;
-    j = 0;
+	i = 0;
+	j = 0;
 	d_quote = 0;
 	s_quote = 0;
- 	while (args && args[i])
- 	{
+	while (args && args[i])
+	{
 		while (args[i][j])
 		{
 			if (args[i][j] == '\'' || args[i][j] == '"')
@@ -103,5 +116,5 @@ char	*expand_var(t_data *data, char *args)
 		}
 		j = 0;
 		i++;
- 	}
+	}
 }
