@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/17 11:22:35 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:10:22 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_docs	*ft_redir(char **args)
 	nb += nb_tokens(args, "<");
 	if (nb == 0)
 		return (NULL);
-	redir = ft_calloc(nb + 1, sizeof(t_docs *));
+	redir = ft_calloc(nb + 1, sizeof(t_docs));
 	while (args[i])
 	{
 		if (!ft_strcmp(args[i], "<") || !ft_strcmp(args[i], "<<") || !ft_strcmp(args[i], ">") || !ft_strcmp(args[i], ">>"))
