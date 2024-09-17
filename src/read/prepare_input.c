@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/17 16:13:10 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/17 17:10:49 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,12 @@ t_docs	*ft_redir(char **args)
 	redir = ft_calloc(nb + 1, sizeof(t_docs));
 	while (args[i])
 	{
-		if (!ft_strcmp(args[i], "<") || !ft_strcmp(args[i], "<<") || !ft_strcmp(args[i], ">") || !ft_strcmp(args[i], ">>"))
+		if (!ft_strcmp(args[i], "<") || !ft_strcmp(args[i], "<<")
+			|| !ft_strcmp(args[i], ">") || !ft_strcmp(args[i], ">>"))
 		{
 			redir[j].doc = ft_strdup(args[i + 1]);
 			redirection_type(redir, args[i], j);
 			redir[j].fd = -1;
-			printf("nombre: %s tipo: %i fd: %i\n", redir[j].doc, redir[j].flag, redir[j].fd);
 			j++;
 		}
 		i++;
@@ -104,10 +104,10 @@ t_docs	*ft_redir(char **args)
 
 char	**exclude_redir(char **args)
 {
-	int	i;
-	int	j;
-	int	nb;
-	char **ret;
+	int		i;
+	int		j;
+	int		nb;
+	char	**ret;
 
 	i = 0;
 	j = 0;
@@ -122,13 +122,14 @@ char	**exclude_redir(char **args)
 	i = 0;
 	while (args[i])
 	{
-		if (ft_strcmp(args[i], "<") && ft_strcmp(args[i], "<<") && ft_strcmp(args[i], ">") && ft_strcmp(args[i], ">>"))
+		if (ft_strcmp(args[i], "<") && ft_strcmp(args[i], "<<")
+			&& ft_strcmp(args[i], ">") && ft_strcmp(args[i], ">>"))
 			ret[j++] = ft_strdup(args[i++]);
 		else
 			i += 2;
 	}
 	ft_free_array(args);
-	return(ret);
+	return (ret);
 }
 
 t_cmd	*ft_new_node(char *commands, t_data *data)

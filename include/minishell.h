@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/17 15:42:21 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/17 18:07:17 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,10 +161,10 @@ t_cmd	*ft_prepare_list(t_data *data);
 void	ft_lstcmdadd_back(t_cmd **lst, t_cmd *new);
 void	exec_pipex(t_data *data);
 void	wait_pids(t_data *data, int i);
-void	dup_infile_n_close(t_data *data);
+void	dup_infile_n_close(t_data *data, int i);
 void	infile(t_data *data, int i);
 void	heredoc(t_data *data, int i);
-void	dup_outfile_n_close(t_data *data);
+void	dup_outfile_n_close(t_data *data, int i);
 void	outfile(t_data *data, int i);
 void	dup_cmds_n_close(t_data *data, int (*prev_pipefd)[2]);
 void	close_pipes(t_data *data, int (*prev_pipe)[2], int i);

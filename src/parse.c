@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/17 15:26:40 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/17 18:28:54 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check_builtin(t_data *data)
 
 void	parse(t_data *data)
 {
-	//check_redirs(data);
+	check_redirs(data);
 	if (data->num_commands == 1)
 	{
 		if (check_builtin(data))
@@ -47,6 +47,9 @@ void	parse(t_data *data)
 				waitpid(data->pid, &data->status, 0);
 		}
 	}
-	// else
-	// 	exec_pipex(data);
+	else
+	{
+		printf("entrando en pipex\n");
+		exec_pipex(data);
+	}
 }

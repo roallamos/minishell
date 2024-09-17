@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 15:21:41 by rodralva          #+#    #+#             */
-/*   Updated: 2024/07/09 14:48:39 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/17 18:12:08 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	get_cmd_and_execute(t_data *data)
 	rl_clear_history();
 	//data->args = ft_split_input(data->commands[0], data);
 	data->list->cmd = ft_get_cmd(data->path, data->list->args[0]);
+	printf("%s\n", data->list->cmd);
 	if (!data->list->cmd)
 	{
 		write_error("minishell: command not found: ", data->list->args[0]);
