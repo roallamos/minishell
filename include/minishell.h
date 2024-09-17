@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/16 12:54:01 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:42:21 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,17 +106,8 @@ typedef struct s_cmd
 	char			*cmd;
 	char			**args;
 	t_docs			*docs;
-	// char			**outfile;
-	// char			**infile;
-	// char			**heredoc;
-	// char			**append;
 	struct s_cmd	*next;
-	// int				fd_infile;
-	// int				fd_heredoc;
-	// int				fd_outfile;
-	// int				fd_append;
-	// int				in_flag;
-	// int				out_flag;
+
 }	t_cmd;
 
 typedef struct s_data

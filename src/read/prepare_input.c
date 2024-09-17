@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/17 15:10:22 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:34:16 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ t_docs	*ft_redir(char **args)
 		{
 			redir[j].doc = ft_strdup(args[i + 1]);
 			redirection_type(redir, args[i], j);
+			printf("nombre: %s tipo: %i fd: %i\n", redir[j].doc, redir[j].flag, redir[j].fd);
 			j++;
 		}
 		i++;
