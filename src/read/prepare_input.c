@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/17 15:34:16 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/17 16:13:10 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,42 @@ t_docs	*ft_redir(char **args)
 		{
 			redir[j].doc = ft_strdup(args[i + 1]);
 			redirection_type(redir, args[i], j);
+			redir[j].fd = -1;
 			printf("nombre: %s tipo: %i fd: %i\n", redir[j].doc, redir[j].flag, redir[j].fd);
 			j++;
 		}
 		i++;
 	}
 	return (redir);
+}
+
+char	**exclude_redir(char **args)
+{
+	int	i;
+	int	j;
+	int	nb;
+	char **ret;
+
+	i = 0;
+	j = 0;
+	while (args[i])
+		i++;
+	nb = nb_tokens(args, ">");
+	nb += nb_tokens(args, ">>");
+	nb += nb_tokens(args, "<<");
+	nb += nb_tokens(args, "<");
+	nb = i - nb;
+	ret = ft_calloc(nb + 1, sizeof(char *));
+	i = 0;
+	while (args[i])
+	{
+		if (ft_strcmp(args[i], "<") && ft_strcmp(args[i], "<<") && ft_strcmp(args[i], ">") && ft_strcmp(args[i], ">>"))
+			ret[j++] = ft_strdup(args[i++]);
+		else
+			i += 2;
+	}
+	ft_free_array(args);
+	return(ret);
 }
 
 t_cmd	*ft_new_node(char *commands, t_data *data)
@@ -110,13 +140,8 @@ t_cmd	*ft_new_node(char *commands, t_data *data)
 	list->cmd = NULL;
 	list->args = ft_split_args(commands);
 	list->docs = ft_redir(list->args);
+	list->args = exclude_redir(list->args);
 	expansor(list->args, data);
-//	in_out_last(&list->in_flag, &list->out_flag, list->args); BORRAR
-	/*list->outfile = ft_redir(list->args, ">");
-	list->infile = ft_redir(list->args, "<");
-	list->heredoc = ft_redir(list->args, "<<");
-	list->append = ft_redir(list->args, ">>");
-	list->args = ft_args(list->args);*/ //BORRAR
 	list->next = NULL;
 	return (list);
 }
