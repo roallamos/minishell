@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:42:14 by rodralva          #+#    #+#             */
-/*   Updated: 2024/07/01 16:39:27 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/17 16:31:51 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	check_token(char *input, int *i)
 		else if (last_token == '<' && input[*i] != '<' && !ft_isspace(input[*i])
 			&& (ft_istoken(input[*i]) || !input[*i]))
 			return (1);
-		else if (last_token == '>' && (input[*i] != '>' || input[*i] != '|')
+		else if (last_token == '>' && (input[*i] != '>' && input[*i] != '|') //comprobar ese segundo &&
 			&& !ft_isspace(input[*i]) && (ft_istoken(input[*i]) || !input[*i]))
 			return (1);
 		if (ft_istoken(input[*i]))
