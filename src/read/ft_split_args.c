@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid>       +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:18:15 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/17 11:37:47 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/18 10:49:06 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,28 @@ void	ft_cut_cmd(char *command, char **ret)
 {
 	int		i;
 	int		j;
-	char	quote;
+	int		s_quote;
+	int		d_quote;
 	char	*start;
 
 	i = 0;
 	j = 0;
-	quote = 0;
+	s_quote = 0;
+	d_quote = 0;
 	while (command[i])
 	{
 		start = &command[i];
 		while (ft_isspace(command[i]))
 			i++;
-		while (command[i] && (!ft_isspace(command[i]) || quote)) //aqui hacer la funcion de quotes
+		while (command[i] && (!ft_isspace(command[i]) || d_quote || s_quote)) //aqui hacer la funcion de quotes
 		{
 			if (command[i] == '\'' || command[i] == '"')
 			{
-				if (!quote)
+				set_quotes(command[i], &d_quote, &s_quote);
+				/*if (!quote)
 					quote = command[i];
 				else if (quote == command[i])
-					quote = 0;
+					quote = 0;*/
 			}
 			i++;
 		}
@@ -109,6 +112,37 @@ char	**trim_spaces(char **args)
 	return (ret);
 }
 
+void	remove_quotes(char **args)
+{
+	int	i;
+	int	j;
+	char	quotes;
+	
+	quotes = 0;
+	i = 0;
+	j = 0;
+	while (args[i])
+	{
+		while (args[i][j])
+		{
+			if (args[i][j] == '"' || args[i][j] == '\'')
+			{
+				if (!quotes)
+					quotes = args[i][j];
+				else if (quotes == args[i][j])
+					quotes = 0;
+				if (!quotes || quotes == args[i][j])
+				{
+					ft_memmove(&args[i][j], &args[i][j + 1], ft_strlen(&args[i][j]));
+					j--;
+				}
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
 char	**ft_split_args(char *command)
 {
 	char	**ret;
@@ -116,5 +150,6 @@ char	**ft_split_args(char *command)
 	ret = ft_calloc(args_nb(command) + 1, sizeof(char *));
 	ft_cut_cmd(command, ret);
 	ret = trim_spaces(ret);
+	remove_quotes(ret);
 	return (ret);
 }
