@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/17 15:29:51 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/18 14:43:33 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,46 +55,52 @@
 	return (ret);
 }*/
 
-// void	print_list(t_cmd *list)
-// {
-// 	int	i;
+ void	print_list(t_cmd *list)
+ {
+ 	int	i;
 
-// 	while (list)
-// 	{
-// 		printf("%s\n", list->cmd);
-// 		i = 0;
-// 		while (list->args[i])
-// 		{
-// 			printf("args %s\n", list->args[i]);
-// 			i++;
-// 		}
-// 		i = 0;
-// 		while (list->outfile && list->outfile[i])
-// 		{
-// 			printf("outfile %s\n", list->outfile[i]);
-// 			i++;
-// 		}
-// 		i = 0;
-// 		while (list->infile && list->infile[i])
-// 		{
-// 			printf("infile %s\n", list->infile[i]);
-// 			i++;
-// 		}
-// 		i = 0;
-// 		while (list->heredoc && list->heredoc[i])
-// 		{
-// 			printf("heredoc %s\n", list->heredoc[i]);
-// 			i++;
-// 		}
-// 		i = 0;
-// 		while (list->append && list->append[i])
-// 		{
-// 			printf("append %s\n", list->append[i]);
-// 			i++;
-// 		}
-// 		list = list->next;
-// 	}
-// }
+ 	while (list)
+ 	{
+ 		printf("%s\n", list->cmd);
+ 		i = 0;
+ 		while (list->args[i])
+ 		{
+ 			printf("args %s\n", list->args[i]);
+ 			i++;
+ 		}
+		i = 0;
+		while (list->docs && list->docs[i].doc)
+		{
+			printf("doc: %s flag: %i\n", list->docs[i].doc, list->docs[i].flag);
+			i++;
+		}
+ 		/*i = 0;
+ 		while (list->outfile && list->outfile[i])
+ 		{
+ 			printf("outfile %s\n", list->outfile[i]);
+ 			i++;
+ 		}
+ 		i = 0;
+ 		while (list->infile && list->infile[i])
+ 		{
+ 			printf("infile %s\n", list->infile[i]);
+ 			i++;
+ 		}
+ 		i = 0;
+ 		while (list->heredoc && list->heredoc[i])
+ 		{
+ 			printf("heredoc %s\n", list->heredoc[i]);
+ 			i++;
+ 		}
+ 		i = 0;
+ 		while (list->append && list->append[i])
+ 		{
+ 			printf("append %s\n", list->append[i]);
+ 			i++;
+ 		}*/
+ 		list = list->next;
+ 	}
+}
 
 void	read_input(t_data *data)
 {
@@ -114,6 +120,7 @@ void	read_input(t_data *data)
 			if (ft_strcmp(data->commands[0], "\0"))
 			{
 				data->list = ft_prepare_list(data);
+				print_list(data->list);
 				parse(data);
 			}
 		}

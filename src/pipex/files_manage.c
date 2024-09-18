@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   files_manage.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:07:31 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/18 13:08:35 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/18 14:57:40 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,14 @@ void	check_redirs(t_data *data)
 		i = 0;
 		while (data->list->docs && data->list->docs[i].doc)
 		{
-			printf("flag=%i en i=%i\n", data->list->docs->flag, i);
-			if (data->list->docs->flag == 0)
+			printf("flag=%i en i=%i\n", data->list->docs[i].flag, i);
+			if (data->list->docs[i].flag == 0)
 				infile(data, i);
-			if (data->list->docs->flag == 1)
+			if (data->list->docs[i].flag == 1)
 				heredoc(data, i);
-			if (data->list->docs->flag == 2)
+			if (data->list->docs[i].flag == 2)
 				outfile(data, i);
-			if (data->list->docs->flag == 3)
+			if (data->list->docs[i].flag == 3)
 				append(data, i);
 			printf("nombre: %s\ntipo: %i\nfd: %i\ni: %i\n", data->list->docs[i].doc, data->list->docs[i].flag, data->list->docs[i].fd, i);
 			i++;

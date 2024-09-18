@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/18 13:08:52 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/18 14:37:26 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	redirection_type(t_docs *redir, char *args, int pos)
 {
+	//printf("compare %i\n args %s\n", ft_strcmp(args, "<"), args);
 	if (!ft_strcmp(args, "<"))
 		redir[pos].flag = 0;
 	else if (!ft_strcmp(args, "<<"))
