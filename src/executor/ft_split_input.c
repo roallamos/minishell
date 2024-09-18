@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 23:47:13 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/17 11:36:17 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/18 19:43:09 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ char	**split_pipes(char *input)
 	i = 0;
 	j = 0;
 	pipes = ft_nb_pipes(input);
+	printf("pipees %i\n", pipes);
 	ret = ft_calloc(pipes + 2, sizeof(char *));
 	if (pipes == 0)
 	{
@@ -146,6 +147,7 @@ char	**split_pipes(char *input)
 		if (input[i] == '|')
 		{
 			ret[j] = ft_strndup(start, &input[i] - start);
+			printf("el ret primero %s\n", ret[j]);
 			j++;
 			start = &input[i + 1];
 		}
