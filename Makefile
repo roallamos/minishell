@@ -15,7 +15,7 @@ STANDOUT    =	$(shell tput smso)
 RESET		=	$(shell tput sgr0)
 
 CC 			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -I include
+CFLAGS		=	-Wall -Wextra -Werror -I include -g3 -fsanitize=address
 LIBS		=	-L./libft -lft -lreadline
 
 MANDATORY 	=	src/main.c \
@@ -42,7 +42,8 @@ EXECUTOR	=	src/executor/ft_find_path.c \
 			src/pipex/execution.c \
 			src/pipex/files_manage.c \
 			src/pipex/ft_pipex.c \
-			src/pipex/wait_pids.c
+			src/pipex/wait_pids.c \
+			src/pipex/utils.c
 SRC 		=	$(MANDATORY)$(EXECUTOR)
 OBJS 		=	$(SRC:.c=.o)
 INCLS 		=	-I include

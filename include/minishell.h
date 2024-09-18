@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/17 18:36:04 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/18 13:14:48 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,5 +173,6 @@ void	expansor(char **args, t_data *data);
 char	*expand_var(t_data *data, char *args);
 void	check_redirs(t_data *data);
 void	set_quotes(char c, int *d_quote, int *s_quote);
+void	delete_here_docs(t_data *data);
 
 #endif // MINISHELL_H

@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute_cmd.c                                      :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/21 15:21:41 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/18 12:42:15 by migumore         ###   ########.fr       */
+/*   Created: 2024/09/18 10:59:37 by migumore          #+#    #+#             */
+/*   Updated: 2024/09/18 11:46:59 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	get_cmd_and_execute(t_data *data)
+void	delete_here_docs(t_data *data)
 {
-	rl_clear_history();
-	data->list->cmd = ft_get_cmd(data->path, data->list->args[0]);
-	if (!data->list->cmd)
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < data->num_commands)
 	{
-		write_error("minishell: command not found: ", data->list->args[0]);
-		ft_free_lst(data);
-		exit(127);
+		j = 0;
+		while (data->list->docs && data->list->docs[j].doc)
+		{
+			if (data->list->docs[j].flag == 1)
+				unlink(data->list->docs[j].doc);
+			j++;
+		}
+		data->list = data->list->next;
+		i++;
 	}
-	execve(data->list->cmd, data->list->args, data->env);
-	perror("execve");
-	exit(1);
 }
