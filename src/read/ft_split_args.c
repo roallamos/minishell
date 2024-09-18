@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:18:15 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/18 10:49:06 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/18 13:18:31 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,15 +114,15 @@ char	**trim_spaces(char **args)
 
 void	remove_quotes(char **args)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	quotes;
-	
+
 	quotes = 0;
 	i = 0;
-	j = 0;
 	while (args[i])
 	{
+		j = 0;
 		while (args[i][j])
 		{
 			if (args[i][j] == '"' || args[i][j] == '\'')
