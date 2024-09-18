@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:07:31 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/17 17:40:01 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/18 10:10:42 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,8 @@ void	infile(t_data *data, int i)
 {
 	data->list->docs[i].fd = open(data->list->docs[i].doc, O_RDONLY);
 	if (data->list->docs[i].fd < 0)
-	{
 		write_error("minishell: No such file or directory: ",
 			data->list->docs[i].doc);
-		exit(1);
-	}
 }
 
 void	outfile(t_data *data, int i)

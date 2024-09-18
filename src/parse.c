@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/17 18:28:54 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/18 10:08:41 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,5 @@ void	parse(t_data *data)
 		}
 	}
 	else
-	{
-		printf("entrando en pipex\n");
 		exec_pipex(data);
-	}
 }
