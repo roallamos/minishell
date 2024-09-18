@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/17 17:10:49 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/18 13:08:52 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	redirection_type(t_docs *redir, char *args, int pos)
 {
 	if (!ft_strcmp(args, "<"))
 		redir[pos].flag = 0;
-	if (!ft_strcmp(args, "<<"))
+	else if (!ft_strcmp(args, "<<"))
 		redir[pos].flag = 1;
-	if (!ft_strcmp(args, ">"))
+	else if (!ft_strcmp(args, ">"))
 		redir[pos].flag = 2;
-	if (!ft_strcmp(args, ">>"))
+	else if (!ft_strcmp(args, ">>"))
 		redir[pos].flag = 3;
 }
 
