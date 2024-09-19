@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:10:33 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/17 18:06:16 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/19 15:14:18 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	dup_infile_n_close(t_data *data, int i)
 {
+	if (data->list->docs[i].fd < 0)
+		exit(1);
 	close(data->pipefd[0]);
 	dup2(data->list->docs[i].fd, STDIN_FILENO);
 	dup2(data->pipefd[1], STDOUT_FILENO);
@@ -22,6 +24,8 @@ void	dup_infile_n_close(t_data *data, int i)
 
 void	dup_outfile_n_close(t_data *data, int i)
 {
+	if (data->list->docs[i].fd < 0)
+		exit(1);
 	close(data->pipefd[1]);
 	dup2(data->list->docs[i].fd, STDOUT_FILENO);
 	dup2(data->pipefd[0], STDIN_FILENO);
