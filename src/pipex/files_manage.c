@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   files_manage.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:07:31 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/18 14:57:40 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/19 10:37:15 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ static void	write_here_doc(t_data *data, int i)
 	char	*limiter;
 
 	limiter = ft_strjoin(data->list->docs[i].doc, "\n");
-	printf("%s", limiter);
 	while (1)
 	{
-		line = get_next_line(STDIN_FILENO);
+		line = readline("> ");
+		line = ft_strjoin(line, "\n");
 		if (ft_strncmp(line, limiter,
 				ft_strlen(limiter)) == 0)
 			break ;
@@ -94,7 +94,6 @@ void	check_redirs(t_data *data)
 				outfile(data, i);
 			if (data->list->docs[i].flag == 3)
 				append(data, i);
-			printf("nombre: %s\ntipo: %i\nfd: %i\ni: %i\n", data->list->docs[i].doc, data->list->docs[i].flag, data->list->docs[i].fd, i);
 			i++;
 		}
 		data->list = data->list->next;
