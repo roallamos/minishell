@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:18:15 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/18 19:53:22 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/19 10:28:20 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,19 +73,27 @@ void	ft_cut_cmd(char *command, char **ret)
 	while (command[i])
 	{
 		start = &command[i];
-		while (command[i] && ((!ft_isspace(command[i]) && !ft_istoken(command[i]))|| d_quote || s_quote))
-		{
-			if (command[i] == '\'' || command[i] == '"')
-				set_quotes(command[i], &d_quote, &s_quote);
+		set_quotes(command[i], &d_quote, &s_quote);
+		if (ft_isspace(command[i]) && !d_quote && !s_quote)
 			i++;
+		else if (ft_istoken(command[i]) && !d_quote && !s_quote)
+		{
+			while (ft_istoken(command[i]))
+				i++;
+			ret[j++] = ft_strndup(start, &command[i] - start);
 		}
-		ret[j++] = ft_strndup(start, &command[i] - start + 1);
-		while (command[i] && ft_isspace(command[i]) && !ft_istoken(command[i]))
-			i++;
-		if (ft_istoken(command[i]))
+		else if (d_quote || s_quote)
 		{
-			start = &command[i];
-			while (ft_istoken(command[i]) || ft_isspace(command[i]))
+			while (command[i] && (d_quote || s_quote))
+			{
+				i++;
+				set_quotes(command[i], &d_quote, &s_quote);
+			}
+			ret[j++] = ft_strndup(start, &command[i++] - start + 1);
+		}
+		else
+		{
+			while (command[i] && !ft_isspace(command[i]) && !ft_istoken(command[i]))
 				i++;
 			ret[j++] = ft_strndup(start, &command[i] - start);
 		}
