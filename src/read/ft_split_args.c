@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:18:15 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/19 10:28:20 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/19 15:18:59 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,31 @@ int	args_nb(const char *command)
 		{
 			args++;
 			while (ft_istoken(command[i]))
+			{
 				i++;
+				if (!ft_istoken(command[i]))
+				{
+					i--;
+					break;
+				}
+			}
+			printf("tokend+s\n");
 		}
 		else
 		{
 			args++;
+			printf("movida %s\n", &command[i]);
 			while ((command[i] && !ft_istoken(command[i]) && !ft_isspace(command[i])) || (d_quote || s_quote))
 			{
 				set_quotes(command[i], &d_quote, &s_quote);
 				i++;
 			}
+			printf("resto\n");
 		}
 		if (command[i])
 			i++;
 	}
+	printf("nb ----------->  %i\n", args);
 	return (args);
 }
 
@@ -81,6 +92,7 @@ void	ft_cut_cmd(char *command, char **ret)
 			while (ft_istoken(command[i]))
 				i++;
 			ret[j++] = ft_strndup(start, &command[i] - start);
+			printf("reet %s\n", ret[j - 1]);
 		}
 		else if (d_quote || s_quote)
 		{
@@ -88,6 +100,11 @@ void	ft_cut_cmd(char *command, char **ret)
 			{
 				i++;
 				set_quotes(command[i], &d_quote, &s_quote);
+				if (!d_quote && !s_quote && (command[i + 1] == '\'' || command[i + 1] == '"'))
+				{
+					i++;
+					set_quotes(command[i], &d_quote, &s_quote);
+				}
 			}
 			ret[j++] = ft_strndup(start, &command[i++] - start + 1);
 		}
@@ -155,7 +172,7 @@ char	**ft_split_args(char *command)
 	char	**ret;
 
 	ret = ft_calloc(args_nb(command) + 1, sizeof(char *));
-	printf("------  %i\n", args_nb(command));
+//	printf("------  %i\n", args_nb(command));
 	ft_cut_cmd(command, ret);
 	ret = trim_spaces(ret);
 	remove_quotes(ret);
