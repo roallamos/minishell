@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:14:44 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/01 19:42:51 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:50:37 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 void	do_exit(t_data *data)
 {
-	if (data->input)
-		free(data->input);
-	if (data->prompt)
-		free(data->prompt);
-	ft_free_path(data);
-	ft_free_env(data);
-	rl_clear_history();
+	int	exit_status;
+
 	printf("exit\n");
-	exit(EXIT_SUCCESS);
+	exit_status = ft_atoi(data->list->args[1]);
+	if (exit_status != 0)
+		exit(exit_status);
+	else
+		exit(EXIT_SUCCESS);
 }
