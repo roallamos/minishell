@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/18 18:33:25 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/19 19:42:47 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ t_cmd	*ft_prepare_list(t_data *data)
 		ft_lstcmdadd_back(&list, ft_new_node(data->commands[i], data));
 		i++;
 	}
+	ft_free_array(data->commands);
 	data->num_commands = i;
 	return (list);
 }
