@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/19 17:15:02 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/19 20:33:26 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,11 +116,12 @@ void	read_input(t_data *data)
 		else
 		{
 			data->commands = ft_split_input(data->input);
-			if (ft_strcmp(data->commands[0], "\0"))
+			if (data->commands && ft_strcmp(data->commands[0], "\0"))
 			{
 				data->list = ft_prepare_list(data);
 				//print_list(data->list);
-				parse(data);
+				if (data->list->args)
+					parse(data);
 			}
 		}
 		ft_free_lst(data);

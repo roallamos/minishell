@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:50:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/19 19:44:15 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/19 20:34:48 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ft_free_lst(t_data *data)
 	{
 		next = data->list->next;
 		ft_free_array(data->list->args);
-		while (data->list->docs[i].doc)
+		while (data->list->docs && data->list->docs[i].doc)
 			free(data->list->docs[i++].doc);
 		free(data->list->docs);
 		free(data->list);

@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:18:15 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/19 15:18:59 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/19 20:25:57 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,9 +170,12 @@ void	remove_quotes(char **args)
 char	**ft_split_args(char *command)
 {
 	char	**ret;
+	int		nb;
 
-	ret = ft_calloc(args_nb(command) + 1, sizeof(char *));
-//	printf("------  %i\n", args_nb(command));
+	nb = args_nb(command);
+	if (!nb)
+		return (NULL);
+	ret = ft_calloc(nb + 1, sizeof(char *));
 	ft_cut_cmd(command, ret);
 	ret = trim_spaces(ret);
 	remove_quotes(ret);

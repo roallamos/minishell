@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/19 19:42:47 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/19 20:30:12 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ t_docs	*ft_redir(char **args)
 
 	i = 0;
 	j = 0;
+	if (!args)
+		return (NULL);
 	nb = nb_tokens(args, ">");
 	nb += nb_tokens(args, ">>");
 	nb += nb_tokens(args, "<<");
@@ -112,6 +114,8 @@ char	**exclude_redir(char **args)
 
 	i = 0;
 	j = 0;
+	if (!args)
+		return (NULL);
 	while (args[i])
 		i++;
 	nb = nb_tokens(args, ">");
