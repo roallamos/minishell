@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/19 15:55:14 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/19 17:01:56 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	parse(t_data *data)
 					waitpid(data->pid, &data->status, 0);
 			}
 		}
+		delete_here_docs(data);
 	}
 	else
 		exec_pipex(data);
