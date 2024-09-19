@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/19 17:01:56 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/19 18:36:21 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,18 @@ int	check_builtin(t_data *data)
 int	do_redirs(t_data *data)
 {
 	int	i;
+	int	fd;
 
 	i = 0;
 	while (data->list->docs && data->list->docs[i].doc)
 	{
-		if (data->list->docs[i].flag == 0 || data->list->docs[i].flag == 1)
+		if (data->list->docs[i].flag == 1)
+		{
+			fd = open(data->list->docs[i].doc, O_RDONLY);
+			if (fd < 0)
+				return (0);
+		}
+		if (data->list->docs[i].flag == 0)
 		{
 			if (data->list->docs[i].fd < 0)
 				return (0);

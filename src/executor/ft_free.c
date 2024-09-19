@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:50:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/17 15:30:29 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/19 18:31:40 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,16 @@ void	ft_free_env(t_data *data)
 void	ft_free_lst(t_data *data)
 {
 	t_cmd	*next;
+	int		i;
 
+	i = 0;
 	while (data->list)
 	{
 		next = data->list->next;
 		ft_free_array(data->list->args);
-		//free(data->list->docs->doc);
-		//free(data->list->docs);
+		while (data->list->docs[i].doc)
+			free(data->list->docs[i++].doc);
+		free(data->list->docs);
 		free(data->list);
 		data->list = next;
 	}
