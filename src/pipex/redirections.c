@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execution.c                                        :+:      :+:    :+:   */
+/*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:10:33 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/19 15:14:18 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/20 11:26:27 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,3 +58,31 @@ void	close_pipes(t_data *data, int (*prev_pipe)[2], int i)
 		(*prev_pipe)[1] = data->pipefd[1];
 	}
 }
+
+int	one_cmd_redirs(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->list->docs && data->list->docs[i].doc)
+	{
+		if (data->list->docs[i].flag == INFILE
+			|| data->list->docs[i].flag == HERE_DOC)
+		{
+			if (data->list->docs[i].fd < 0)
+				return (0);
+			dup2(data->list->docs[i].fd, STDIN_FILENO);
+			close(data->list->docs[i].fd);
+		}
+		else
+		{
+			if (data->list->docs[i].fd < 0)
+				return (0);
+			dup2(data->list->docs[i].fd, STDOUT_FILENO);
+			close(data->list->docs[i].fd);
+		}
+		i++;
+	}
+	return (1);
+}
+

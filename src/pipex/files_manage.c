@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:07:31 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/20 10:49:17 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/20 11:27:22 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,30 +71,4 @@ void	infile(t_data *data, int i)
 	if (data->list->docs[i].fd < 0)
 		write_error("minishell: No such file or directory: ",
 			data->list->docs[i].doc);
-}
-
-void	check_redirs(t_data *data)
-{
-	int		i;
-	t_cmd	*tmp;
-
-	tmp = data->list;
-	while (data->list)
-	{
-		i = 0;
-		while (data->list->docs && data->list->docs[i].doc)
-		{
-			if (data->list->docs[i].flag == INFILE)
-				infile(data, i);
-			if (data->list->docs[i].flag == HERE_DOC)
-				heredoc(data, i);
-			if (data->list->docs[i].flag == OUTFILE)
-				outfile(data, i);
-			if (data->list->docs[i].flag == APPEND)
-				append(data, i);
-			i++;
-		}
-		data->list = data->list->next;
-	}
-	data->list = tmp;
 }

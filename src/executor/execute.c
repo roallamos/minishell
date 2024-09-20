@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/20 10:50:27 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/20 12:04:54 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,42 +31,51 @@ int	check_builtin(t_data *data)
 	return (0);
 }
 
-int	do_redirs(t_data *data)
+void	open_files(t_data *data)
 {
-	int	i;
+	int		i;
+	t_cmd	*tmp;
 
-	i = 0;
-	while (data->list->docs && data->list->docs[i].doc)
+	tmp = data->list;
+	while (data->list)
 	{
-		if (data->list->docs[i].flag == INFILE
-			|| data->list->docs[i].flag == HERE_DOC)
+		i = 0;
+		while (data->list->docs && data->list->docs[i].doc)
 		{
-			if (data->list->docs[i].fd < 0)
-				return (0);
-			dup2(data->list->docs[i].fd, STDIN_FILENO);
-			close(data->list->docs[i].fd);
+			if (data->list->docs[i].flag == INFILE)
+				infile(data, i);
+			if (data->list->docs[i].flag == HERE_DOC)
+				heredoc(data, i);
+			if (data->list->docs[i].flag == OUTFILE)
+				outfile(data, i);
+			if (data->list->docs[i].flag == APPEND)
+				append(data, i);
+			i++;
 		}
-		else
-		{
-			if (data->list->docs[i].fd < 0)
-				return (0);
-			dup2(data->list->docs[i].fd, STDOUT_FILENO);
-			close(data->list->docs[i].fd);
-		}
-		i++;
+		data->list = data->list->next;
 	}
-	return (1);
+	data->list = tmp;
 }
 
-void	parse(t_data *data)
+void	reset_stds(int in, int out)
+{
+	dup2(in, STDIN_FILENO);
+	close(in);
+	dup2(out, STDOUT_FILENO);
+	close(out);
+}
+
+void	execute(t_data *data)
 {
 	int	original_stdin;
+	int	original_stdout;
 
 	original_stdin = dup(STDIN_FILENO);
-	check_redirs(data);
+	original_stdout = dup(STDOUT_FILENO);
+	open_files(data);
 	if (data->num_commands == 1)
 	{
-		if (do_redirs(data) == 1)
+		if (one_cmd_redirs(data) == 1)
 		{
 			if (check_builtin(data))
 				return ;
@@ -83,6 +92,5 @@ void	parse(t_data *data)
 	}
 	else
 		exec_pipex(data);
-	dup2(original_stdin, STDIN_FILENO);
-	close(original_stdin);
+	reset_stds(original_stdin, original_stdout);
 }

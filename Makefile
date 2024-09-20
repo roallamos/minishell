@@ -20,30 +20,29 @@ LIBS		=	-L./libft -lft -lreadline
 
 MANDATORY 	=	src/main.c \
 			src/signals.c	
-EXECUTOR	=	src/executor/ft_find_path.c \
-			src/executor/ft_free.c \
-			src/executor/ft_get_cmd.c \
-			src/executor/ft_split_input.c \
-			src/executor/ft_write_error.c \
-			src/executor/execute_cmd.c \
-			src/parse.c \
-			src/executor/env_utils.c \
-			src/executor/export.c \
-			src/read/read_input.c \
-			src/read/ft_split_args.c \
-			src/read/check_input.c \
-			src/read/prepare_input.c \
-			src/read/lists.c \
-			src/read/expand.c \
-			src/executor/ft_pwd.c \
-			src/executor/set_prompt.c \
+EXECUTOR	=	src/executor/do_cd.c \
 			src/executor/do_exit.c \
-			src/executor/do_cd.c \
-			src/pipex/execution.c \
+			src/executor/env_utils.c \
+			src/executor/execute_cmd.c \
+			src/executor/execute.c \
+			src/executor/export.c \
+			src/executor/ft_find_path.c \
+			src/executor/ft_get_cmd.c \
+			src/executor/ft_pwd.c \
+			src/executor/ft_write_error.c \
+			src/frees/ft_free.c \
 			src/pipex/files_manage.c \
 			src/pipex/ft_pipex.c \
-			src/pipex/wait_pids.c \
-			src/pipex/utils.c
+			src/pipex/redirections.c \
+			src/pipex/utils.c \
+			src/read/check_input.c \
+			src/read/expand.c \
+			src/read/ft_split_args.c \
+			src/read/ft_split_input.c \
+			src/read/lists.c \
+			src/read/prepare_input.c \
+			src/read/read_input.c \
+			src/read/set_prompt.c 
 SRC 		=	$(MANDATORY)$(EXECUTOR)
 OBJS 		=	$(SRC:.c=.o)
 INCLS 		=	-I include
