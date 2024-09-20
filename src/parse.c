@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/19 18:36:21 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/20 10:50:27 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,12 @@ int	check_builtin(t_data *data)
 int	do_redirs(t_data *data)
 {
 	int	i;
-	int	fd;
 
 	i = 0;
 	while (data->list->docs && data->list->docs[i].doc)
 	{
-		if (data->list->docs[i].flag == 1)
-		{
-			fd = open(data->list->docs[i].doc, O_RDONLY);
-			if (fd < 0)
-				return (0);
-		}
-		if (data->list->docs[i].flag == 0)
+		if (data->list->docs[i].flag == INFILE
+			|| data->list->docs[i].flag == HERE_DOC)
 		{
 			if (data->list->docs[i].fd < 0)
 				return (0);
@@ -59,13 +53,16 @@ int	do_redirs(t_data *data)
 			dup2(data->list->docs[i].fd, STDOUT_FILENO);
 			close(data->list->docs[i].fd);
 		}
-		i += 1;
+		i++;
 	}
 	return (1);
 }
 
 void	parse(t_data *data)
 {
+	int	original_stdin;
+
+	original_stdin = dup(STDIN_FILENO);
 	check_redirs(data);
 	if (data->num_commands == 1)
 	{
@@ -86,4 +83,6 @@ void	parse(t_data *data)
 	}
 	else
 		exec_pipex(data);
+	dup2(original_stdin, STDIN_FILENO);
+	close(original_stdin);
 }

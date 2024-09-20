@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/18 13:14:48 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/20 10:48:36 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,11 @@
 # define STDIN STDIN_FILENO
 # define STDOUT STDOUT_FILENO
 # define STDERR STDERR_FILENO
+
+# define INFILE 0
+# define HERE_DOC 1
+# define OUTFILE 2
+# define APPEND 3
 
 # define HOSTNAME_MAX_LEN 256
 

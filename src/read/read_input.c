@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/19 17:15:02 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/20 10:45:16 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,10 @@ void	read_input(t_data *data)
 		data->input = readline(data->prompt);
 		add_history(data->input);
 		if (!data->input)
+		{
+			printf("exit\n");
 			exit(0);
+		}
 		else if (check_input(data->input))
 			printf("syntax error near unexpected token\n");
 		else
@@ -124,6 +127,6 @@ void	read_input(t_data *data)
 			}
 		}
 		ft_free_lst(data);
-		// free(data->input);
+		free(data->input);
 	}
 }
