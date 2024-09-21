@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:18:15 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/21 14:26:16 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/21 15:16:01 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int	args_nb(const char *command)
 		if (command[i])
 			i++;
 	}
-	printf("nb ----------->  %i\n", args);
 	return (args);
 }
 
@@ -153,10 +152,8 @@ void	remove_quotes(char **args, int f)
 	while (args && args[i])
 	{
 		j = 0;
-		printf("ENTRÉ\n");
 		while (args[i][j])// un puto segfault que ya encontré y no se solucionar
 		{
-			printf("char %c\n", args[i][j]);
 			if (args[i][j] == '"' || args[i][j] == '\'')
 			{
 				if (!quotes)
@@ -166,22 +163,15 @@ void	remove_quotes(char **args, int f)
 				if (!quotes || quotes == args[i][j])
 				{
 					ft_memmove(&args[i][j], &args[i][j + 1], ft_strlen(&args[i][j]));
-					if (!args[i][j])
-						printf("memo %s char del memo %c\n", args[i], args[i][j]);
 					if (args[i][j])
 						j--;
 				}
 			}
 			if ((j >= 0 && args[i][j]) || j == -1)
-			{
 				j++;
-					printf("j --> %i\n", j);
-			}
-		//	printf("char %c\n", args[i][j]);
 		}
 		if (f)
 			break;
-		printf("salí\n");
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/21 14:47:10 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/21 15:14:24 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,10 +152,7 @@ t_cmd	*ft_new_node(char *commands, t_data *data)
 	expansor(list->args, data);
 	remove_quotes(list->args, 0);
 	while(list->docs && list->docs[i].doc)
-	{
-		printf("quotes %s\n", list->docs[i].doc);
 		remove_quotes(&list->docs[i++].doc, 1);
-	}
 	list->next = NULL;
 	return (list);
 }
@@ -169,9 +166,7 @@ t_cmd	*ft_prepare_list(t_data *data)
 	list = NULL;
 	while (data->commands && data->commands[i])
 	{
-		printf("putero %p\n", list);
 		ft_lstcmdadd_back(&list, ft_new_node(data->commands[i], data));
-		printf("putero %p\n", list);
 		i++;
 	}
 	ft_free_array(data->commands);
