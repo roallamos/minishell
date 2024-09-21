@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/21 14:59:14 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/21 16:52:56 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int	check_builtin(t_data *data)
 {
-	if (!ft_strcmp(data->list->args[0], "echo"))
+	if (!data->list->args || !data->list->args[0])
+		return (0);
+	else if (!ft_strcmp(data->list->args[0], "echo"))
 		return (export(data), 1); // falta built in
 	else if (!ft_strcmp(data->list->args[0], "cd"))
 		return (do_cd(data, 0), 1);
