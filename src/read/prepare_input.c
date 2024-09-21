@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/21 14:25:51 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/21 14:47:10 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,9 @@ t_cmd	*ft_prepare_list(t_data *data)
 	list = NULL;
 	while (data->commands && data->commands[i])
 	{
+		printf("putero %p\n", list);
 		ft_lstcmdadd_back(&list, ft_new_node(data->commands[i], data));
+		printf("putero %p\n", list);
 		i++;
 	}
 	ft_free_array(data->commands);

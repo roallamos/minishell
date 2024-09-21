@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:59:37 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/20 11:46:34 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/21 15:09:08 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ void	delete_here_docs(t_data *data)
 {
 	int	i;
 	int	j;
+	t_cmd	*tmp;
 
 	i = 0;
+	tmp = data->list;
 	while (i < data->num_commands)
 	{
 		j = 0;
@@ -30,6 +32,7 @@ void	delete_here_docs(t_data *data)
 		data->list = data->list->next;
 		i++;
 	}
+	data->list = tmp;
 }
 
 void	wait_pids(t_data *data, int i)
