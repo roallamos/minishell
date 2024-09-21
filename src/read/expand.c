@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid>       +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:12:50 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/17 11:42:41 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/20 14:54:24 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,17 +98,7 @@ void	expansor(char **args, t_data *data)
 		while (args[i][j])
 		{
 			if (args[i][j] == '\'' || args[i][j] == '"')
-			{
-				set_quotes(args[i][j], &d_quote, &s_quote); // comprobar que esto funciona cuando migu haga lo del pipex
-				/*if (args[i][j] == '\'' && !s_quote && !d_quote)
-					s_quote = 1;
-				else if (args[i][j] == '\'' && s_quote)
-					s_quote = 0;
-				if (args[i][j] == '"' && !d_quote && !s_quote)
-					d_quote = 1;
-				else if (args[i][j] == '"' && d_quote)
-					d_quote = 0;*/
-			}
+				set_quotes(args[i][j], &d_quote, &s_quote);
 			else if (args[i][j] == '$' && !s_quote)
 				args[i] = expand_var(data, args[i]);
 			if (args[i][j])

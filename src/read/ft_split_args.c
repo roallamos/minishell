@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:18:15 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/19 20:25:57 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/21 14:26:16 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ int	args_nb(const char *command)
 	while (command[i])
 	{
 		if (command[i] == '\'' || command[i] == '"')
+		{
 			set_quotes(command[i], &d_quote, &s_quote);
+			if ((d_quote || s_quote) && command[i] == command[i + 1])
+				args++;
+		}
 		else if (ft_istoken(command[i]) && !d_quote && !s_quote)
 		{
 			args++;
@@ -43,18 +47,20 @@ int	args_nb(const char *command)
 					break;
 				}
 			}
-			printf("tokend+s\n");
+		//	printf("tokend+s\n");
 		}
-		else
+		else if (!ft_isspace(command[i]))
 		{
 			args++;
-			printf("movida %s\n", &command[i]);
+		//	printf("movida %s\n", &command[i]);
 			while ((command[i] && !ft_istoken(command[i]) && !ft_isspace(command[i])) || (d_quote || s_quote))
 			{
 				set_quotes(command[i], &d_quote, &s_quote);
 				i++;
 			}
-			printf("resto\n");
+			if (ft_istoken(command[i]))
+				i--;
+		//	printf("resto\n");
 		}
 		if (command[i])
 			i++;
@@ -92,7 +98,7 @@ void	ft_cut_cmd(char *command, char **ret)
 			while (ft_istoken(command[i]))
 				i++;
 			ret[j++] = ft_strndup(start, &command[i] - start);
-			printf("reet %s\n", ret[j - 1]);
+		//	printf("reet %s\n", ret[j - 1]);
 		}
 		else if (d_quote || s_quote)
 		{
@@ -136,7 +142,7 @@ char	**trim_spaces(char **args)
 	return (ret);
 }
 
-void	remove_quotes(char **args)
+void	remove_quotes(char **args, int f)
 {
 	int		i;
 	int		j;
@@ -144,11 +150,13 @@ void	remove_quotes(char **args)
 
 	quotes = 0;
 	i = 0;
-	while (args[i])
+	while (args && args[i])
 	{
 		j = 0;
-		while (args[i][j])
+		printf("ENTRÉ\n");
+		while (args[i][j])// un puto segfault que ya encontré y no se solucionar
 		{
+			printf("char %c\n", args[i][j]);
 			if (args[i][j] == '"' || args[i][j] == '\'')
 			{
 				if (!quotes)
@@ -158,11 +166,22 @@ void	remove_quotes(char **args)
 				if (!quotes || quotes == args[i][j])
 				{
 					ft_memmove(&args[i][j], &args[i][j + 1], ft_strlen(&args[i][j]));
-					j--;
+					if (!args[i][j])
+						printf("memo %s char del memo %c\n", args[i], args[i][j]);
+					if (args[i][j])
+						j--;
 				}
 			}
-			j++;
+			if ((j >= 0 && args[i][j]) || j == -1)
+			{
+				j++;
+					printf("j --> %i\n", j);
+			}
+		//	printf("char %c\n", args[i][j]);
 		}
+		if (f)
+			break;
+		printf("salí\n");
 		i++;
 	}
 }
@@ -178,6 +197,6 @@ char	**ft_split_args(char *command)
 	ret = ft_calloc(nb + 1, sizeof(char *));
 	ft_cut_cmd(command, ret);
 	ret = trim_spaces(ret);
-	remove_quotes(ret);
+	//remove_quotes(ret);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/20 11:10:34 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/21 14:25:51 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,9 @@ char	**exclude_redir(char **args)
 t_cmd	*ft_new_node(char *commands, t_data *data)
 {
 	t_cmd	*list;
+	int	i;
 
+	i = 0;
 	(void) data;
 	list = ft_calloc(1, sizeof(t_cmd));
 	list->cmd = NULL;
@@ -148,6 +150,12 @@ t_cmd	*ft_new_node(char *commands, t_data *data)
 	list->docs = ft_redir(list->args);
 	list->args = exclude_redir(list->args);
 	expansor(list->args, data);
+	remove_quotes(list->args, 0);
+	while(list->docs && list->docs[i].doc)
+	{
+		printf("quotes %s\n", list->docs[i].doc);
+		remove_quotes(&list->docs[i++].doc, 1);
+	}
 	list->next = NULL;
 	return (list);
 }
