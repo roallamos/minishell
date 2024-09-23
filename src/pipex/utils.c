@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:59:37 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/23 10:56:32 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/23 12:53:37 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@ void	wait_pids(t_data *data, int i)
 			waitpid(data->pids[i], NULL, 0);
 		i++;
 	}
+}
+
+void	dup_stds(int *in, int *out)
+{
+	*in = dup(STDIN_FILENO);
+	*out = dup(STDOUT_FILENO);
 }
 
 void	reset_stds(int in, int out)

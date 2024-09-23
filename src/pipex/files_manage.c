@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   files_manage.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:07:31 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/20 11:27:22 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:01:00 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
