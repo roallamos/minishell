@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:38:30 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/19 15:13:17 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/23 12:00:18 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,23 @@ static void	do_pipe(t_data *data, int i)
 	if (i < data->num_commands - 1)
 	{
 		if (pipe(data->pipefd) == -1)
+		{
+			if (data->pids)
+				free(data->pids);
 			perror("pipe");
+		}
 	}
 }
 
-static void	do_fork(pid_t *pid)//, t_data *data)
+static void	do_fork(pid_t *pid, t_data *data)
 {
 	*pid = fork();
 	if (*pid == -1)
+	{
+		if (data->pids)
+			free(data->pids);
 		perror("fork");
+	}
 }
 
 static void	allocate_pids(t_data *data)
@@ -41,7 +49,7 @@ static void	pipex(t_data *data, int i, int j)
 	static int	prev_pipefd[2] = {-1, -1};
 
 	do_pipe(data, i);
-	do_fork(&pid);
+	do_fork(&pid, data);
 	if (pid == 0)
 	{
 		j = 0;
@@ -82,6 +90,6 @@ void	exec_pipex(t_data *data)
 	}
 	wait_pids(data, 0);
 	data->list = tmp;
-	delete_here_docs(data);
-	data->list = tmp;
+	if (data->pids)
+		free(data->pids);
 }

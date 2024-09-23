@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:10:33 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/20 11:26:27 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:52:44 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,3 @@ int	one_cmd_redirs(t_data *data)
 	}
 	return (1);
 }
-

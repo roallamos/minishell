@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/21 16:52:56 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:02:27 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_builtin(t_data *data)
 {
 	if (!data->list->args || !data->list->args[0])
-		return (0);
+		return (2);
 	else if (!ft_strcmp(data->list->args[0], "echo"))
 		return (export(data), 1); // falta built in
 	else if (!ft_strcmp(data->list->args[0], "cd"))
@@ -59,14 +59,6 @@ void	open_files(t_data *data)
 	data->list = tmp;
 }
 
-void	reset_stds(int in, int out)
-{
-	dup2(in, STDIN_FILENO);
-	close(in);
-	dup2(out, STDOUT_FILENO);
-	close(out);
-}
-
 void	execute(t_data *data)
 {
 	int	original_stdin;
@@ -79,7 +71,7 @@ void	execute(t_data *data)
 	{
 		if (one_cmd_redirs(data) == 1)
 		{
-			if (check_builtin(data))
+			if (check_builtin(data) == 1)
 				return ;
 			else
 			{
@@ -90,9 +82,9 @@ void	execute(t_data *data)
 					waitpid(data->pid, &data->status, 0);
 			}
 		}
-		delete_here_docs(data);
 	}
 	else
 		exec_pipex(data);
+	delete_here_docs(data);
 	reset_stds(original_stdin, original_stdout);
 }

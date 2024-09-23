@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:59:37 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/21 15:09:08 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/23 10:56:32 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	delete_here_docs(t_data *data)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	t_cmd	*tmp;
 
 	i = 0;
@@ -45,4 +45,12 @@ void	wait_pids(t_data *data, int i)
 			waitpid(data->pids[i], NULL, 0);
 		i++;
 	}
+}
+
+void	reset_stds(int in, int out)
+{
+	dup2(in, STDIN_FILENO);
+	close(in);
+	dup2(out, STDOUT_FILENO);
+	close(out);
 }
