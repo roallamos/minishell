@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/23 12:53:28 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/23 15:39:49 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,5 +183,6 @@ int		one_cmd_redirs(t_data *data);
 void	remove_quotes(char **args, int f);
 void	dup_stds(int *in, int *out);
 void	reset_stds(int in, int out);
+void	do_echo(t_data *data);
 
 #endif // MINISHELL_H
