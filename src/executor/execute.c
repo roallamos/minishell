@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/23 15:41:51 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/24 15:32:44 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,27 +61,29 @@ void	open_files(t_data *data)
 
 void	execute(t_data *data)
 {
-	int	original_stdin;
-	int	original_stdout;
+	// int	original_stdin;
+	// int	original_stdout;
 
-	dup_stds(&original_stdin, &original_stdout);
+	// dup_stds(&original_stdin, &original_stdout);
 	open_files(data);
 	if (data->num_commands == 1)
 	{
-		if (one_cmd_redirs(data) == 1)
+		if (check_builtin(data) == 1)
+			return ;
+		else
 		{
-			if (check_builtin(data) == 1)
-				return ;
-			else
+			data->pid = fork();
+			if (data->pid == 0)
 			{
-				data->pid = fork();
-				if (data->pid == 0)
-					get_cmd_and_execute(data);
-				else
-					waitpid(data->pid, &data->status, 0);
+				one_cmd_redirs(data);
+				if (!ft_strcmp(data->list->args[0], "echo"))
+					return (do_echo(data));
+				get_cmd_and_execute(data);
 			}
+			else
+				waitpid(data->pid, &data->status, 0);
 		}
-		reset_stds(original_stdin, original_stdout);
+		//reset_stds(original_stdin, original_stdout);
 	}
 	else
 		exec_pipex(data);

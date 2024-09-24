@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/21 17:16:44 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/24 15:02:17 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,10 @@ void	read_input(t_data *data)
 			exit(0);
 		}
 		else if (check_input(data->input))
+		{
 			printf("syntax error near unexpected token\n");
+			free(data->input);
+		}
 		else
 		{
 			data->commands = ft_split_input(data->input);
