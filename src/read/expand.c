@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:12:50 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/20 14:54:24 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/23 19:24:47 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ char	*ft_replace(char *var, char *value, char *args)
 		ret = ft_strjoin_free(ret, &args[i]);
 	}
 	free(args);
+	free(var);
 	return (ret);
 }
 
