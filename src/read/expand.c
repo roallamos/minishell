@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:12:50 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/23 19:24:47 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/25 17:10:34 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ char	*get_from_env(t_data *data, char *var)
 
 	i = 0;
 	j = 0;
-	while (data->env[i] && ft_strncmp(data->env[i], &var[1], ft_strlen(&var[1])))
+	while (data->env[i] && ft_strncmp(data->env[i], &var[1],
+			ft_strlen(&var[1])))
 		i++;
 	while (data->env[i] && data->env[i][j] != '=')
 		j++;
@@ -76,7 +77,8 @@ char	*expand_var(t_data *data, char *args)
 		i++;
 	if (args[i])
 		j++;
-	while (args[i + j] && (!ft_isspace(args[i + j]) && args[i + j] != '$' && args[i + j] != '"' && args[i + j] != '\''))
+	while (args[i + j] && (!ft_isspace(args[i + j]) && args[i + j] != '$'
+			&& args[i + j] != '"' && args[i + j] != '\''))
 		j++;
 	var = ft_strndup(&args[i], &args[i + j] - &args[i]);
 	args = ft_replace(var, get_from_env(data, var), args);

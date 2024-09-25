@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/23 15:39:49 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/25 17:35:21 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ typedef struct s_docs
 	char	*doc;
 	int		flag;
 	int		fd;
+	int		exp;
 }	t_docs;
 
 typedef struct s_cmd
@@ -175,7 +176,7 @@ void	heredoc(t_data *data, int i);
 void	outfile(t_data *data, int i);
 void	append(t_data *data, int i);
 void	delete_here_docs(t_data *data);
-void	dup_infile_n_close(t_data *data, int i);
+void	dup_infile_n_close(t_data *data, int (*prev_pipefd)[2], int i);
 void	dup_outfile_n_close(t_data *data, int i);
 void	dup_cmds_n_close(t_data *data, int (*prev_pipefd)[2]);
 void	close_pipes(t_data *data, int (*prev_pipe)[2], int i);

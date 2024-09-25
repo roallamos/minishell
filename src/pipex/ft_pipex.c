@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:38:30 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/25 16:13:01 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:01:20 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	pipex(t_data *data, int (*prev_pipefd)[2], int i, int j)
 		while (data->list->docs && data->list->docs[j].doc)
 		{
 			if (data->list->docs[j].flag == 0 || data->list->docs[j].flag == 1)
-				dup_infile_n_close(data, j);
+				dup_infile_n_close(data, prev_pipefd, j);
 			if (data->list->docs[j].flag == 2 || data->list->docs[j].flag == 3)
 				dup_outfile_n_close(data, j);
 			j++;
@@ -70,7 +70,6 @@ static void	pipex(t_data *data, int (*prev_pipefd)[2], int i, int j)
 		close_pipes(data, prev_pipefd, i);
 	}
 }
-
 
 void	exec_pipex(t_data *data)
 {
