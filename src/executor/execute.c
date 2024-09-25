@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/24 15:32:44 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/25 14:12:53 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ void	open_files(t_data *data)
 
 void	execute(t_data *data)
 {
-	// int	original_stdin;
-	// int	original_stdout;
+	int	original_stdin;
+	int	original_stdout;
 
-	// dup_stds(&original_stdin, &original_stdout);
+	dup_stds(&original_stdin, &original_stdout);
 	open_files(data);
 	if (data->num_commands == 1)
 	{
@@ -83,9 +83,9 @@ void	execute(t_data *data)
 			else
 				waitpid(data->pid, &data->status, 0);
 		}
-		//reset_stds(original_stdin, original_stdout);
 	}
 	else
 		exec_pipex(data);
 	delete_here_docs(data);
+	reset_stds(original_stdin, original_stdout);
 }

@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:38:30 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/23 12:00:18 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:13:01 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,9 @@ static void	allocate_pids(t_data *data)
 		perror("malloc");
 }
 
-static void	pipex(t_data *data, int i, int j)
+static void	pipex(t_data *data, int (*prev_pipefd)[2], int i, int j)
 {
 	pid_t		pid;
-	static int	prev_pipefd[2] = {-1, -1};
 
 	do_pipe(data, i);
 	do_fork(&pid, data);
@@ -62,21 +61,23 @@ static void	pipex(t_data *data, int i, int j)
 			j++;
 		}
 		if (!data->list->docs)
-			dup_cmds_n_close(data, &prev_pipefd);
+			dup_cmds_n_close(data, prev_pipefd);
 		get_cmd_and_execute(data);
 	}
 	else
 	{
 		data->pids[i] = pid;
-		close_pipes(data, &prev_pipefd, i);
+		close_pipes(data, prev_pipefd, i);
 	}
 }
 
+
 void	exec_pipex(t_data *data)
 {
-	int		i;
-	int		j;
-	t_cmd	*tmp;
+	int			i;
+	int			j;
+	t_cmd		*tmp;
+	static int	prev_pipefd[2] = {-1, -1};
 
 	allocate_pids(data);
 	i = 0;
@@ -84,11 +85,13 @@ void	exec_pipex(t_data *data)
 	tmp = data->list;
 	while (i < data->num_commands)
 	{
-		pipex(data, i, j);
+		pipex(data, &prev_pipefd, i, j);
 		data->list = data->list->next;
 		i++;
 	}
 	wait_pids(data, 0);
+	prev_pipefd[0] = -1;
+	prev_pipefd[1] = -1;
 	data->list = tmp;
 	if (data->pids)
 		free(data->pids);
