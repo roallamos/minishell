@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 17:31:52 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/23 14:01:15 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/26 17:11:02 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	handler(int signal)
 		rl_on_new_line();
 		rl_replace_line("", 1);
 		rl_redisplay();
+		g_exit_status = WEXITSTATUS(130);
 	}
 }
 /*void	handle_heredoc(int signal)

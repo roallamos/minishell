@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/25 19:10:03 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/26 17:13:58 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,11 @@ void	execute(t_data *data)
 			if (data->pid == 0)
 			{
 				one_cmd_redirs(data);
-				/*if (!ft_strcmp(data->list->args[0], "echo"))
-					return (do_echo(data));*/
 				get_cmd_and_execute(data);
 			}
 			else
 				waitpid(data->pid, &data->status, 0);
+			g_exit_status = WEXITSTATUS(data->status);
 		}
 	}
 	else

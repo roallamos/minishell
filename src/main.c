@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:12:44 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/01 19:06:36 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/26 17:11:15 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+unsigned char	g_exit_status = 0;
 
 int	main(int argc, char *argv[], char *env[])
 {

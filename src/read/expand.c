@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:12:50 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/26 13:58:48 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/26 17:14:52 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ char	*ft_replace(char *var, char *value, char *args)
 
 	i = 0;
 	ret = NULL;
-	while ((args[i] && args[i] != '$') || (args[i] && args[i] == '$' && (args[i + 1] == '"' || args[i + 1] == '\'')))
+	while ((args[i] && args[i] != '$') || (args[i] && args[i] == '$'
+			&& (args[i + 1] == '"' || args[i + 1] == '\'')))
 		i++;
 	if (args[i])
 	{
@@ -77,13 +78,15 @@ char	*expand_var(t_data *data, char *args)
 	i = 0;
 	j = 0;
 	var = NULL;
-	while ((args[i] && args[i] != '$') || (args[i] && args[i] == '$' && (args[i + 1] == '"' || args[i + 1] == '\'')))
+	while ((args[i] && args[i] != '$') || (args[i] && args[i] == '$'
+			&& (args[i + 1] == '"' || args[i + 1] == '\'')))
 		i++;
 	if (args[i])
 		j++;
 	if (args[i + j] && args[i + j] == '?')
 		var = ft_strdup("$?");
-	while (!var && args[i + j] && (!ft_isspace(args[i + j]) && args[i + j] != '$'
+	while (!var && args[i + j] && (!ft_isspace(args[i + j])
+			&& args[i + j] != '$'
 			&& args[i + j] != '"' && args[i + j] != '\''))
 		j++;
 	if (!var)
@@ -109,18 +112,21 @@ void	expansor(char **args, t_data *data, int f, int f2)
 		{
 			if (args[i][j] == '\'' || args[i][j] == '"')
 				set_quotes(args[i][j], &d_quote, &s_quote);
-			else if (f2 && args[i][j] == '$' && (args[i][j + 1] == '"' || args[i][j + 1] == '\'') && !d_quote && !s_quote)
+			else if (f2 && args[i][j] == '$' && (args[i][j + 1] == '"'
+				|| args[i][j + 1] == '\'') && !d_quote && !s_quote)
 			{
-				ft_memmove(&args[i][j], &args[i][j + 1], ft_strlen(&args[i][j]));
+				ft_memmove(&args[i][j], &args[i][j + 1],
+					ft_strlen(&args[i][j]));
 				j--;
 			}
-			else if (args[i][j] == '$' && !s_quote && args[i][j + 1] != '"' && args[i][j + 1] != '\'' && f)
+			else if (args[i][j] == '$' && !s_quote && args[i][j + 1] != '"'
+				&& args[i][j + 1] != '\'' && f)
 				args[i] = expand_var(data, args[i]);
 			if ((j >= 0 && args[i][j]) || j == -1)
 				j++;
 		}
 		if (!f)
-			break;
+			break ;
 		j = 0;
 		i++;
 	}

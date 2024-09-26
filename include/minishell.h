@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/26 13:59:11 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/26 17:13:28 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@
 # define BOLD_GREEN		"\033[1;32m"
 # define BOLD_YELLOW	"\033[1;33m"
 # define BOLD_WHITE		"\033[1;37m"
+
+extern unsigned char	g_exit_status;
 
 typedef struct s_docs
 {
