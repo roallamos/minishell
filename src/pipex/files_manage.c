@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   files_manage.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:07:31 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/25 17:42:20 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/26 13:59:56 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	write_here_doc(t_data *data, int i)
 		if (ft_strncmp(line[0], limiter, lim_len) == 0)
 			break ;
 		if (data->list->docs[i].exp)
-			expansor(line, data);
+			expansor(line, data, 1, 0);
 		write(data->list->docs[i].fd, line[0], ft_strlen(line[0]));
 		free(line[0]);
 	}

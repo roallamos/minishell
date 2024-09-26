@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/25 17:35:21 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/26 13:59:11 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ void	ft_lstcmdadd_back(t_cmd **lst, t_cmd *new);
 void	exec_pipex(t_data *data);
 void	wait_pids(t_data *data, int i);
 int		check_builtin(t_data *data);
-void	expansor(char **args, t_data *data);
+void	expansor(char **args, t_data *data, int f, int f2);
 char	*expand_var(t_data *data, char *args);
 void	set_quotes(char c, int *d_quote, int *s_quote);
 void	infile(t_data *data, int i);
