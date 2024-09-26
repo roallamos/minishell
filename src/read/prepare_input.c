@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/26 14:01:47 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/26 19:53:00 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ t_cmd	*ft_new_node(char *commands, t_data *data)
 	remove_quotes(list->args, 0);
 	while(list->docs && list->docs[i].doc)
 	{
-		expansor(&list->docs[i].doc, data, 0, 1);
+		list->docs[i].exp = expansor(&list->docs[i].doc, data, 0, 1);
 		remove_quotes(&list->docs[i++].doc, 1);
 	}
 	list->next = NULL;

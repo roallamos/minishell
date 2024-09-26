@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:12:50 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/26 18:17:40 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/26 19:52:05 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,33 +100,32 @@ char	*expand_var(t_data *data, char *args)
 	return (args);
 }
 
-void	expansor(char **args, t_data *data, int f, int f2)
+int	expansor(char **args, t_data *data, int f, int f2)
 {
 	int	i;
 	int	j;
 	int	d_quote;
 	int	s_quote;
+	int	flag;
 
 	i = 0;
 	j = 0;
 	d_quote = 0;
 	s_quote = 0;
+	flag = 1;
 	while (args && args[i])
 	{
 		while (args[i][j])
 		{
 			if (args[i][j] == '\'' || args[i][j] == '"')
 				set_quotes(args[i][j], &d_quote, &s_quote);
-			else if (f2 && args[i][j] == '$' && (args[i][j + 1] == '"'
-				|| args[i][j + 1] == '\'') && !d_quote && !s_quote)
+			else if (f2 && args[i][j] == '$' && (args[i][j + 1] == '"' || args[i][j + 1] == '\'') && !d_quote && !s_quote)
 			{
-				ft_memmove(&args[i][j], &args[i][j + 1],
-					ft_strlen(&args[i][j]));
+				ft_memmove(&args[i][j], &args[i][j + 1], ft_strlen(&args[i][j]));
+				flag = 0;
 				j--;
 			}
-			else if (args[i][j] == '$' && !s_quote && args[i][j + 1] != '"'
-				&& args[i][j + 1] != '\'' && f)
-				args[i] = expand_var(data, args[i]);
+			else if (args[i][j] == '$' && !s_quote && args[i][j + 1] != '"' && args[i][j + 1] != '\'' && f) args[i] = expand_var(data, args[i]);
 			if ((j >= 0 && args[i][j]) || j == -1)
 				j++;
 		}
@@ -135,4 +134,5 @@ void	expansor(char **args, t_data *data, int f, int f2)
 		j = 0;
 		i++;
 	}
+	return (flag);
 }

@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:07:31 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/26 13:59:56 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/26 19:24:46 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,14 @@ static void	write_here_doc(t_data *data, int i)
 	limiter = ft_strjoin(data->list->docs[i].doc, "\n");
 	lim_len = ft_strlen(limiter);
 	line = ft_calloc(2, sizeof(char *));
+	g_exit_status = 0;
 	while (1)
 	{
 		line[0] = readline("> ");
+		if (!line[0])
+			break;
 		line[0] = ft_strjoin_free(line[0], "\n");
-		if (ft_strncmp(line[0], limiter, lim_len) == 0)
+		if (ft_strncmp(line[0], limiter, lim_len) == 0 || g_exit_status == 130)
 			break ;
 		if (data->list->docs[i].exp)
 			expansor(line, data, 1, 0);
