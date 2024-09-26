@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:12:50 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/26 17:14:52 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/26 18:17:40 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,16 @@ char	*get_from_env(t_data *data, char *var)
 {
 	int	i;
 	int	j;
+	int stat;
 
 	i = 0;
 	j = 0;
+	stat = 0;
 	if (!ft_strcmp(var, "$?"))
-		return (ft_itoa(data->status));
+	{
+		stat = g_exit_status | stat;
+		return (ft_itoa(stat));
+	}
 	while (data->env[i] && ft_strncmp(data->env[i], &var[1],
 			ft_strlen(&var[1])))
 		i++;
