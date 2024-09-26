@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:18:15 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/21 15:16:01 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:33:18 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ void	remove_quotes(char **args, int f)
 	while (args && args[i])
 	{
 		j = 0;
-		while (args[i][j])// un puto segfault que ya encontré y no se solucionar
+		while (args[i][j])
 		{
 			if (args[i][j] == '"' || args[i][j] == '\'')
 			{
