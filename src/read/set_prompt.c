@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_prompt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 17:25:46 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/23 11:50:03 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/27 10:46:14 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

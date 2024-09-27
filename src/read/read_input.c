@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/25 19:04:11 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/27 10:35:31 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ void	read_input(t_data *data)
 		add_history(data->input);
 		if (!data->input)
 		{
+			free(data->prompt);
+			ft_free_array(data->env);
+			ft_free_array(data->path);
 			ft_free_lst(data);
 			printf("exit\n");
 			exit(0);
