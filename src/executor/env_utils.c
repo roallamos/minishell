@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:17:20 by rodralva          #+#    #+#             */
-/*   Updated: 2024/07/01 16:37:55 by migumore         ###   ########.fr       */
+/*   Updated: 2024/09/27 12:36:54 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	dup_env(t_data *data, char **env)
 
 	i = 0;
 	size = env_size(env);
+	printf("size %d\n", size);
 	data->env = ft_calloc(sizeof(char *), size + 1);
 	if (!data->env)
 		return ;
@@ -37,6 +38,7 @@ void	dup_env(t_data *data, char **env)
 		data->env[i] = ft_strdup(env[i]);
 		i++;
 	}
+	printf("%d\n", env_size(data->env));
 }
 
 void	print_env(t_data *data)
