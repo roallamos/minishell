@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/27 11:00:49 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/27 15:53:50 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	check_builtin(t_data *data)
 	else if (!ft_strcmp(data->list->args[0], "export"))
 		return (export(data), 1);
 	else if (!ft_strcmp(data->list->args[0], "unset"))
-		return (export(data), 1); //Hacer built-in
+		return (unset(data), 1); //Hacer built-in
 	else if (!ft_strcmp(data->list->args[0], "env"))
 		return (print_env(data), 1);
 	else if (!ft_strcmp(data->list->args[0], "exit"))

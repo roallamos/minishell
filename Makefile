@@ -26,6 +26,7 @@ EXECUTOR	=	src/executor/do_cd.c \
 			src/executor/execute_cmd.c \
 			src/executor/execute.c \
 			src/executor/export.c \
+			src/executor/do_unset.c \
 			src/executor/do_echo.c \
 			src/executor/ft_find_path.c \
 			src/executor/ft_get_cmd.c \

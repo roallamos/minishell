@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:17:20 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/27 12:36:54 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/27 15:32:37 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	dup_env(t_data *data, char **env)
 
 	i = 0;
 	size = env_size(env);
-	printf("size %d\n", size);
 	data->env = ft_calloc(sizeof(char *), size + 1);
 	if (!data->env)
 		return ;
@@ -38,7 +37,6 @@ void	dup_env(t_data *data, char **env)
 		data->env[i] = ft_strdup(env[i]);
 		i++;
 	}
-	printf("%d\n", env_size(data->env));
 }
 
 void	print_env(t_data *data)
@@ -51,4 +49,23 @@ void	print_env(t_data *data)
 		printf("%s\n", data->env[i]);
 		i++;
 	}
+}
+
+int	ft_lgth(const char *s1, const char* s2)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	if (!s1 || !s2)
+		return (0);
+	while (s1[i] && s1[i] != '=')
+		i++;
+	while (s2[j] && s2[j] != '=')
+		j++;
+	if (i > j)
+		return (i);
+	else
+		return (j);
 }

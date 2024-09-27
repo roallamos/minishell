@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/27 11:03:09 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/27 15:52:35 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,5 +188,6 @@ void	dup_stds(int *in, int *out);
 void	reset_stds(int in, int out);
 void	do_echo(t_data *data);
 void    unset(t_data *data);
+int	ft_lgth(const char *s1, const char* s2);
 
 #endif // MINISHELL_H
