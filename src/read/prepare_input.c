@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/26 19:53:00 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/29 21:02:04 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,11 +153,11 @@ t_cmd	*ft_new_node(char *commands, t_data *data)
 	list->args = ft_split_args(commands);
 	list->docs = ft_redir(list->args);
 	list->args = exclude_redir(list->args);
-	expansor(list->args, data, 1, 1);
+	full_expansor(list->args, data);
 	remove_quotes(list->args, 0);
 	while(list->docs && list->docs[i].doc)
 	{
-		list->docs[i].exp = expansor(&list->docs[i].doc, data, 0, 1);
+		list->docs[i].exp = delimiter_expansor(&list->docs[i].doc, data);
 		remove_quotes(&list->docs[i++].doc, 1);
 	}
 	list->next = NULL;

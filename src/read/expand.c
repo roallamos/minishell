@@ -6,123 +6,93 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:12:50 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/29 19:35:30 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/29 21:11:12 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "minishell.h"
 
-
-char	*ft_replace(char *var, char *value, char *args)
-{
-	int		i;
-	char	*ret;
-
-	i = 0;
-	ret = NULL;
-	while ((args[i] && args[i] != '$') || (args[i] && args[i] == '$'
-			&& (args[i + 1] == '"' || args[i + 1] == '\'')))
-		i++;
-	if (args[i])
-	{
-		ret = ft_strndup(args, i);
-		ret = ft_strjoin_free(ret, value);
-		i += ft_strlen(var);
-		ret = ft_strjoin_free(ret, &args[i]);
-	}
-	free(args);
-	free(var);
-	free(value);
-	return (ret);
-}
-
-char	*get_from_env(t_data *data, char *var)
+void	full_expansor(char **args, t_data *data)
 {
 	int	i;
 	int	j;
-	int stat;
-
-	i = 0;
-	j = 0;
-	stat = 0;
-	if (!ft_strcmp(var, "$?"))
-	{
-		stat = g_exit_status | stat;
-		return (ft_itoa(stat));
-	}
-	while (data->env[i] && ft_strncmp(data->env[i], &var[1],
-			ft_strlen(&var[1])))
-		i++;
-	while (data->env[i] && data->env[i][j] != '=')
-		j++;
-	if (data->env[i] && data->env[i][j] == '=')
-	{
-		j++;
-		return (ft_strdup(&data->env[i][j]));
-	}
-	return (NULL);
-}
-
-char	*expand_var(t_data *data, char *args)
-{
-	int		i;
-	int		j;
-	char	*var;
-
-	i = 0;
-	j = 0;
-	var = NULL;
-	while ((args[i] && args[i] != '$') || (args[i] && args[i] == '$'
-			&& (args[i + 1] == '"' || args[i + 1] == '\'')))
-		i++;
-	if (args[i])
-		j++;
-	if (args[i + j] && args[i + j] == '?')
-		var = ft_strdup("$?");
-	while (!var && args[i + j] && (!ft_isspace(args[i + j])
-			&& args[i + j] != '$'
-			&& args[i + j] != '"' && args[i + j] != '\''))
-		j++;
-	if (!var)
-		var = ft_strndup(&args[i], &args[i + j] - &args[i]);
-	args = ft_replace(var, get_from_env(data, var), args);
-	return (args);
-}
-
-int	expansor(char **args, t_data *data, int f, int f2)
-{
-	int	i;
-	int	j;
-	int	d_quote;
-	int	s_quote;
 	int	flag;
 
 	i = 0;
 	j = 0;
-	d_quote = 0;
-	s_quote = 0;
-	flag = 1;
+	data->d_quote = 0;
+	data->s_quote = 0;
 	while (args && args[i])
 	{
 		while (args[i][j])
 		{
 			if (args[i][j] == '\'' || args[i][j] == '"')
-				set_quotes(args[i][j], &d_quote, &s_quote);
-			else if (f2 && args[i][j] == '$' && (args[i][j + 1] == '"' || args[i][j + 1] == '\'') && !d_quote && !s_quote)
-			{
-				ft_memmove(&args[i][j], &args[i][j + 1], ft_strlen(&args[i][j]));
-				flag = 0;
-				j--;
-			}
-			else if (args[i][j] == '$' && !s_quote && args[i][j + 1] != '"' && args[i][j + 1] != '\'' && f) 
+				set_quotes(args[i][j], &data->d_quote, &data->s_quote);
+			else if (args[i][j] == '$' && (args[i][j + 1] == '"'
+				|| args[i][j + 1] == '\'') && !data->d_quote && !data->s_quote)
+				remove_dollar(args, i, &j, &flag);
+			else if (args[i][j] == '$' && !data->s_quote
+				&& args[i][j + 1] != '"' && args[i][j + 1] != '\'')
 				args[i] = expand_var(data, args[i]);
 			if ((j >= 0 && args[i][j]) || j == -1)
 				j++;
 		}
-		if (!f)
-			break ;
+		j = 0;
+		i++;
+	}
+}
+
+int	delimiter_expansor(char **args, t_data *data)
+{
+	int	i;
+	int	j;
+	int	flag;
+
+	i = 0;
+	j = 0;
+	data->d_quote = 0;
+	data->s_quote = 0;
+	flag = 1;
+	if (args && args[i])
+	{
+		while (args[i][j])
+		{
+			if (args[i][j] == '\'' || args[i][j] == '"')
+				set_quotes(args[i][j], &data->d_quote, &data->s_quote);
+			else if (args[i][j] == '$' && (args[i][j + 1] == '"'
+				|| args[i][j + 1] == '\'') && !data->d_quote && !data->s_quote)
+				remove_dollar(args, i, &j, &flag);
+			if ((j >= 0 && args[i][j]) || j == -1)
+				j++;
+		}
 		j = 0;
 		i++;
 	}
 	return (flag);
+}
+
+void	heredock_expansor(char **args, t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	data->d_quote = 0;
+	data->s_quote = 0;
+	while (args && args[i])
+	{
+		while (args[i][j])
+		{
+			if (args[i][j] == '\'' || args[i][j] == '"')
+				set_quotes(args[i][j], &data->d_quote, &data->s_quote);
+			else if (args[i][j] == '$' && !data->s_quote
+				&& args[i][j + 1] != '"' && args[i][j + 1] != '\'')
+				args[i] = expand_var(data, args[i]);
+			if ((j >= 0 && args[i][j]) || j == -1)
+				j++;
+		}
+		j = 0;
+		i++;
+	}
 }

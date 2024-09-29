@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 23:47:13 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/29 19:37:23 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/29 19:40:44 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	ft_nb_pipes(char *input)
 
 static char	**copy_pipes(int pipes, char *input)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*start;
 	char	**ret;
 

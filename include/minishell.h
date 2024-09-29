@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/27 15:52:35 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/29 21:01:48 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,8 @@ typedef struct s_data
 	char		**path;
 	char		**tokens; // esto es todo separadito;
 	char		**commands; // cambiar el nombre que solo lo uso yo
+	int			d_quote;
+	int			s_quote;
 	int			cmd_pos;
 	char		**env;
 	char		*pwd;
@@ -170,7 +172,9 @@ void	ft_lstcmdadd_back(t_cmd **lst, t_cmd *new);
 void	exec_pipex(t_data *data);
 void	wait_pids(t_data *data, int i);
 int		check_builtin(t_data *data);
-int		expansor(char **args, t_data *data, int f, int f2);
+void	full_expansor(char **args, t_data *data);
+void	heredock_expansor(char **args, t_data *data);
+int		delimiter_expansor(char **args, t_data *data);
 char	*expand_var(t_data *data, char *args);
 void	set_quotes(char c, int *d_quote, int *s_quote);
 void	infile(t_data *data, int i);
@@ -188,6 +192,7 @@ void	dup_stds(int *in, int *out);
 void	reset_stds(int in, int out);
 void	do_echo(t_data *data);
 void    unset(t_data *data);
-int	ft_lgth(const char *s1, const char* s2);
+int		ft_lgth(const char *s1, const char* s2);
+void	remove_dollar(char **args, int i, int *j, int *flag);
 
 #endif // MINISHELL_H
