@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 23:47:13 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/29 19:15:58 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/29 19:37:23 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static char	**copy_pipes(int pipes, char *input)
 {
 	int	i;
 	int	j;
+	char	*start;
+	char	**ret;
 
 	i = 0;
 	j = 0;
