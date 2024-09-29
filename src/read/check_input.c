@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:42:14 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/17 16:31:51 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/29 18:51:22 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	check_token(char *input, int *i)
 		else if (last_token == '<' && input[*i] != '<' && !ft_isspace(input[*i])
 			&& (ft_istoken(input[*i]) || !input[*i]))
 			return (1);
-		else if (last_token == '>' && (input[*i] != '>' && input[*i] != '|') //comprobar ese segundo &&
+		else if (last_token == '>' && (input[*i] != '>' && input[*i] != '|')
 			&& !ft_isspace(input[*i]) && (ft_istoken(input[*i]) || !input[*i]))
 			return (1);
 		if (ft_istoken(input[*i]))
