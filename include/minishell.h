@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/30 17:34:28 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/30 18:20:10 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,5 +197,6 @@ void	remove_dollar(char **args, int i, int *j, int *flag);
 int		ft_isredir(char *args);
 int		nb_redir(char **args);
 void	redirection_type(t_docs *redir, char *args, int pos);
+void	fill_redir_struct(t_docs *redir, char **args, int i, int j);
 
 #endif // MINISHELL_H

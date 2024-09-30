@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid>       +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:37:39 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/30 17:41:43 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/30 18:19:57 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,15 @@ void	redirection_type(t_docs *redir, char *args, int pos)
 		redir[pos].flag = OUTFILE;
 	else if (!ft_strcmp(args, ">>"))
 		redir[pos].flag = APPEND;
+}
+
+void	fill_redir_struct(t_docs *redir, char **args, int i, int j)
+{
+	redir[j].doc = ft_strdup(args[i + 1]);
+	redirection_type(redir, args[i], j);
+	redir[j].fd = -1;
+	if (args[i + 1] && args[i + 1][0] && args[i + 1][0] == '"')
+		redir[j].exp = 0;
+	else
+		redir[j].exp = 1;
 }

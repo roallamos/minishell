@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/30 17:34:09 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/30 18:19:39 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,7 @@ t_docs	*ft_redir(char **args)
 	{
 		if (ft_isredir(args[i]))
 		{
-			redir[j].doc = ft_strdup(args[i + 1]);
-			redirection_type(redir, args[i], j);
-			redir[j].fd = -1;
-			if (args[i + 1] && args[i + 1][0] && args[i + 1][0] == '"')
-				redir[j].exp = 0;
-			else
-				redir[j].exp = 1;
+			fill_redir_struct(redir, args, i, j);
 			j++;
 		}
 		i++;
