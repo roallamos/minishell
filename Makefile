@@ -46,6 +46,7 @@ EXECUTOR	=	src/executor/do_cd.c \
 			src/read/read_input.c \
 			src/read/set_prompt.c \
 			src/read/expand_utils.c \
+			src/read/redir_utils.c \
 			src/read/parse_utils.c 
 SRC 		=	$(MANDATORY)$(EXECUTOR)
 OBJS 		=	$(SRC:.c=.o)
