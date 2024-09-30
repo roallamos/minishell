@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:17:20 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/27 15:32:37 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/30 13:08:09 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ void	print_env(t_data *data)
 	}
 }
 
-int	ft_lgth(const char *s1, const char* s2)
+int	ft_lgth(const char *s1, const char *s2)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;

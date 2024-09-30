@@ -6,41 +6,35 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:42:08 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/29 21:25:39 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/30 11:51:49 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char    **check_echo_flag(char **args, int *new_line)
+char	**check_echo_flag(char **args, int *new_line)
 {
-	int i;
-	int j;
-	int f;
+	int	i;
+	int	j;
+	int	f;
 
 	i = 0;
-	j = 0;
-	f = 0;
 	while (args && args[i])
 	{
+		f = 0;
+		j = 0;
 		while (args[i][j])
 		{
 			if (args[i][j] == '-' && f == 0 && ft_strcmp(args[i], "-"))
-			{
-				j++;
 				f = 1;
-			}
 			else if (args[i][j] != 'n')
 				return (&args[i]);
-			else
-				j++;
+			j++;
 		}
 		if (!args[i][j] && f == 1)
 			*new_line = 0;
-		f = 0;
-		j = 0;
 		i++;
-		}
+	}
 	return (&args[i]);
 }
 
@@ -48,9 +42,9 @@ void	do_echo(t_data *data)
 {
 	char	**print;
 	int		i;
-    int		new_line;
+	int		new_line;
 
-    i = 0;
+	i = 0;
 	new_line = 1;
 	print = check_echo_flag(&data->list->args[1], &new_line);
 	while (print[i])

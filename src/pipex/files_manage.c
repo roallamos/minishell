@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:07:31 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/29 21:00:03 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/30 12:56:09 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	write_here_doc(t_data *data, int i)
 	{
 		line[0] = readline("> ");
 		if (!line[0])
-			break;
+			break ;
 		line[0] = ft_strjoin_free(line[0], "\n");
 		if (ft_strncmp(line[0], limiter, lim_len) == 0 || g_exit_status == 130)
 			break ;

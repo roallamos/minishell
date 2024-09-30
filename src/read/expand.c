@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:12:50 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/29 21:11:12 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/30 11:09:00 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	full_expansor(char **args, t_data *data)
 	int	j;
 	int	flag;
 
-	i = 0;
+	i = -1;
 	j = 0;
 	data->d_quote = 0;
 	data->s_quote = 0;
-	while (args && args[i])
+	while (args && args[++i])
 	{
 		while (args[i][j])
 		{
@@ -38,7 +38,6 @@ void	full_expansor(char **args, t_data *data)
 				j++;
 		}
 		j = 0;
-		i++;
 	}
 }
 

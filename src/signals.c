@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 17:31:52 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/29 18:41:27 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/30 13:08:44 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	handler(int signal)
 {
-	unsigned char c_signal = 130;
+	unsigned char	c_signal;
+
+	c_signal = 130;
 	if (signal == SIGINT)
 	{
 		rl_on_new_line();

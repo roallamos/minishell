@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:18:15 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/26 19:49:53 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/30 12:51:21 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ int	args_nb(const char *command)
 {
 	int	i;
 	int	args;
-	int	s_quote = 0;
-	int	d_quote = 0;
+	int	s_quote;
+	int	d_quote;
 
 	i = 0;
 	args = 0;
+	s_quote = 0;
+	d_quote = 0;
 	while (ft_isspace(command[i]))
 	{
 		i++;
@@ -44,23 +46,21 @@ int	args_nb(const char *command)
 				if (!ft_istoken(command[i]))
 				{
 					i--;
-					break;
+					break ;
 				}
 			}
-		//	printf("tokend+s\n");
 		}
 		else if (!ft_isspace(command[i]))
 		{
 			args++;
-		//	printf("movida %s\n", &command[i]);
-			while ((command[i] && !ft_istoken(command[i]) && !ft_isspace(command[i])) || (d_quote || s_quote))
+			while ((command[i] && !ft_istoken(command[i])
+					&& !ft_isspace(command[i])) || (d_quote || s_quote))
 			{
 				set_quotes(command[i], &d_quote, &s_quote);
 				i++;
 			}
 			if (ft_istoken(command[i]))
 				i--;
-		//	printf("resto\n");
 		}
 		if (command[i])
 			i++;
@@ -97,7 +97,6 @@ void	ft_cut_cmd(char *command, char **ret)
 			while (ft_istoken(command[i]))
 				i++;
 			ret[j++] = ft_strndup(start, &command[i] - start);
-		//	printf("reet %s\n", ret[j - 1]);
 		}
 		else if (d_quote || s_quote)
 		{
@@ -105,7 +104,8 @@ void	ft_cut_cmd(char *command, char **ret)
 			{
 				i++;
 				set_quotes(command[i], &d_quote, &s_quote);
-				if (!d_quote && !s_quote && (command[i + 1] == '\'' || command[i + 1] == '"'))
+				if (!d_quote && !s_quote && (command[i + 1] == '\''
+						|| command[i + 1] == '"'))
 				{
 					i++;
 					set_quotes(command[i], &d_quote, &s_quote);
@@ -115,7 +115,8 @@ void	ft_cut_cmd(char *command, char **ret)
 		}
 		else
 		{
-			while (command[i] && !ft_isspace(command[i]) && !ft_istoken(command[i]))
+			while (command[i] && !ft_isspace(command[i])
+				&& !ft_istoken(command[i]))
 				i++;
 			ret[j++] = ft_strndup(start, &command[i] - start);
 		}
@@ -162,7 +163,8 @@ void	remove_quotes(char **args, int f)
 					quotes = 0;
 				if (!quotes || quotes == args[i][j])
 				{
-					ft_memmove(&args[i][j], &args[i][j + 1], ft_strlen(&args[i][j]));
+					ft_memmove(&args[i][j], &args[i][j + 1],
+						ft_strlen(&args[i][j]));
 					if (args[i][j])
 						j--;
 				}
@@ -171,7 +173,7 @@ void	remove_quotes(char **args, int f)
 				j++;
 		}
 		if (f)
-			break;
+			break ;
 		i++;
 	}
 }
@@ -187,6 +189,5 @@ char	**ft_split_args(char *command)
 	ret = ft_calloc(nb + 1, sizeof(char *));
 	ft_cut_cmd(command, ret);
 	ret = trim_spaces(ret);
-	//remove_quotes(ret);
 	return (ret);
 }

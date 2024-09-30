@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/29 21:02:04 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:29:13 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	redirection_type(t_docs *redir, char *args, int pos)
 {
-	//printf("compare %i\n args %s\n", ft_strcmp(args, "<"), args);
 	if (!ft_strcmp(args, "<"))
 		redir[pos].flag = INFILE;
 	else if (!ft_strcmp(args, "<<"))
@@ -144,7 +143,7 @@ char	**exclude_redir(char **args)
 t_cmd	*ft_new_node(char *commands, t_data *data)
 {
 	t_cmd	*list;
-	int	i;
+	int		i;
 
 	i = 0;
 	(void) data;
@@ -155,7 +154,7 @@ t_cmd	*ft_new_node(char *commands, t_data *data)
 	list->args = exclude_redir(list->args);
 	full_expansor(list->args, data);
 	remove_quotes(list->args, 0);
-	while(list->docs && list->docs[i].doc)
+	while (list->docs && list->docs[i].doc)
 	{
 		list->docs[i].exp = delimiter_expansor(&list->docs[i].doc, data);
 		remove_quotes(&list->docs[i++].doc, 1);
