@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/30 18:20:10 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/30 20:21:48 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ void	handler(int signal);
 char	*ft_find_path(char *envp[]);
 char	*ft_get_cmd(char **path, char *cmd);
 char	**ft_split_input(char *command);
-char	**ft_split_args(char *s);
+char	**ft_split_args(char *s, t_data *data);
 void	write_error(char *msg, char *arg);
 void	ft_free_lst(t_data *data);
 void	ft_free_array(char **array);

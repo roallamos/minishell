@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/30 18:19:39 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/09/30 20:22:04 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ t_cmd	*ft_new_node(char *commands, t_data *data)
 	(void) data;
 	list = ft_calloc(1, sizeof(t_cmd));
 	list->cmd = NULL;
-	list->args = ft_split_args(commands);
+	list->args = ft_split_args(commands, data);
 	list->docs = ft_redir(list->args);
 	list->args = exclude_redir(list->args);
 	full_expansor(list->args, data);
