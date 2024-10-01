@@ -6,11 +6,50 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:18:15 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/30 20:24:15 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/01 20:24:18 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+void	advance_tokkens(const char *command, int *i, int *args)
+{
+	(*args)++;
+	while (ft_istoken(command[*i]))
+	{
+		(*i)++;
+		if (!ft_istoken(command[*i]))
+		{
+			(*i)--;
+			break ;
+		}
+	}
+}
+
+int	only_spaces(const char *command)
+{
+	int	i;
+
+	i = 0;
+	while (ft_isspace(command[i]))
+	{
+		i++;
+		if (!command[i])
+			return (1);
+	}
+	return (0);
+}
+
+void	non_sei(const char *command, int *i, int *args, t_data *data)
+{
+	(*args)++;
+	while ((command[*i] && !ft_istoken(command[*i])
+			&& !ft_isspace(command[*i]))
+		|| (data->d_quote || data->s_quote))
+		set_quotes(command[(*i)++], &data->d_quote, &data->s_quote);
+	if (ft_istoken(command[*i]))
+		(*i)--;
+}
 
 int	args_nb(const char *command, t_data *data)
 {
@@ -19,12 +58,8 @@ int	args_nb(const char *command, t_data *data)
 
 	i = 0;
 	args = 0;
-	while (ft_isspace(command[i]))
-	{
-		i++;
-		if (!command[i])
-			return (1);
-	}
+	if (only_spaces(command))
+		return (1);
 	while (command[i])
 	{
 		if (command[i] == '\'' || command[i] == '"')
@@ -35,82 +70,61 @@ int	args_nb(const char *command, t_data *data)
 				args++;
 		}
 		else if (ft_istoken(command[i]) && !data->d_quote && !data->s_quote)
-		{
-			args++;
-			while (ft_istoken(command[i]))
-			{
-				i++;
-				if (!ft_istoken(command[i]))
-				{
-					i--;
-					break ;
-				}
-			}
-		}
+			advance_tokkens(command, &i, &args);
 		else if (!ft_isspace(command[i]))
-		{
-			args++;
-			while ((command[i] && !ft_istoken(command[i])
-					&& !ft_isspace(command[i]))
-				|| (data->d_quote || data->s_quote))
-				set_quotes(command[i++], &data->d_quote, &data->s_quote);
-			if (ft_istoken(command[i]))
-				i--;
-		}
+			non_sei(command, &i, &args, data);
 		if (command[i])
 			i++;
 	}
 	return (args);
 }
 
-void	ft_cut_cmd(char *command, char **ret)
+char	*copy_quotes(char *command, int *i, t_data *data, char *start)
+{
+	while (command[*i] && (data->d_quote || data->s_quote))
+	{
+		set_quotes(command[++(*i)], &data->d_quote, &data->s_quote);
+		if (!data->d_quote && !data->s_quote && (command[*i + 1] == '\''
+				|| command[*i + 1] == '"'))
+			set_quotes(command[++(*i)], &data->d_quote, &data->s_quote);
+	}
+	return (ft_strndup(start, &command[(*i)++] - start + 1));
+}
+
+char	*copy_arg(char *command, int *i, char *start)
+{
+	while (command[*i] && !ft_isspace(command[*i])
+				&& !ft_istoken(command[*i]))
+				(*i)++;
+	return(ft_strndup(start, &command[*i] - start));
+}
+
+void	ft_cut_cmd(char *command, char **ret, t_data *data)
 {
 	int		i;
 	int		j;
-	int		s_quote;
-	int		d_quote;
 	char	*start;
 
 	i = 0;
 	j = 0;
-	s_quote = 0;
-	d_quote = 0;
-	while (ft_isspace(command[i]))
-	{
-		i++;
-		if (!command[i])
+	if (only_spaces(command))
 			ret[j] = ft_strdup(command);
-	}
 	while (command[i])
 	{
 		start = &command[i];
-		set_quotes(command[i], &d_quote, &s_quote);
-		if (ft_isspace(command[i]) && !d_quote && !s_quote)
+		set_quotes(command[i], &data->d_quote, &data->s_quote);
+		if (ft_isspace(command[i]) && !data->d_quote && !data->s_quote)
 			i++;
-		else if (ft_istoken(command[i]) && !d_quote && !s_quote)
+		else if (ft_istoken(command[i]) && !data->d_quote && !data->s_quote)
 		{
 			while (ft_istoken(command[i]))
 				i++;
 			ret[j++] = ft_strndup(start, &command[i] - start);
 		}
-		else if (d_quote || s_quote)
-		{
-			while (command[i] && (d_quote || s_quote))
-			{
-				set_quotes(command[++i], &d_quote, &s_quote);
-				if (!d_quote && !s_quote && (command[i + 1] == '\''
-						|| command[i + 1] == '"'))
-					set_quotes(command[++i], &d_quote, &s_quote);
-			}
-			ret[j++] = ft_strndup(start, &command[i++] - start + 1);
-		}
+		else if (data->d_quote || data->s_quote)
+			ret[j++] = copy_quotes(command, &i, data, start);
 		else
-		{
-			while (command[i] && !ft_isspace(command[i])
-				&& !ft_istoken(command[i]))
-				i++;
-			ret[j++] = ft_strndup(start, &command[i] - start);
-		}
+			ret[j++] = copy_arg(command, &i, start);
 	}
 }
 
@@ -180,7 +194,9 @@ char	**ft_split_args(char *command, t_data *data)
 	if (!nb)
 		return (NULL);
 	ret = ft_calloc(nb + 1, sizeof(char *));
-	ft_cut_cmd(command, ret);
+	data->s_quote = 0;
+	data->d_quote = 0;
+	ft_cut_cmd(command, ret, data);
 	ret = trim_spaces(ret);
 	return (ret);
 }
