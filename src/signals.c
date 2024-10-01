@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 17:31:52 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/30 13:08:44 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/01 11:11:37 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,6 @@ void	handler(int signal)
 		g_exit_status = g_exit_status & 0;
 		g_exit_status = g_exit_status | c_signal;
 	}
+	else if (SIGQUIT)
+		return ;
 }
