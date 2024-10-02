@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:18:15 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/01 20:24:18 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/02 10:25:44 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,9 @@ char	*copy_quotes(char *command, int *i, t_data *data, char *start)
 char	*copy_arg(char *command, int *i, char *start)
 {
 	while (command[*i] && !ft_isspace(command[*i])
-				&& !ft_istoken(command[*i]))
-				(*i)++;
-	return(ft_strndup(start, &command[*i] - start));
+		&& !ft_istoken(command[*i]))
+		(*i)++;
+	return (ft_strndup(start, &command[*i] - start));
 }
 
 void	ft_cut_cmd(char *command, char **ret, t_data *data)
@@ -108,7 +108,7 @@ void	ft_cut_cmd(char *command, char **ret, t_data *data)
 	i = 0;
 	j = 0;
 	if (only_spaces(command))
-			ret[j] = ft_strdup(command);
+		ret[j] = ft_strdup(command);
 	while (command[i])
 	{
 		start = &command[i];
@@ -147,6 +147,17 @@ char	**trim_spaces(char **args)
 	return (ret);
 }
 
+void	move_quotes(char **args, int i, int *j, char quotes)
+{
+	if (!quotes || quotes == args[i][*j])
+	{
+		ft_memmove(&args[i][*j], &args[i][*j + 1],
+			ft_strlen(&args[i][*j]));
+		if (args[i][*j])
+			(*j)--;
+	}
+}
+
 void	remove_quotes(char **args, int f)
 {
 	int		i;
@@ -154,8 +165,8 @@ void	remove_quotes(char **args, int f)
 	char	quotes;
 
 	quotes = 0;
-	i = 0;
-	while (args && args[i])
+	i = -1;
+	while (args && args[++i])
 	{
 		j = 0;
 		while (args[i][j])
@@ -166,20 +177,13 @@ void	remove_quotes(char **args, int f)
 					quotes = args[i][j];
 				else if (quotes == args[i][j])
 					quotes = 0;
-				if (!quotes || quotes == args[i][j])
-				{
-					ft_memmove(&args[i][j], &args[i][j + 1],
-						ft_strlen(&args[i][j]));
-					if (args[i][j])
-						j--;
-				}
+				move_quotes(args, i, &j, quotes);
 			}
 			if ((j >= 0 && args[i][j]) || j == -1)
 				j++;
 		}
 		if (f)
 			break ;
-		i++;
 	}
 }
 
