@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:12:44 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/27 10:30:11 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/02 18:15:46 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int argc, char *argv[], char *env[])
 
 	(void)argv;
 	signal(SIGINT, handler);
+	signal(SIGQUIT, SIG_IGN);
 	if (argc > 1)
 	{
 		ft_putendl_fd("Only 1 argument required", STDERR);

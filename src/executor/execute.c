@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/30 12:58:34 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/02 18:41:07 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,15 @@ void	execute(t_data *data)
 			data->pid = fork();
 			if (data->pid == 0)
 			{
+				signal(SIGQUIT, SIG_DFL);
 				one_cmd_redirs(data);
 				get_cmd_and_execute(data);
 			}
-			else
-				waitpid(data->pid, &data->status, 0);
-			g_exit_status = WEXITSTATUS(data->status);
+			waitpid(data->pid, &data->status, 0);
+			if (WIFEXITED(data->status))
+				g_exit_status = WEXITSTATUS(data->status);
+			else if (WIFSIGNALED(data->status))
+				g_exit_status = WTERMSIG(data->status) + 128;
 		}
 	}
 	else
