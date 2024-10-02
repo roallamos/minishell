@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:59:37 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/26 17:12:27 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/02 18:53:48 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ void	wait_pids(t_data *data, int i)
 			waitpid(data->pids[i], NULL, 0);
 		i++;
 	}
-	g_exit_status = WEXITSTATUS(data->status);
+	if (WIFEXITED(data->status))
+		g_exit_status = WEXITSTATUS(data->status);
+	else if (WIFSIGNALED(data->status))
+		g_exit_status = WTERMSIG(data->status) + 128;
 }
 
 void	dup_stds(int *in, int *out)

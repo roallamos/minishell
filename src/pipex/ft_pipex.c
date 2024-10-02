@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:38:30 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/25 18:01:20 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/02 18:54:52 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static void	pipex(t_data *data, int (*prev_pipefd)[2], int i, int j)
 	if (pid == 0)
 	{
 		j = 0;
+		signal(SIGQUIT, SIG_DFL);
 		while (data->list->docs && data->list->docs[j].doc)
 		{
 			if (data->list->docs[j].flag == 0 || data->list->docs[j].flag == 1)
