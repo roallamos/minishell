@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:17:20 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/04 15:59:48 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/04 16:41:14 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,16 @@
 
 static char	*update_shlvl(char *env)
 {
-	int	shlvl;
+	int		lvl;
+	char	*s_lvl;
+	char	*shlvl;
 
-	shlvl = ft_atoi(env + 6);
-	shlvl++;
-	return (ft_strjoin("SHLVL=", ft_itoa(shlvl)));
+	lvl = ft_atoi(env + 6);
+	lvl++;
+	s_lvl = ft_itoa(lvl);
+	shlvl = ft_strjoin("SHLVL=", s_lvl);
+	free(s_lvl);
+	return (shlvl);
 }
 
 int	env_size(char **arr)
