@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/30 20:21:48 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/04 15:45:51 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ int		env_size(char **arr);
 void	dup_env(t_data *data, char **env);
 void	get_cmd_and_execute(t_data *data);
 void	print_env(t_data *data);
-void	ft_pwd(t_data *data);
+char	*ft_find_pwd(char *env[]);
 void	set_prompt(t_data *data);
 void	do_exit(t_data *data);
 void	do_cd(t_data *data, int pos);

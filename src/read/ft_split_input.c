@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 23:47:13 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/29 19:40:44 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/04 14:26:17 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,7 @@ char	**split_pipes(char *input)
 {
 	char	**ret;
 	int		pipes;
-	int		i;
-	int		j;
 
-	i = 0;
-	j = 0;
 	pipes = ft_nb_pipes(input);
 	if (pipes == 0)
 	{

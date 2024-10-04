@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/02 18:41:07 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/04 15:46:19 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_builtin(t_data *data)
 	else if (!ft_strcmp(data->list->args[0], "cd"))
 		return (do_cd(data, 0), 1);
 	else if (!ft_strcmp(data->list->args[0], "pwd"))
-		return (printf("%s\n", getcwd(NULL, 0)), 1);
+		return (printf("%s\n", ft_find_pwd(data->env)), 1);
 	else if (!ft_strcmp(data->list->args[0], "export"))
 		return (export(data), 1);
 	else if (!ft_strcmp(data->list->args[0], "unset"))

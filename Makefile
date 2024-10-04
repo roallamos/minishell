@@ -18,6 +18,12 @@ CC 			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -I include -g3 -fsanitize=address
 LIBS		=	-L./libft -lft -lreadline
 
+# Check for macOS
+ifeq ($(shell uname), Darwin)
+CFLAGS		+=	-I/opt/homebrew/opt/readline/include
+LIBS		+=	-L/opt/homebrew/opt/readline/lib
+endif
+
 MANDATORY 	=	src/main.c \
 			src/signals.c	
 EXECUTOR	=	src/executor/do_cd.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 11:02:04 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/30 11:44:37 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/04 14:25:51 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,10 @@ void	unset(t_data *data)
 {
 	int	i;
 	int	j;
-	int	size;
 	int	n;
 
 	i = 0;
 	j = 0;
-	size = env_size(data->env);
 	while (data->list->args[i])
 	{
 		if (ft_strcmp(data->list->args[i], "unset"))

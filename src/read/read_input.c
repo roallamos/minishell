@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/29 18:49:51 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/04 14:33:22 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	read_input(t_data *data)
 {
 	while (1)
 	{
-		set_prompt(data);
+		//set_prompt(data);
+		data->prompt = ft_strdup("minishell % ");
 		data->input = readline(data->prompt);
 		add_history(data->input);
 		if (!data->input)
@@ -52,5 +53,7 @@ void	read_input(t_data *data)
 		else
 			parser_to_executor(data);
 		ft_free_lst(data);
+		if (data->prompt)
+			free(data->prompt);
 	}
 }

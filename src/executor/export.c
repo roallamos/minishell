@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:24:43 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/30 13:04:13 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/04 16:07:21 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@ char	**ft_new_var(char **env, char *new_var, int *size)
 
 void	ft_replace_value(char **old_value, char **new_value)
 {
-	int		i;
 	char	*tmp;
 
-	i = 0;
 	tmp = *old_value;
 	*old_value = ft_strdup(*new_value);
 	free(tmp);
@@ -39,10 +37,11 @@ void	export(t_data *data)
 	int	j;
 	int	n;
 
-	i = 0;
+	i = -1;
 	size = env_size(data->env);
 	while (data->list->args[++i])
 	{
+		j = 0;
 		if (ft_strcmp(data->list->args[i], "export"))
 		{
 			n = ft_lgth(data->env[j], data->list->args[i]);
@@ -57,6 +56,5 @@ void	export(t_data *data)
 			else
 				data->env = ft_new_var(data->env, data->list->args[i], &size);
 		}
-		j = 0;
 	}
 }

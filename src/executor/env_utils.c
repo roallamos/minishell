@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:17:20 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/30 13:08:09 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/04 15:59:48 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+static char	*update_shlvl(char *env)
+{
+	int	shlvl;
+
+	shlvl = ft_atoi(env + 6);
+	shlvl++;
+	return (ft_strjoin("SHLVL=", ft_itoa(shlvl)));
+}
 
 int	env_size(char **arr)
 {
@@ -34,7 +43,10 @@ void	dup_env(t_data *data, char **env)
 		return ;
 	while (i < size)
 	{
-		data->env[i] = ft_strdup(env[i]);
+		if (ft_strncmp(env[i], "SHLVL=", 6) == 0)
+			data->env[i] = update_shlvl(env[i]);
+		else
+			data->env[i] = ft_strdup(env[i]);
 		i++;
 	}
 }
