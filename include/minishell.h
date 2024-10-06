@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/04 16:24:49 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/06 16:47:43 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,18 @@
 
 # include "../libft/libft.h"
 
-# define STDIN STDIN_FILENO
-# define STDOUT STDOUT_FILENO
-# define STDERR STDERR_FILENO
+# define STDIN	STDIN_FILENO
+# define STDOUT	STDOUT_FILENO
+# define STDERR	STDERR_FILENO
 
-# define INFILE 0
-# define HERE_DOC 1
-# define OUTFILE 2
-# define APPEND 3
+# define INFILE		0
+# define HERE_DOC	1
+# define OUTFILE	2
+# define APPEND		3
 
-# define HOSTNAME_MAX_LEN 256
+# define HD_PREFIX		"/tmp/heredoc"
+
+# define HOSTNAME_MAX_LEN	256
 
 // Macro definition for text colors
 # define BLACK			"\033[1;30m"
