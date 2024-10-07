@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 15:21:41 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/07 13:56:43 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:06:45 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	get_cmd_and_execute(t_data *data)
 {
-
 	data->path_in_env = ft_find_path(data->env);
 	data->path = ft_split(data->path_in_env, ':');
 	if (check_builtin(data, 1) != 0)

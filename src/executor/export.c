@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:24:43 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/07 15:04:03 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:09:00 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_replace_value(char **old_value, char **new_value)
 
 int	check_export(char *export)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (export[i] && (export[i] != '=' || i == 0))
@@ -65,7 +65,7 @@ void	export(t_data *data)
 		{
 			while (data->env[j]
 				&& ft_strncmp(data->env[j], data->list->args[i],
-				ft_lgth(data->env[j], data->list->args[i])))
+					ft_lgth(data->env[j], data->list->args[i])))
 				j++;
 			if (data->env[j])
 				ft_replace_value(&data->env[j], &data->list->args[i]);
