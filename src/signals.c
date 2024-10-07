@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 17:31:52 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/02 18:17:22 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/07 11:27:08 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

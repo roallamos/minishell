@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/06 16:47:43 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/07 11:31:15 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ void	infile(t_data *data, int i);
 void	heredoc(t_data *data, int i);
 void	outfile(t_data *data, int i);
 void	append(t_data *data, int i);
+void	open_tmp_file(t_data *data, int i);
 void	delete_here_docs(t_data *data);
 void	dup_infile_n_close(t_data *data, int (*prev_pipefd)[2], int i);
 void	dup_outfile_n_close(t_data *data, int i);

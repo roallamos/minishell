@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:54:45 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/04 15:45:13 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/07 11:28:56 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	update_pwd_n_oldpwd(char *env[], char *pwd, char *oldpwd)
 		free(env[j]);
 		cwd = getcwd(NULL, 0);
 		env[j] = ft_strjoin("PWD=", cwd);
-		if(!env[j])
+		if (!env[j])
 			env[j] = ft_strjoin("PWD=", env[k] + 7);
 	}
 }

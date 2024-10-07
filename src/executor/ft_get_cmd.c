@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:34:45 by migumore          #+#    #+#             */
-/*   Updated: 2024/07/01 19:14:36 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/07 11:29:15 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,24 @@ char	*ft_get_cmd(char **path, char *cmd)
 	char	*temp;
 	char	*cmd_path;
 
-	if (cmd)
+	if (cmd && (cmd[0] == '/' || ft_strncmp(cmd, "./", 2) == 0
+			|| ft_strncmp(cmd, "../", 3) == 0))
 	{
 		if (access(cmd, 0) == 0)
 			return (ft_strdup(cmd));
+	}
+	else if (path)
+	{
 		i = 0;
-		if (path)
+		while (path[i])
 		{
-			while (path[i])
-			{
-				temp = ft_strjoin(path[i], "/");
-				cmd_path = ft_strjoin(temp, cmd);
-				free(temp);
-				if (access(cmd_path, 0) == 0 && *cmd)
-					return (cmd_path);
-				free(cmd_path);
-				i++;
-			}
+			temp = ft_strjoin(path[i], "/");
+			cmd_path = ft_strjoin(temp, cmd);
+			free(temp);
+			if (access(cmd_path, 0) == 0 && *cmd)
+				return (cmd_path);
+			free(cmd_path);
+			i++;
 		}
 	}
 	return (NULL);
