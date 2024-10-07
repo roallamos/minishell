@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/04 16:26:04 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:45:37 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	no_imput_exit(t_data *data)
+static void	no_input_exit(t_data *data)
 {
 	free(data->prompt);
 	ft_free_array(data->env);
@@ -41,11 +41,11 @@ void	read_input(t_data *data)
 	{
 		data->stop_exec = 0;
 		//set_prompt(data);
-		data->prompt = ft_strdup("minishell % ");
+		data->prompt = ft_strdup("minishell$ ");
 		data->input = readline(data->prompt);
 		add_history(data->input);
 		if (!data->input)
-			no_imput_exit(data);
+			no_input_exit(data);
 		else if (check_input(data->input))
 		{
 			printf("syntax error near unexpected token\n");

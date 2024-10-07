@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/07 12:42:11 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:38:38 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,7 @@ void	open_files(t_data *data)
 
 void	execute(t_data *data)
 {
-	int	original_stdin;
-	int	original_stdout;
-
-	dup_stds(&original_stdin, &original_stdout);
+	//dup_stds(data);
 	open_files(data);
 	if (data->num_commands == 1 && !data->stop_exec)
 	{
@@ -89,5 +86,5 @@ void	execute(t_data *data)
 	else if (!data->stop_exec)
 		exec_pipex(data);
 	delete_here_docs(data);
-	reset_stds(original_stdin, original_stdout);
+	//reset_stds(data);
 }
