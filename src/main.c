@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:12:44 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/02 18:15:46 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:42:00 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ int	main(int argc, char *argv[], char *env[])
 	}
 	ft_memset(&data, 0, sizeof(t_data));
 	dup_env(&data, env);
-	data.path_in_env = ft_find_path(data.env);
-	data.path = ft_split(data.path_in_env, ':');
 	read_input(&data);
 	return (0);
 }

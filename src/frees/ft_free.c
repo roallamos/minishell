@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:50:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/25 19:24:31 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:56:09 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,6 @@ void	ft_free_array(char **array)
 		}
 		free(array);
 		array = NULL;
-	}
-}
-
-void	ft_free_path(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	if (data->path)
-	{
-		while (data->path[i])
-			free(data->path[i++]);
-		free(data->path);
 	}
 }
 
