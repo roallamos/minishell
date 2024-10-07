@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 15:21:41 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/23 12:47:25 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/07 12:42:47 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	get_cmd_and_execute(t_data *data)
 {
-	if (check_builtin(data) == 2 || check_builtin(data) == 1)
+	if (check_builtin(data, 1) !=0)
 		exit(1);
 	rl_clear_history();
 	data->list->cmd = ft_get_cmd(data->path, data->list->args[0]);

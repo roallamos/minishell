@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/07 11:31:15 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/07 12:43:22 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ t_cmd	*ft_prepare_list(t_data *data);
 void	ft_lstcmdadd_back(t_cmd **lst, t_cmd *new);
 void	exec_pipex(t_data *data);
 void	wait_pids(t_data *data, int i);
-int		check_builtin(t_data *data);
+int		check_builtin(t_data *data, int in_child);
 void	full_expansor(char **args, t_data *data);
 void	heredock_expansor(char **args, t_data *data);
 int		delimiter_expansor(char **args, t_data *data);

@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/04 16:30:58 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/07 12:42:11 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	check_builtin(t_data *data)
+int	check_builtin(t_data *data, int in_child)
 {
 	if (!data->list->args || !data->list->args[0])
 		return (2);
-	else if (!ft_strcmp(data->list->args[0], "echo"))
+	else if (in_child == 1 && !ft_strcmp(data->list->args[0], "echo"))
 		return (do_echo(data), 1);
 	else if (!ft_strcmp(data->list->args[0], "cd"))
 		return (do_cd(data, 0), 1);
-	else if (!ft_strcmp(data->list->args[0], "pwd"))
+	else if (in_child == 1 && !ft_strcmp(data->list->args[0], "pwd"))
 		return (printf("%s\n", ft_find_pwd(data->env)), 1);
 	else if (!ft_strcmp(data->list->args[0], "export"))
 		return (export(data), 1);
 	else if (!ft_strcmp(data->list->args[0], "unset"))
 		return (unset(data), 1);
-	else if (!ft_strcmp(data->list->args[0], "env"))
+	else if (in_child == 1 && !ft_strcmp(data->list->args[0], "env"))
 		return (print_env(data), 1);
 	else if (!ft_strcmp(data->list->args[0], "exit"))
 		do_exit(data);
@@ -68,7 +68,7 @@ void	execute(t_data *data)
 	open_files(data);
 	if (data->num_commands == 1 && !data->stop_exec)
 	{
-		if (check_builtin(data) == 1)
+		if (check_builtin(data, 0) == 1)
 			return ;
 		else
 		{
