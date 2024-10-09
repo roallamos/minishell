@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/09 10:44:37 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/09 11:29:46 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,8 +194,6 @@ void	dup_cmds_n_close(t_data *data, int (*prev_pipefd)[2]);
 void	close_pipes(t_data *data, int (*prev_pipe)[2], int i);
 void	one_cmd_redirs(t_data *data);
 void	remove_quotes(char **args, int f);
-void	dup_stds(t_data *data);
-void	reset_stds(t_data *data);
 void	do_echo(t_data *data);
 void	unset(t_data *data);
 int		ft_lgth(const char *s1, const char *s2);

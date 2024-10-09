@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:07:31 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/09 10:44:01 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/09 11:31:27 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	infile(t_data *data, int i)
 	{
 		write_error("minishell: No such file or directory: ",
 			data->list->docs[i].doc);
-			return (1);	
+		return (1);
 	}
 	return (0);
 }

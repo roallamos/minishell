@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:59:37 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/07 17:37:12 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/09 11:29:38 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,18 +75,4 @@ void	wait_pids(t_data *data, int i)
 		g_exit_status = WEXITSTATUS(data->status);
 	else if (WIFSIGNALED(data->status))
 		g_exit_status = WTERMSIG(data->status) + 128;
-}
-
-void	dup_stds(t_data *data)
-{
-	data->og_stdin = dup(STDIN_FILENO);
-	data->og_stdout = dup(STDOUT_FILENO);
-}
-
-void	reset_stds(t_data *data)
-{
-	dup2(data->og_stdin, STDIN_FILENO);
-	close(data->og_stdin);
-	dup2(data->og_stdout, STDOUT_FILENO);
-	close(data->og_stdout);
 }

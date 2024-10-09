@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/09 10:45:23 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/09 11:28:58 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	open_files(t_data *data)
 
 void	execute(t_data *data)
 {
-	//dup_stds(data);
 	open_files(data);
 	if (data->num_commands == 1 && !data->stop_exec)
 	{
@@ -75,6 +74,7 @@ void	execute(t_data *data)
 			if (data->pid == 0)
 			{
 				signal(SIGQUIT, SIG_DFL);
+				signal(SIGINT, SIG_DFL);
 				one_cmd_redirs(data);
 				get_cmd_and_execute(data);
 			}
@@ -88,5 +88,4 @@ void	execute(t_data *data)
 	else if (!data->stop_exec)
 		exec_pipex(data);
 	delete_here_docs(data);
-	//reset_stds(data);
 }
