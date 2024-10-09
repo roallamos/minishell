@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/09 11:29:46 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/09 12:14:37 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,5 +202,8 @@ int		ft_isredir(char *args);
 int		nb_redir(char **args);
 void	redirection_type(t_docs *redir, char *args, int pos);
 void	fill_redir_struct(t_docs *redir, char **args, int i, int j);
+int		args_nb(const char *command, t_data *data);
+void	ft_cut_cmd(char *command, char **ret, t_data *data);
+int		only_spaces(const char *command);
 
 #endif // MINISHELL_H
