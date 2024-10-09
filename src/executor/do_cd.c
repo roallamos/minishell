@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:54:45 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/09 21:40:57 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/09 22:35:38 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	do_cd(t_data *data, int pos)
 		if (data->oldpwd)
 			res = chdir(data->oldpwd);
 		else
-			printf("OlDPWD is not set\n");
+			printf("minishell: cd: OLDPWD not set\n");
 	}
 	if (res == -1)
 		perror("cd");

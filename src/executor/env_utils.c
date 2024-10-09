@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:17:20 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/09 20:24:13 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/09 22:55:29 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,13 @@ void	print_env(t_data *data)
 	int	i;
 
 	i = 0;
-	while (data->env[i])
+	if (data->env)
 	{
-		printf("%s\n", data->env[i]);
-		i++;
+		while (data->env[i])
+		{
+			printf("%s\n", data->env[i]);
+			i++;
+		}
 	}
 }
 

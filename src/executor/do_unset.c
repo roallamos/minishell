@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 11:02:04 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/09 21:07:00 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/09 22:56:06 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,12 @@ void	unset(t_data *data)
 	int	j;
 	int	n;
 
+	if (!data->env)
+		return ;
 	i = 0;
-	j = 0;
 	while (data->list->args[i])
 	{
+		j = 0;
 		if (ft_strcmp(data->list->args[i], "unset"))
 		{
 			unset_oldpwd(&data->oldpwd, data->list->args[i]);
@@ -67,7 +69,6 @@ void	unset(t_data *data)
 			if (data->env[j])
 				data->env = ft_delete_var(data->env, j);
 		}
-		j = 0;
 		i++;
 	}
 }
