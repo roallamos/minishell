@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/09 18:49:50 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:55:42 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ typedef struct s_data
 	int			cmd_pos;
 	char		**env;
 	char		*pwd;
+	char		*oldpwd;
 	char		*prompt;
 	int			status;
 	int			cap;
@@ -150,7 +151,7 @@ typedef struct s_data
 }	t_data;
 
 void	handler(int signal);
-char	*ft_find_path(char *envp[]);
+char	*ft_find_env_var(char *envp[], char *var, int len);
 char	*ft_get_cmd(char **path, char *cmd);
 char	**ft_split_input(char *command, t_data *data);
 char	**ft_split_args(char *s, t_data *data);
@@ -166,10 +167,10 @@ int		env_size(char **arr);
 void	dup_env(t_data *data, char **env);
 void	get_cmd_and_execute(t_data *data);
 void	print_env(t_data *data);
-char	*ft_find_pwd(char *env[]);
 void	set_prompt(t_data *data);
 void	do_exit(t_data *data);
 void	do_cd(t_data *data, int pos);
+void	get_pwd(t_data *data);
 int		ft_istoken(int a);
 t_cmd	*ft_prepare_list(t_data *data);
 void	ft_lstcmdadd_back(t_cmd **lst, t_cmd *new);

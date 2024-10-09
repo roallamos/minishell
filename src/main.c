@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:12:44 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/09 16:08:48 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:41:09 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 unsigned char	g_exit_status = 0;
+
+
 
 int	main(int argc, char *argv[], char *env[])
 {
@@ -27,6 +29,7 @@ int	main(int argc, char *argv[], char *env[])
 	}
 	ft_memset(&data, 0, sizeof(t_data));
 	dup_env(&data, env);
+	get_pwd(&data);
 	read_input(&data);
 	return (0);
 }
