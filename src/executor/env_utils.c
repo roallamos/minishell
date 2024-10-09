@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:17:20 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/04 16:41:14 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/09 20:24:13 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,19 @@ void	dup_env(t_data *data, char **env)
 
 	i = 0;
 	size = env_size(env);
-	data->env = ft_calloc(sizeof(char *), size + 1);
-	if (!data->env)
-		return ;
-	while (i < size)
+	if (size)
 	{
-		if (ft_strncmp(env[i], "SHLVL=", 6) == 0)
-			data->env[i] = update_shlvl(env[i]);
-		else
-			data->env[i] = ft_strdup(env[i]);
-		i++;
+		data->env = ft_calloc(sizeof(char *), size + 1);
+		if (!data->env)
+			return ;
+		while (i < size)
+		{
+			if (ft_strncmp(env[i], "SHLVL=", 6) == 0)
+				data->env[i] = update_shlvl(env[i]);
+			else
+				data->env[i] = ft_strdup(env[i]);
+			i++;
+		}
 	}
 }
 

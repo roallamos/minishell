@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   do_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:54:45 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/07 11:28:56 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/09 20:31:07 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	update_pwd_n_oldpwd(char *env[], char *pwd, char *oldpwd)
+static void	update_pwd_n_oldpwd(t_data *data, char *pwd, char *oldpwd)
 {
 	int		i;
 	int		j;
@@ -21,24 +21,41 @@ static void	update_pwd_n_oldpwd(char *env[], char *pwd, char *oldpwd)
 
 	i = 0;
 	j = 0;
-	if (env)
+	if (data->env)
 	{
-		while (env[i])
+		while (data->env[i])
 		{
-			if (ft_strncmp(env[i], pwd, ft_strlen(pwd)) == 0)
+			if (ft_strncmp(data->env[i], pwd, ft_strlen(pwd)) == 0)
 				j = i;
-			if (ft_strncmp(env[i], oldpwd, ft_strlen(oldpwd)) == 0)
+			if (ft_strncmp(data->env[i], oldpwd, ft_strlen(oldpwd)) == 0)
 				k = i;
 			i++;
 		}
-		free(env[k]);
-		env[k] = ft_strjoin("OLDPWD=", env[j] + 4);
-		free(env[j]);
-		cwd = getcwd(NULL, 0);
-		env[j] = ft_strjoin("PWD=", cwd);
-		if (!env[j])
-			env[j] = ft_strjoin("PWD=", env[k] + 7);
+		if (data->env[k])
+		{
+			free(data->env[k]);
+			data->env[k] = ft_strjoin("OLDPWD=", data->env[j] + 4);
+		}
+		if (data->env[j])
+		{
+			free(data->env[j]);
+			cwd = getcwd(NULL, 0);
+			data->env[j] = ft_strjoin("PWD=", cwd);
+			if (!data->env[j])
+				data->env[j] = ft_strjoin("PWD=", data->env[k] + 7);
+		}
 	}
+	get_pwd(data);
+}
+
+int		array_length(char **args)
+{
+	int	i;
+
+	i = 0;
+	while (args && args[i])
+		i++;
+	return (i);
 }
 
 void	do_cd(t_data *data, int pos)
@@ -47,16 +64,28 @@ void	do_cd(t_data *data, int pos)
 	char	*home;
 	char	*user;
 
-	if (data->list->args[pos + 1] && (*data->list->args[pos + 1] != '~'))
+	res = 0;
+	if (array_length(data->list->args) > 2)
+		printf("too many arguments\n");
+	else if (data->list->args[pos + 1] && (*data->list->args[pos + 1] != '~'
+		&& *data->list->args[pos + 1] != '-'))
 		res = chdir(data->list->args[pos + 1]);
-	else
+	else if (data->list->args[pos + 1] && (*data->list->args[pos + 1] == '~'))
 	{
 		user = getenv("USER");
 		home = ft_strjoin("/home/", user);
 		res = chdir(home);
 		free(home);
 	}
+	else if (data->list->args[pos + 1] && (*data->list->args[pos + 1] == '-'))
+	{
+		if (data->oldpwd)
+			res = chdir(data->oldpwd);
+		else
+			printf("OlDPWD is not set\n");
+	}
 	if (res == -1)
 		perror("cd");
-	update_pwd_n_oldpwd(data->env, "PWD", "OLDPWD");
+	else
+		update_pwd_n_oldpwd(data, "PWD", "OLDPWD");
 }
