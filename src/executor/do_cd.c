@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:54:45 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/09 20:31:07 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/09 21:11:58 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static void	update_pwd_n_oldpwd(t_data *data, char *pwd, char *oldpwd)
 	char	*cwd;
 
 	i = 0;
-	j = 0;
+	j = -1;
+	k = -1;
 	if (data->env)
 	{
 		while (data->env[i])
@@ -31,16 +32,17 @@ static void	update_pwd_n_oldpwd(t_data *data, char *pwd, char *oldpwd)
 				k = i;
 			i++;
 		}
-		if (data->env[k])
+		if (j >= 0 && k >= 0 && data->env[k])
 		{
 			free(data->env[k]);
 			data->env[k] = ft_strjoin("OLDPWD=", data->env[j] + 4);
 		}
-		if (data->env[j])
+		if (j >= 0 && k >= 0 && data->env[j])
 		{
 			free(data->env[j]);
 			cwd = getcwd(NULL, 0);
 			data->env[j] = ft_strjoin("PWD=", cwd);
+			free(cwd);
 			if (!data->env[j])
 				data->env[j] = ft_strjoin("PWD=", data->env[k] + 7);
 		}

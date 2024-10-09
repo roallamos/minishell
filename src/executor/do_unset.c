@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   do_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 11:02:04 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/04 14:25:51 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/09 21:07:00 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**ft_delete_var(char **env, int pos)
+static char	**ft_delete_var(char **env, int pos)
 {
 	char	**new_env;
 	int		size;
@@ -35,6 +35,15 @@ char	**ft_delete_var(char **env, int pos)
 	return (new_env);
 }
 
+static void	unset_oldpwd(char **oldpwd, char *arg)
+{
+	if (!ft_strcmp(arg, "OLDPWD"))
+	{
+		free(*oldpwd);
+		*oldpwd = NULL;
+	}
+}
+
 void	unset(t_data *data)
 {
 	int	i;
@@ -47,6 +56,7 @@ void	unset(t_data *data)
 	{
 		if (ft_strcmp(data->list->args[i], "unset"))
 		{
+			unset_oldpwd(&data->oldpwd, data->list->args[i]);
 			n = ft_lgth(data->env[j], data->list->args[i]);
 			while (data->env[j]
 				&& ft_strncmp(data->env[j], data->list->args[i], n))
