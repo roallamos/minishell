@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:24:43 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/07 15:09:00 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/09 21:45:33 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	check_export(char *export)
 		if ((i == 0 && !ft_isalpha(export[i]))
 			|| (i != 0 && !ft_isalnum(export[i])))
 		{
-			printf("export: %s not a valid export\n", &export[i]);
+			printf("export: %s not a valid export\n", export);
 			return (0);
 		}
 		i++;
@@ -60,8 +60,8 @@ void	export(t_data *data)
 	{
 		j = 0;
 		if (ft_strcmp(data->list->args[i], "export")
-			&& ft_strchr(data->list->args[i], '=')
-			&& check_export(data->list->args[i]))
+			&& check_export(data->list->args[i])
+			&& ft_strchr(data->list->args[i], '='))
 		{
 			while (data->env[j]
 				&& ft_strncmp(data->env[j], data->list->args[i],
