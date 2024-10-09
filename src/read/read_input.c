@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/07 17:45:37 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:56:18 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	read_input(t_data *data)
 {
 	while (1)
 	{
+		signal(SIGINT, handler);
 		data->stop_exec = 0;
 		//set_prompt(data);
 		data->prompt = ft_strdup("minishell$ ");

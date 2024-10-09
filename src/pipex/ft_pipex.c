@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:38:30 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/02 18:54:52 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/09 16:09:54 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	exec_pipex(t_data *data)
 	while (i < data->num_commands)
 	{
 		pipex(data, &prev_pipefd, i, j);
+		signal(SIGINT, SIG_IGN);
 		data->list = data->list->next;
 		i++;
 	}
