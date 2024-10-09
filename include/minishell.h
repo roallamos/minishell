@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/07 17:37:57 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/09 10:44:37 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,17 +182,17 @@ void	heredock_expansor(char **args, t_data *data);
 int		delimiter_expansor(char **args, t_data *data);
 char	*expand_var(t_data *data, char *args);
 void	set_quotes(char c, int *d_quote, int *s_quote);
-void	infile(t_data *data, int i);
+int		infile(t_data *data, int i);
 void	heredoc(t_data *data, int i);
-void	outfile(t_data *data, int i);
-void	append(t_data *data, int i);
+int		outfile(t_data *data, int i);
+int		append(t_data *data, int i);
 void	open_tmp_file(t_data *data, int i);
 void	delete_here_docs(t_data *data);
 void	dup_infile_n_close(t_data *data, int (*prev_pipefd)[2], int i);
 void	dup_outfile_n_close(t_data *data, int i);
 void	dup_cmds_n_close(t_data *data, int (*prev_pipefd)[2]);
 void	close_pipes(t_data *data, int (*prev_pipe)[2], int i);
-int		one_cmd_redirs(t_data *data);
+void	one_cmd_redirs(t_data *data);
 void	remove_quotes(char **args, int f);
 void	dup_stds(t_data *data);
 void	reset_stds(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/07 17:38:38 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/09 10:45:23 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,23 @@ void	open_files(t_data *data)
 {
 	int		i;
 	t_cmd	*tmp;
+	int		stop;
 
 	tmp = data->list;
+	stop = 0;
 	while (data->list)
 	{
 		i = 0;
-		while (data->list->docs && data->list->docs[i].doc)
+		while (data->list->docs && data->list->docs[i].doc && stop == 0)
 		{
 			if (data->list->docs[i].flag == INFILE)
-				infile(data, i);
+				stop = infile(data, i);
 			if (data->list->docs[i].flag == HERE_DOC)
 				heredoc(data, i);
 			if (data->list->docs[i].flag == OUTFILE)
-				outfile(data, i);
+				stop = outfile(data, i);
 			if (data->list->docs[i].flag == APPEND)
-				append(data, i);
+				stop = append(data, i);
 			i++;
 		}
 		data->list = data->list->next;

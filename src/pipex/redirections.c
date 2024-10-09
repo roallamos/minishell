@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:10:33 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/25 16:46:02 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/09 10:23:50 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	close_pipes(t_data *data, int (*prev_pipe)[2], int i)
 	}
 }
 
-int	one_cmd_redirs(t_data *data)
+void	one_cmd_redirs(t_data *data)
 {
 	int	i;
 
@@ -75,18 +75,17 @@ int	one_cmd_redirs(t_data *data)
 			|| data->list->docs[i].flag == HERE_DOC)
 		{
 			if (data->list->docs[i].fd < 0)
-				return (0);
+				exit(1);
 			dup2(data->list->docs[i].fd, STDIN_FILENO);
 			close(data->list->docs[i].fd);
 		}
 		else
 		{
 			if (data->list->docs[i].fd < 0)
-				return (0);
+				exit(1);
 			dup2(data->list->docs[i].fd, STDOUT_FILENO);
 			close(data->list->docs[i].fd);
 		}
 		i++;
 	}
-	return (1);
 }

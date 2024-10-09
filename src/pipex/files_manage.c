@@ -6,28 +6,36 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:07:31 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/07 11:30:45 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/09 10:44:01 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	append(t_data *data, int i)
+int	append(t_data *data, int i)
 {
 	data->list->docs[i].fd = open(data->list->docs[i].doc, O_CREAT | O_RDWR
 			| O_APPEND, 0644);
 	if (data->list->docs[i].fd < 0)
+	{
 		write_error("minishell: No such file or directory: ",
 			data->list->docs[i].doc);
+		return (1);
+	}
+	return (0);
 }
 
-void	outfile(t_data *data, int i)
+int	outfile(t_data *data, int i)
 {
 	data->list->docs[i].fd = open(data->list->docs[i].doc, O_CREAT | O_RDWR
 			| O_TRUNC, 0644);
 	if (data->list->docs[i].fd < 0)
+	{
 		write_error("minishell: No such file or directory: ",
 			data->list->docs[i].doc);
+		return (1);
+	}
+	return (0);
 }
 
 static void	write_here_doc(t_data *data, char	*limiter, int i)
@@ -68,10 +76,14 @@ void	heredoc(t_data *data, int i)
 	infile(data, i);
 }
 
-void	infile(t_data *data, int i)
+int	infile(t_data *data, int i)
 {
 	data->list->docs[i].fd = open(data->list->docs[i].doc, O_RDONLY);
 	if (data->list->docs[i].fd < 0)
+	{
 		write_error("minishell: No such file or directory: ",
 			data->list->docs[i].doc);
+			return (1);	
+	}
+	return (0);
 }
