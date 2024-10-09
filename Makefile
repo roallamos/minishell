@@ -34,7 +34,7 @@ EXECUTOR	=	src/executor/do_cd.c \
 			src/executor/export.c \
 			src/executor/do_unset.c \
 			src/executor/do_echo.c \
-			src/executor/ft_find_path.c \
+			src/executor/ft_find_env_var.c \
 			src/executor/ft_get_cmd.c \
 			src/executor/ft_pwd.c \
 			src/executor/ft_write_error.c \

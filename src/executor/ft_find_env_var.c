@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_find_path.c                                     :+:      :+:    :+:   */
+/*   ft_find_env_var.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:35:50 by migumore          #+#    #+#             */
-/*   Updated: 2024/06/21 15:34:16 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:44:11 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char	*ft_find_path(char *envp[])
+char	*ft_find_env_var(char *envp[], char *var, int len)
 {
 	int	i;
 
@@ -21,7 +21,7 @@ char	*ft_find_path(char *envp[])
 	{
 		while (envp[i])
 		{
-			if (ft_strncmp(envp[i], "PATH=", 5) == 0)
+			if (ft_strncmp(envp[i], var, len) == 0)
 				return (envp[i] + 5);
 			i++;
 		}
