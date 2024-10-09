@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 17:18:29 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/09 20:54:45 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/09 21:32:20 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	get_pwd(t_data *data)
 {
-	char *tmp;
+	char	*tmp;
 
 	if (data->pwd)
 	{

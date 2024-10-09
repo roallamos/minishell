@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 12:15:29 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/09 17:03:43 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/09 21:31:59 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static void	advance(const char *command, int *i, int *args, t_data *data)
 {
 	(*args)++;
 	while (command[*i] && ((!ft_istoken(command[*i])
-			&& !ft_isspace(command[*i]))
-		|| (data->d_quote || data->s_quote)))
+				&& !ft_isspace(command[*i]))
+			|| (data->d_quote || data->s_quote)))
 		set_quotes(command[(*i)++], &data->d_quote, &data->s_quote);
 	if (ft_istoken(command[*i]))
 		(*i)--;
