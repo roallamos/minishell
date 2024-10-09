@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/09 16:34:48 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/09 18:46:58 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,10 @@ void	read_input(t_data *data)
 			printf("syntax error near unexpected token\n");
 			free(data->input);
 		}
-		else
+		else if (!only_spaces(data->input))
 			parser_to_executor(data);
+		else
+			free(data->input);
 		ft_free_lst(data);
 		if (data->prompt)
 			free(data->prompt);
