@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/09 12:14:37 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/09 16:37:36 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ typedef struct s_data
 void	handler(int signal);
 char	*ft_find_path(char *envp[]);
 char	*ft_get_cmd(char **path, char *cmd);
-char	**ft_split_input(char *command);
+char	**ft_split_input(char *command, t_data *data);
 char	**ft_split_args(char *s, t_data *data);
 void	write_error(char *msg, char *arg);
 void	ft_free_lst(t_data *data);
@@ -160,7 +160,7 @@ void	ft_free_array(char **array);
 void	ft_free_path(t_data *data);
 void	ft_free_env(t_data *data);
 void	read_input(t_data *data);
-int		check_input(char *input);
+int		check_input(char *input, t_data *data);
 void	execute(t_data *data);
 void	export(t_data *data);
 int		env_size(char **arr);

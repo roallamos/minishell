@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:42:14 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/29 18:51:22 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/09 16:44:29 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_istoken(int a)
 	return (1);
 }
 
-int	nb_redirections(char *input, int *i)
+static int	nb_redirections(char *input, int *i)
 {
 	int	j;
 	int	k;
@@ -38,7 +38,7 @@ int	nb_redirections(char *input, int *i)
 	return (0);
 }
 
-int	check_token(char *input, int *i)
+static int	check_token(char *input, int *i)
 {
 	char	last_token;
 
@@ -63,7 +63,7 @@ int	check_token(char *input, int *i)
 	return (0);
 }
 
-int	check_input(char *input)
+int	check_input(char *input, t_data *data)
 {
 	int	i;
 	int	j;
@@ -74,13 +74,20 @@ int	check_input(char *input)
 		j++;
 	while (input[i + j])
 	{
-		if (ft_istoken(input[i + j]))
+		set_quotes(input[i + j], &data->d_quote, &data->s_quote);
+		if (ft_istoken(input[i + j]) && !data->d_quote && !data->s_quote)
 		{
 			if (check_token(input + j, &i))
 				return (1);
 		}
 		else
 			i++;
+	}
+	if (data->s_quote || data->d_quote)
+	{
+		data->d_quote = 0;
+		data->s_quote = 0;
+		return (1);
 	}
 	return (0);
 }

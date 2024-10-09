@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/09 15:56:18 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/09 16:34:48 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	no_input_exit(t_data *data)
 
 static void	parser_to_executor(t_data *data)
 {
-	data->commands = ft_split_input(data->input);
+	data->commands = ft_split_input(data->input, data);
 	if (data->commands && ft_strcmp(data->commands[0], "\0"))
 	{
 		data->list = ft_prepare_list(data);
@@ -47,7 +47,7 @@ void	read_input(t_data *data)
 		add_history(data->input);
 		if (!data->input)
 			no_input_exit(data);
-		else if (check_input(data->input))
+		else if (check_input(data->input, data))
 		{
 			printf("syntax error near unexpected token\n");
 			free(data->input);

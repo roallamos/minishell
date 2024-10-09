@@ -3,27 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 23:47:13 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/04 14:26:17 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/09 17:45:46 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	ft_nb_pipes(char *input)
+int	ft_nb_pipes(char *input, t_data *data)
 {
 	int	i;
 	int	pipes;
 
 	i = 0;
 	pipes = 0;
+	set_quotes(input[i], &data->d_quote, &data->s_quote);
 	while (input[i])
 	{
-		if (input[i] == '|')
+		if (input[i] == '|' && !data->d_quote && !data->s_quote)
 			pipes++;
 		i++;
+		set_quotes(input[i], &data->d_quote, &data->s_quote);
 	}
 	return (pipes);
 }
@@ -53,12 +55,12 @@ static char	**copy_pipes(int pipes, char *input)
 	return (ret);
 }
 
-char	**split_pipes(char *input)
+char	**split_pipes(char *input, t_data *data)
 {
 	char	**ret;
 	int		pipes;
 
-	pipes = ft_nb_pipes(input);
+	pipes = ft_nb_pipes(input, data);
 	if (pipes == 0)
 	{
 		ret = ft_calloc(pipes + 2, sizeof(char *));
@@ -72,10 +74,10 @@ char	**split_pipes(char *input)
 	return (ret);
 }
 
-char	**ft_split_input(char *input)
+char	**ft_split_input(char *input, t_data *data)
 {
 	char	**ret;
 
-	ret = split_pipes(input);
+	ret = split_pipes(input, data);
 	return (ret);
 }

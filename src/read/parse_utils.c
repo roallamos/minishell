@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid>       +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 19:40:00 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/29 19:40:05 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/09 16:41:34 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
