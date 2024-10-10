@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 21:05:16 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/10 18:15:09 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/10 21:15:46 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,19 @@ char	*ft_replace(char *var, char *value, char *args)
 	return (ret);
 }
 
+static char	*expand_pwd(t_data *data)
+{
+	char *ret;
+
+	ret = ft_strdup(ft_find_env_var(data->env, "PWD=", 4));
+	if (ret && !*ret)
+	{
+		free (ret);
+		ret = ft_strdup(data->pwd);
+	}
+	return (ret);
+}
+
 char	*get_from_env(t_data *data, char *var)
 {
 	int	i;
@@ -49,6 +62,8 @@ char	*get_from_env(t_data *data, char *var)
 		stat = g_exit_status | stat;
 		return (ft_itoa(stat));
 	}
+	else if (!ft_strcmp(var, "$PWD"))
+		return (expand_pwd(data));
 	while (data->env && data->env[i] && ft_strncmp(data->env[i], &var[1],
 			ft_strlen(&var[1])))
 		i++;

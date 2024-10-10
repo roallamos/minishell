@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 11:02:04 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/09 22:56:06 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/10 21:18:39 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,17 @@ static char	**ft_delete_var(char **env, int pos)
 	return (new_env);
 }
 
-static void	unset_oldpwd(char **oldpwd, char *arg)
+static void	unset_oldpwd_pwd(t_data *data, char *arg)
 {
 	if (!ft_strcmp(arg, "OLDPWD"))
 	{
-		free(*oldpwd);
-		*oldpwd = NULL;
+		free(data->oldpwd);
+		data->oldpwd = NULL;
+	}
+	else if (!ft_strcmp(arg, "PWD"))
+	{
+		free(data->pwd);
+		data->pwd = NULL;
 	}
 }
 
@@ -58,7 +63,7 @@ void	unset(t_data *data)
 		j = 0;
 		if (ft_strcmp(data->list->args[i], "unset"))
 		{
-			unset_oldpwd(&data->oldpwd, data->list->args[i]);
+			unset_oldpwd_pwd(data, data->list->args[i]);
 			n = ft_lgth(data->env[j], data->list->args[i]);
 			while (data->env[j]
 				&& ft_strncmp(data->env[j], data->list->args[i], n))
