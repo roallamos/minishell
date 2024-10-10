@@ -62,6 +62,8 @@ INCLS 		=	-I include
 
 NAME 		=	minishell
 
+all: $(NAME)
+
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLS)
 
@@ -74,7 +76,6 @@ $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBS)
 	@echo "$(GREEN)$(BOLD)$(REVERSE) ****\$(NAME) compiled!/****$(RESET)"
 
-all: $(NAME)
 
 clean:
 	@(cd ./libft && make clean)

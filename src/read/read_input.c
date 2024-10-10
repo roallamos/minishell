@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/10 17:10:35 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/10 20:40:39 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,7 @@ void	read_input(t_data *data)
 		ft_free_lst(data);
 		if (data->prompt)
 			free(data->prompt);
+		data->d_quote = 0;
+		data->s_quote = 0;
 	}
 }

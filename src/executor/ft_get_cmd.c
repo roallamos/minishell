@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:34:45 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/07 11:29:15 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/10 20:37:53 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ char	*ft_get_cmd(char **path, char *cmd)
 	char	*temp;
 	char	*cmd_path;
 
-	if (cmd && (cmd[0] == '/' || ft_strncmp(cmd, "./", 2) == 0
-			|| ft_strncmp(cmd, "../", 3) == 0))
+	if (cmd && ft_strchr(cmd, '/'))
 	{
 		if (access(cmd, 0) == 0)
 			return (ft_strdup(cmd));
