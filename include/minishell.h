@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/09 19:55:42 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/10 11:37:52 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,6 @@ typedef struct s_data
 	char		*input;
 	char		*path_in_env;
 	char		**path;
-	char		**tokens; // esto es todo separadito;
 	char		**commands; // cambiar el nombre que solo lo uso yo
 	int			d_quote;
 	int			s_quote;
