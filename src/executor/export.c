@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:24:43 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/10 16:24:56 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:13:05 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ void	export(t_data *data)
 			&& check_export(data->list->args[i])
 			&& ft_strchr(data->list->args[i], '='))
 		{
-			while (data->env[j]
+			while (data->env && data->env[j]
 				&& ft_strncmp(data->env[j], data->list->args[i],
 					ft_lgth(data->env[j], data->list->args[i])))
 				j++;
-			if (data->env[j])
+			if (data->env && data->env[j])
 				ft_replace_value(&data->env[j], &data->list->args[i]);
 			else
 				data->env = ft_new_var(data->env, data->list->args[i], &size);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid>       +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 21:05:16 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/29 21:06:00 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:15:09 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ char	*get_from_env(t_data *data, char *var)
 		stat = g_exit_status | stat;
 		return (ft_itoa(stat));
 	}
-	while (data->env[i] && ft_strncmp(data->env[i], &var[1],
+	while (data->env && data->env[i] && ft_strncmp(data->env[i], &var[1],
 			ft_strlen(&var[1])))
 		i++;
-	while (data->env[i] && data->env[i][j] != '=')
+	while (data->env && data->env[i] && data->env[i][j] != '=')
 		j++;
-	if (data->env[i] && data->env[i][j] == '=')
+	if (data->env && data->env[i] && data->env[i][j] == '=')
 	{
 		j++;
 		return (ft_strdup(&data->env[i][j]));

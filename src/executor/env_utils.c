@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:17:20 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/09 22:55:29 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:07:59 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	env_size(char **arr)
 	int	i;
 
 	i = 0;
-	while (arr[i])
+	while (arr && arr[i])
 		i++;
 	return (i);
 }
