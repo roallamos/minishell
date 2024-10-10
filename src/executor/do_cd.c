@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:54:45 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/09 22:35:38 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/10 16:20:03 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	do_cd(t_data *data, int pos)
 
 	res = 0;
 	if (array_length(data->list->args) > 2)
-		printf("too many arguments\n");
+		write_n_change_status("minishell: cd: too many arguments\n", 1);
 	else if (data->list->args[pos + 1] && (*data->list->args[pos + 1] != '~'
 			&& *data->list->args[pos + 1] != '-'))
 		res = chdir(data->list->args[pos + 1]);
@@ -96,10 +96,11 @@ void	do_cd(t_data *data, int pos)
 		if (data->oldpwd)
 			res = chdir(data->oldpwd);
 		else
-			printf("minishell: cd: OLDPWD not set\n");
+			write_n_change_status("minishell: cd: OLDPWD not set\n", 1);
 	}
 	if (res == -1)
 		perror("cd");
 	else
 		update_pwd_n_oldpwd(data, "PWD", "OLDPWD");
+	g_exit_status = 0;
 }

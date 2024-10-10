@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:24:43 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/09 21:45:33 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/10 16:24:56 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,13 @@ int	check_export(char *export)
 		if ((i == 0 && !ft_isalpha(export[i]))
 			|| (i != 0 && !ft_isalnum(export[i])))
 		{
-			printf("export: %s not a valid export\n", export);
+			printf("export: %s not a valid identifier\n", export);
+			g_exit_status = 1;
 			return (0);
 		}
 		i++;
 	}
+	g_exit_status = 0;
 	return (1);
 }
 

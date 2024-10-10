@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/09 19:46:11 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/10 16:36:21 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int	check_builtin(t_data *data, int in_child)
 	else if (!ft_strcmp(data->list->args[0], "export"))
 		return (export(data), 1);
 	else if (!ft_strcmp(data->list->args[0], "unset"))
+	{
+		g_exit_status = 0;
 		return (unset(data), 1);
+	}
 	else if (in_child == 1 && !ft_strcmp(data->list->args[0], "env"))
 		return (print_env(data), 1);
 	else if (!ft_strcmp(data->list->args[0], "exit"))

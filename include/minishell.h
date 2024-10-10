@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/10 11:37:52 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/10 16:18:22 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ char	*ft_get_cmd(char **path, char *cmd);
 char	**ft_split_input(char *command, t_data *data);
 char	**ft_split_args(char *s, t_data *data);
 void	write_error(char *msg, char *arg);
+void	write_n_change_status(char *msg, int status);
 void	ft_free_lst(t_data *data);
 void	ft_free_array(char **array);
 void	ft_free_env(t_data *data);

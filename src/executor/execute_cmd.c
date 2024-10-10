@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 15:21:41 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/09 19:35:28 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/10 16:00:32 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	get_cmd_and_execute(t_data *data)
 	data->path_in_env = ft_find_env_var(data->env, "PATH=", 5);
 	data->path = ft_split(data->path_in_env, ':');
 	if (check_builtin(data, 1) != 0)
-		exit(1);
+		exit(0);
 	rl_clear_history();
 	data->list->cmd = ft_get_cmd(data->path, data->list->args[0]);
 	if (!data->list->cmd)
