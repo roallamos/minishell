@@ -21,6 +21,7 @@ LIBS		=	-L./libft -lft -lreadline
 # Check for macOS
 ifeq ($(shell uname), Darwin)
 CFLAGS		+=	-I/opt/homebrew/opt/readline/include
+CFLAGS		-= -fsanitize=address
 LIBS		+=	-L/opt/homebrew/opt/readline/lib
 endif
 

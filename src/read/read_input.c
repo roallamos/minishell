@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/10 20:40:39 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/10 22:58:40 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ static void	parser_to_executor(t_data *data)
 	{
 		data->list = ft_prepare_list(data);
 		if (data->list->args)
+		{
 			execute(data);
+			close_files(data);
+		}
 	}
 	else
 		ft_free_array(data->commands);
