@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:18:15 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/11 18:39:49 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:06:54 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ char	**ft_split_args(char *command, t_data *data)
 	data->d_quote = 0;
 	data->s_quote = 0;
 	nb = args_nb(command, data);
-	printf("nb %i\n", nb);
 	if (!nb)
 		return (NULL);
 	ret = ft_calloc(nb + 1, sizeof(char *));

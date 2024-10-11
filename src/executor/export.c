@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:24:43 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/11 18:35:06 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:07:02 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	check_export(char *export, t_data *data)
 		}
 		i++;
 	}
-	printf("export %s\n", export);
 	g_exit_status = 0;
 	data->d_quote = 0;
 	data->s_quote = 0;
