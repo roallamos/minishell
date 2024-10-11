@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:24:43 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/10 18:13:05 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/11 18:35:06 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,16 @@ void	ft_replace_value(char **old_value, char **new_value)
 	free(tmp);
 }
 
-int	check_export(char *export)
+int	check_export(char *export, t_data *data)
 {
 	int	i;
 
 	i = 0;
+	data->d_quote = 0;
+	data->s_quote = 0;
 	while (export[i] && (export[i] != '=' || i == 0))
 	{
+		set_quotes(export[i], &data->d_quote, &data->s_quote);
 		if ((i == 0 && !ft_isalpha(export[i]))
 			|| (i != 0 && !ft_isalnum(export[i])))
 		{
@@ -46,7 +49,10 @@ int	check_export(char *export)
 		}
 		i++;
 	}
+	printf("export %s\n", export);
 	g_exit_status = 0;
+	data->d_quote = 0;
+	data->s_quote = 0;
 	return (1);
 }
 
@@ -62,7 +68,7 @@ void	export(t_data *data)
 	{
 		j = 0;
 		if (ft_strcmp(data->list->args[i], "export")
-			&& check_export(data->list->args[i])
+			&& check_export(data->list->args[i], data)
 			&& ft_strchr(data->list->args[i], '='))
 		{
 			while (data->env && data->env[j]

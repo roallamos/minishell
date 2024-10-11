@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cut_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid>       +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 12:15:38 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/09 12:15:40 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/11 19:06:37 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,17 @@ char	*copy_quotes(char *command, int *i, t_data *data, char *start)
 
 char	*copy_arg(char *command, int *i, char *start)
 {
-	while (command[*i] && !ft_isspace(command[*i])
-		&& !ft_istoken(command[*i]))
-		(*i)++;
+	int d_quotes;
+	int s_quotes;
+
+	d_quotes = 0;
+	s_quotes = 0;
+	while ((command[*i] && !ft_isspace(command[*i])
+		&& !ft_istoken(command[*i])) || (d_quotes || s_quotes))
+		{
+			set_quotes(command[*i], &d_quotes, &s_quotes);
+			(*i)++;
+		}
 	return (ft_strndup(start, &command[*i] - start));
 }
 
@@ -42,7 +50,7 @@ void	ft_cut_cmd(char *command, char **ret, t_data *data)
 	j = 0;
 	if (only_spaces(command))
 		ret[j] = ft_strdup(command);
-	while (command[i])
+	while (command && command[i])
 	{
 		start = &command[i];
 		set_quotes(command[i], &data->d_quote, &data->s_quote);
