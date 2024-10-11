@@ -15,7 +15,7 @@ STANDOUT    =	$(shell tput smso)
 RESET		=	$(shell tput sgr0)
 
 CC 			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -I include -g3 -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -I include -g3 #-fsanitize=address
 LIBS		=	-L./libft -lft -lreadline
 
 # Check for macOS
@@ -26,8 +26,8 @@ LIBS		+=	-L/opt/homebrew/opt/readline/lib
 endif
 
 MANDATORY 	=	src/main.c \
-			src/signals.c	
-EXECUTOR	=	src/executor/do_cd.c \
+			src/signals.c \
+			src/executor/do_cd.c \
 			src/executor/do_exit.c \
 			src/executor/env_utils.c \
 			src/executor/execute_cmd.c \
@@ -57,7 +57,7 @@ EXECUTOR	=	src/executor/do_cd.c \
 			src/read/cut_cmd.c \
 			src/read/split_utils.c \
 			src/read/parse_utils.c 
-SRC 		=	$(MANDATORY)$(EXECUTOR)
+SRC 		=	$(MANDATORY)
 OBJS 		=	$(SRC:.c=.o)
 INCLS 		=	-I include
 
