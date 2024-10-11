@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:38:30 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/09 16:09:54 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/11 16:56:52 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,19 @@ static void	pipex(t_data *data, int (*prev_pipefd)[2], int i, int j)
 			if (data->list->docs[j].flag == 0 || data->list->docs[j].flag == 1)
 				dup_infile_n_close(data, prev_pipefd, j);
 			if (data->list->docs[j].flag == 2 || data->list->docs[j].flag == 3)
-				dup_outfile_n_close(data, j);
+				dup_outfile_n_close(data, prev_pipefd, j);
 			j++;
 		}
 		if (!data->list->docs)
 			dup_cmds_n_close(data, prev_pipefd);
+		close_files(data);
 		get_cmd_and_execute(data);
 	}
 	else
 	{
 		data->pids[i] = pid;
 		close_pipes(data, prev_pipefd, i);
+		close_files(data);
 	}
 }
 
