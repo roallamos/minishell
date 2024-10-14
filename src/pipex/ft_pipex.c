@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:38:30 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/14 18:12:03 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/14 18:39:48 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,7 @@ static int	pipex(t_data *data, int i)
 		get_cmd_and_execute(data);
 	}
 	else
-	{
 		data->pids[i] = pid;
-		close_files(data);
-	}
 	return (0);
 }
 
@@ -103,6 +100,7 @@ void	exec_pipex(t_data *data)
 		i++;
 	}
 	close_pipes(data, 0);
+	close_files(data);
 	wait_pids(data, 0);
 	data->list = tmp;
 	if (data->pids)

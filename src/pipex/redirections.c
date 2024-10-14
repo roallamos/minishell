@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:10:33 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/14 18:11:31 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/14 18:43:27 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,12 @@ void	files_redirs(t_data *data)
 
 void	close_pipes(t_data *data, int i)
 {
-	int	count;
-
-	count = i;
-	while (count < data->num_commands - 1)
+	while (i < data->num_commands - 1)
 	{
-		close(data->pipefd[count][0]);
-		close(data->pipefd[count][1]);
-		free(data->pipefd[count]);
-		count++;
+		close(data->pipefd[i][0]);
+		close(data->pipefd[i][1]);
+		free(data->pipefd[i]);
+		i++;
 	}
 	free(data->pipefd);
 }
