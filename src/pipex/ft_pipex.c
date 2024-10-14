@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:38:30 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/14 19:05:58 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:45:57 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	do_pipe(t_data *data)
 			perror("pipe");
 			if (data->pids)
 				free(data->pids);
-			//close_pipes(data, i);
+			ft_free_array(data->pipefd);
 			return (1);
 		}
 		i++;
@@ -50,7 +50,7 @@ static int	do_fork(pid_t *pid, t_data *data)
 	return (0);
 }
 
-static int	allocate_pids(t_data *data)
+int	allocate_pids(t_data *data)
 {
 	data->pids = malloc(sizeof(pid_t) * data->num_commands);
 	if (!data->pids)

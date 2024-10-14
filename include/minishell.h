@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/14 19:05:17 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:44:55 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,6 @@ typedef struct s_data
 	const char	*start;
 	int			stop_exec;
 	char		quote;
-	pid_t		pid;
 	pid_t		*pids;
 	int			num_commands;
 	int			**pipefd;
@@ -204,5 +203,6 @@ void	fill_redir_struct(t_docs *redir, char **args, int i, int j);
 int		args_nb(const char *command, t_data *data);
 void	ft_cut_cmd(char *command, char **ret, t_data *data);
 int		only_spaces(const char *command);
+int		allocate_pids(t_data *data);
 
 #endif // MINISHELL_H

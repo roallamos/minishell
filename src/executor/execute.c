@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/14 19:04:58 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:42:55 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,9 @@ void	execute(t_data *data)
 			return ;
 		else
 		{
-			data->pid = fork();
-			if (data->pid == 0)
+			allocate_pids(data);
+			data->pids[0] = fork();
+			if (data->pids[0] == 0)
 			{
 				signal(SIGQUIT, SIG_DFL);
 				files_redirs(data);
@@ -86,11 +87,9 @@ void	execute(t_data *data)
 			}
 			signal(SIGINT, SIG_IGN);
 			close_files(data->list);
-			waitpid(data->pid, &data->status, 0);
-			if (WIFEXITED(data->status))
-				g_exit_status = WEXITSTATUS(data->status);
-			else if (WIFSIGNALED(data->status))
-				g_exit_status = WTERMSIG(data->status) + 128;
+			wait_pids(data, 0);
+			if (data->pids)
+				free(data->pids);
 		}
 	}
 	else if (!data->stop_exec)

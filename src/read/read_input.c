@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/11 17:45:43 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:31:52 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	read_input(t_data *data)
 		else if (check_input(data->input, data))
 		{
 			printf("syntax error near unexpected token\n");
+			g_exit_status = 2;
 			free(data->input);
 		}
 		else if (!only_spaces(data->input))

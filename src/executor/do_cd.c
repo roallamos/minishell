@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:54:45 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/10 16:20:03 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:30:12 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,18 @@ static int	array_length(char **args)
 
 static int	return_home(void)
 {
-	char	*user;
 	char	*home;
 	int		res;
 
-	user = getenv("USER");
-	home = ft_strjoin("/home/", user);
-	res = chdir(home);
+	home = getenv("HOME");
+	if (home)
+		res = chdir(home);
+	else
+	{
+		printf("minishell: cd: HOME not set\n");
+		g_exit_status = 1;
+		res = -2;
+	}
 	free(home);
 	return (res);
 }
@@ -91,6 +96,8 @@ void	do_cd(t_data *data, int pos)
 		res = chdir(data->list->args[pos + 1]);
 	else if (data->list->args[pos + 1] && (*data->list->args[pos + 1] == '~'))
 		res = return_home();
+	else if (!data->list->args[pos + 1])
+		res = return_home();
 	else if (data->list->args[pos + 1] && (*data->list->args[pos + 1] == '-'))
 	{
 		if (data->oldpwd)
@@ -102,5 +109,6 @@ void	do_cd(t_data *data, int pos)
 		perror("cd");
 	else
 		update_pwd_n_oldpwd(data, "PWD", "OLDPWD");
-	g_exit_status = 0;
+	if (res != -2)
+		g_exit_status = 0;
 }
