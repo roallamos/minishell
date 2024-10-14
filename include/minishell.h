@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/14 10:08:36 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/14 14:53:17 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ typedef struct s_data
 	pid_t		pid;
 	pid_t		*pids;
 	int			num_commands;
-	int			pipefd[2];
+	int			**pipefd;
 	t_cmd		*list;
 	int			og_stdin;
 	int			og_stdout;
@@ -189,9 +189,9 @@ int		append(t_data *data, int i);
 void	close_files(t_data *data);
 void	open_tmp_file(t_data *data, int i);
 void	delete_here_docs(t_data *data);
-void	pipes_redirs(t_data *data, int *prev_pipefd, int i);
+void	pipes_redirs(t_data *data, int i);
 void	files_redirs(t_data *data);
-void	close_pipes(t_data *data, int *prev_pipefd, int i, int in_child);
+void	close_pipes(t_data *data, int i);
 void	remove_quotes(char **args, int f);
 void	do_echo(t_data *data);
 void	unset(t_data *data);

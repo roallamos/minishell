@@ -6,17 +6,17 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:10:33 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/14 13:12:02 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/14 18:11:31 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	pipes_redirs(t_data *data, int *prev_pipefd, int i)
+void	pipes_redirs(t_data *data, int i)
 {
 	if (i > 0)
 	{
-		if (dup2(*prev_pipefd, STDIN) == -1)
+		if (dup2(data->pipefd[i - 1][0], STDIN) == -1)
 		{
 			perror("dup2 failed");
 			exit(1);
@@ -24,13 +24,13 @@ void	pipes_redirs(t_data *data, int *prev_pipefd, int i)
 	}
 	if (i < data->num_commands - 1)
 	{
-		if (dup2(data->pipefd[1], STDOUT_FILENO) == -1)
+		if (dup2(data->pipefd[i][1], STDOUT) == -1)
 		{
 			perror("dup2 failed");
 			exit(1);
 		}
 	}
-	close_pipes(data, prev_pipefd, i, 1);
+	close_pipes(data, 0);
 }
 
 static void	duplication(t_data *data, int i, int std)
@@ -62,23 +62,17 @@ void	files_redirs(t_data *data)
 	}
 }
 
-void	close_pipes(t_data *data, int *prev_pipefd, int i, int in_child)
+void	close_pipes(t_data *data, int i)
 {
-	if (*prev_pipefd != -1)
+	int	count;
+
+	count = i;
+	while (count < data->num_commands - 1)
 	{
-		close(*prev_pipefd);
-		*prev_pipefd = -1;
+		close(data->pipefd[count][0]);
+		close(data->pipefd[count][1]);
+		free(data->pipefd[count]);
+		count++;
 	}
-	if (i != data->num_commands - 1 && !in_child)
-		*prev_pipefd = dup(data->pipefd[0]);
-	if (data->pipefd[0] != -1)
-	{
-		close(data->pipefd[0]);
-		data->pipefd[0] = -1;
-	}
-	if (data->pipefd[1] != -1)
-	{
-		close(data->pipefd[1]);
-		data->pipefd[1] = -1;
-	}
+	free(data->pipefd);
 }
