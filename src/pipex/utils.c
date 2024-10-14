@@ -3,36 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:59:37 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/13 12:35:28 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:04:19 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	close_files(t_data *data)
+void	close_files(t_cmd *list)
 {
 	int		i;
 	t_cmd	*tmp;
 
-	tmp = data->list;
-	while (data->list)
+	tmp = list;
+	while (list)
 	{
 		i = 0;
-		while (data->list->docs && data->list->docs[i].doc)
+		while (list->docs && list->docs[i].doc)
 		{
-			if (data->list->docs[i].fd > 0)
+			if (list->docs[i].fd > 0)
 			{
-				close(data->list->docs[i].fd);
-				data->list->docs[i].fd = -1;
+				close(list->docs[i].fd);
+				list->docs[i].fd = -1;
 			}
 			i++;
 		}
-		data->list = data->list->next;
+		list = list->next;
 	}
-	data->list = tmp;
+	list = tmp;
 }
 
 void	open_tmp_file(t_data *data, int i)

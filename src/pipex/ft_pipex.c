@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:38:30 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/14 18:39:48 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:05:58 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int	allocate_pids(t_data *data)
 	return (0);
 }
 
-static int	pipex(t_data *data, int i)
+static int	pipex(t_data *data, int i, t_cmd *list)
 {
 	pid_t		pid;
 
@@ -72,7 +72,7 @@ static int	pipex(t_data *data, int i)
 		signal(SIGQUIT, SIG_DFL);
 		pipes_redirs(data, i);
 		files_redirs(data);
-		close_files(data);
+		close_files(list);
 		get_cmd_and_execute(data);
 	}
 	else
@@ -93,16 +93,16 @@ void	exec_pipex(t_data *data)
 		return ;
 	while (i < data->num_commands)
 	{
-		if (pipex(data, i))
+		if (pipex(data, i, tmp))
 			break ;
 		signal(SIGINT, SIG_IGN);
 		data->list = data->list->next;
 		i++;
 	}
-	close_pipes(data, 0);
-	close_files(data);
-	wait_pids(data, 0);
 	data->list = tmp;
+	close_pipes(data, 0);
+	close_files(data->list);
+	wait_pids(data, 0);
 	if (data->pids)
 		free(data->pids);
 }

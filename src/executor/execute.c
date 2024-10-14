@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/13 12:48:35 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:04:58 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	execute(t_data *data)
 				get_cmd_and_execute(data);
 			}
 			signal(SIGINT, SIG_IGN);
+			close_files(data->list);
 			waitpid(data->pid, &data->status, 0);
 			if (WIFEXITED(data->status))
 				g_exit_status = WEXITSTATUS(data->status);

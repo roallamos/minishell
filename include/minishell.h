@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/14 14:53:17 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:05:17 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ int		infile(t_data *data, int i);
 void	heredoc(t_data *data, int i);
 int		outfile(t_data *data, int i);
 int		append(t_data *data, int i);
-void	close_files(t_data *data);
+void	close_files(t_cmd *list);
 void	open_tmp_file(t_data *data, int i);
 void	delete_here_docs(t_data *data);
 void	pipes_redirs(t_data *data, int i);
