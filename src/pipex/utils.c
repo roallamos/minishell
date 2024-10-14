@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:59:37 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/10 22:55:39 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/13 12:35:28 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void	close_files(t_data *data)
 		while (data->list->docs && data->list->docs[i].doc)
 		{
 			if (data->list->docs[i].fd > 0)
+			{
 				close(data->list->docs[i].fd);
+				data->list->docs[i].fd = -1;
+			}
 			i++;
 		}
 		data->list = data->list->next;

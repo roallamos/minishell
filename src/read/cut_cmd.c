@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cut_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 12:15:38 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/11 19:06:37 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/14 13:13:38 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ char	*copy_quotes(char *command, int *i, t_data *data, char *start)
 
 char	*copy_arg(char *command, int *i, char *start)
 {
-	int d_quotes;
-	int s_quotes;
+	int	d_quotes;
+	int	s_quotes;
 
 	d_quotes = 0;
 	s_quotes = 0;
 	while ((command[*i] && !ft_isspace(command[*i])
-		&& !ft_istoken(command[*i])) || (d_quotes || s_quotes))
-		{
-			set_quotes(command[*i], &d_quotes, &s_quotes);
-			(*i)++;
-		}
+			&& !ft_istoken(command[*i])) || (d_quotes || s_quotes))
+	{
+		set_quotes(command[*i], &d_quotes, &s_quotes);
+		(*i)++;
+	}
 	return (ft_strndup(start, &command[*i] - start));
 }
 

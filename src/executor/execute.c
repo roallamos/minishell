@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/10 21:24:33 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/13 12:48:35 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	execute(t_data *data)
 			if (data->pid == 0)
 			{
 				signal(SIGQUIT, SIG_DFL);
-				one_cmd_redirs(data);
+				files_redirs(data);
 				get_cmd_and_execute(data);
 			}
 			signal(SIGINT, SIG_IGN);

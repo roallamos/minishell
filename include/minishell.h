@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/11 15:44:41 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/14 10:08:36 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,11 +189,9 @@ int		append(t_data *data, int i);
 void	close_files(t_data *data);
 void	open_tmp_file(t_data *data, int i);
 void	delete_here_docs(t_data *data);
-void	dup_infile_n_close(t_data *data, int (*prev_pipefd)[2], int i);
-void	dup_outfile_n_close(t_data *data, int (*prev_pipefd)[2], int i);
-void	dup_cmds_n_close(t_data *data, int (*prev_pipefd)[2]);
-void	close_pipes(t_data *data, int (*prev_pipe)[2], int i);
-void	one_cmd_redirs(t_data *data);
+void	pipes_redirs(t_data *data, int *prev_pipefd, int i);
+void	files_redirs(t_data *data);
+void	close_pipes(t_data *data, int *prev_pipefd, int i, int in_child);
 void	remove_quotes(char **args, int f);
 void	do_echo(t_data *data);
 void	unset(t_data *data);

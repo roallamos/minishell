@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 21:05:16 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/10 21:15:46 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/14 13:13:21 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*ft_replace(char *var, char *value, char *args)
 
 static char	*expand_pwd(t_data *data)
 {
-	char *ret;
+	char	*ret;
 
 	ret = ft_strdup(ft_find_env_var(data->env, "PWD=", 4));
 	if (ret && !*ret)
