@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/15 08:08:31 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:12:52 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	read_input(t_data *data)
 	{
 		signal(SIGINT, handler);
 		data->stop_exec = 0;
-		set_prompt(data);
+		//set_prompt(data);
+		data->prompt = ft_strdup("minishell$ ");
 		data->input = readline(data->prompt);
 		add_history(data->input);
 		if (!data->input)

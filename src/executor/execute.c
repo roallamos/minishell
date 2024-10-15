@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/15 15:40:44 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:02:23 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,19 +83,3 @@ void	execute(t_data *data)
 	close_files(data->list);
 	delete_here_docs(data);
 }
-
-// {
-// 			allocate_pids(data);
-// 			data->pids[0] = fork();
-// 			if (data->pids[0] == 0)
-// 			{
-// 				signal(SIGQUIT, SIG_DFL);
-// 				files_redirs(data);
-// 				get_cmd_and_execute(data);
-// 			}
-// 			signal(SIGINT, SIG_IGN);
-// 			close_files(data->list);
-// 			wait_pids(data, 0);
-// 			if (data->pids)
-// 				free(data->pids);
-// 		}

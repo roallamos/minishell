@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/15 08:06:31 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:10:00 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,8 +188,8 @@ int		append(t_data *data, int i);
 void	close_files(t_cmd *list);
 void	open_tmp_file(t_data *data, int i);
 void	delete_here_docs(t_data *data);
-void	pipes_redirs(t_data *data, int i);
-void	files_redirs(t_data *data);
+void	pipes_redirs(t_data *data, int i, t_cmd *list);
+void	files_redirs(t_data *data, t_cmd *list);
 void	close_pipes(t_data *data, int i);
 void	remove_quotes(char **args, int f);
 void	do_echo(t_data *data);

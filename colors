@@ -1,0 +1,28 @@
+// Macro definition for text colors
+# define BLACK			"\001\033[1;30m\002"
+# define RED			"\001\033[0;31m\002"
+# define GREEN			"\001\033[0;32m\002"
+# define YELLOW			"\001\033[0;33m\002"
+# define BLUE			"\001\033[0;34m\002"
+# define MAGENTA		"\001\033[0;35m\002"
+# define CYAN			"\001\033[0;36m\002"
+# define WHITE			"\001\033[0;37m\002"
+
+// Macro definition for background colors
+# define BG_RED			"\001\033[41m\002"
+# define BG_GREEN		"\001\033[42m\002"
+# define BG_YELLOW		"\001\033[43m\002"
+# define BG_BLUE		"\001\033[44m\002"
+# define BG_MAGENTA		"\001\033[45m\002"
+# define BG_CYAN		"\001\033[46m\002"
+# define BG_WHITE		"\001\033[47m\002"
+
+// Macro definition for text styles
+# define BOLD			"\001\033[1m\002"
+# define UNDERLINE		"\001\033[4m\002"
+# define RESET			"\001\033[0m\002"
+
+// Macro definition for text styles & colors
+# define BOLD_GREEN		"\001\033[1;32m\002"
+# define BOLD_YELLOW	"\001\033[1;33m\002"
+# define BOLD_WHITE		"\001\033[1;37m\002"

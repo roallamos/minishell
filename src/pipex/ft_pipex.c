@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:38:30 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/15 08:50:13 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:01:51 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ static int	pipex(t_data *data, int i, t_cmd *list)
 	if (pid == 0)
 	{
 		signal(SIGQUIT, SIG_DFL);
-		pipes_redirs(data, i);
-		files_redirs(data);
+		pipes_redirs(data, i, list);
+		files_redirs(data, list);
 		close_files(list);
 		get_cmd_and_execute(data);
 	}
