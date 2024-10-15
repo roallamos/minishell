@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/15 17:21:49 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/15 18:03:43 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,30 @@ int	check_builtin(t_data *data, int in_child)
 	return (0);
 }
 
-void	open_files(t_data *data)
+static int	open_heredocs(t_data *data)
+{
+	int		i;
+	t_cmd	*tmp;
+	int		stop;
+
+	tmp = data->list;
+	while (data->list)
+	{
+		stop = 0;
+		i = 0;
+		while (data->list->docs && data->list->docs[i].doc && stop == 0)
+		{
+			if (data->list->docs[i].flag == HERE_DOC)
+				stop = heredoc(data, i);
+			i++;
+		}
+		data->list = data->list->next;
+	}
+	data->list = tmp;
+	return (stop);
+}
+
+static void	open_files(t_data *data)
 {
 	int		i;
 	t_cmd	*tmp;
@@ -55,8 +78,6 @@ void	open_files(t_data *data)
 		{
 			if (data->list->docs[i].flag == INFILE)
 				stop = infile(data, i);
-			if (data->list->docs[i].flag == HERE_DOC)
-				stop = heredoc(data, i);
 			if (data->list->docs[i].flag == OUTFILE)
 				stop = outfile(data, i);
 			if (data->list->docs[i].flag == APPEND)
@@ -70,7 +91,11 @@ void	open_files(t_data *data)
 
 void	execute(t_data *data)
 {
-	open_files(data);
+	int	stop;
+	
+	stop = open_heredocs(data);
+	if (!stop)
+		open_files(data);
 	if (!data->stop_exec)
 	{
 		if (data->num_commands == 1)
