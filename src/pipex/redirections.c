@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:10:33 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/14 18:43:27 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/15 10:40:49 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	duplication(t_data *data, int i, int std)
 		exit(1);
 	}
 	close(data->list->docs[i].fd);
+	data->list->docs[i].fd = -1;
 }
 
 void	files_redirs(t_data *data)

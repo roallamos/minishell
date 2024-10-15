@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/14 19:42:55 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:40:44 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void	open_files(t_data *data)
 	int		stop;
 
 	tmp = data->list;
-	stop = 0;
 	while (data->list)
 	{
+		stop = 0;
 		i = 0;
 		while (data->list->docs && data->list->docs[i].doc && stop == 0)
 		{
@@ -71,28 +71,31 @@ void	open_files(t_data *data)
 void	execute(t_data *data)
 {
 	open_files(data);
-	if (data->num_commands == 1 && !data->stop_exec)
+	if (!data->stop_exec)
 	{
-		if (check_builtin(data, 0) == 1)
-			return ;
-		else
+		if (data->num_commands == 1)
 		{
-			allocate_pids(data);
-			data->pids[0] = fork();
-			if (data->pids[0] == 0)
-			{
-				signal(SIGQUIT, SIG_DFL);
-				files_redirs(data);
-				get_cmd_and_execute(data);
-			}
-			signal(SIGINT, SIG_IGN);
-			close_files(data->list);
-			wait_pids(data, 0);
-			if (data->pids)
-				free(data->pids);
+			if (check_builtin(data, 0) == 1)
+				return ;
 		}
-	}
-	else if (!data->stop_exec)
 		exec_pipex(data);
+	}
+	close_files(data->list);
 	delete_here_docs(data);
 }
+
+// {
+// 			allocate_pids(data);
+// 			data->pids[0] = fork();
+// 			if (data->pids[0] == 0)
+// 			{
+// 				signal(SIGQUIT, SIG_DFL);
+// 				files_redirs(data);
+// 				get_cmd_and_execute(data);
+// 			}
+// 			signal(SIGINT, SIG_IGN);
+// 			close_files(data->list);
+// 			wait_pids(data, 0);
+// 			if (data->pids)
+// 				free(data->pids);
+// 		}
