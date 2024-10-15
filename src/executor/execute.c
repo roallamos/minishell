@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/15 16:02:23 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:21:49 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	open_files(t_data *data)
 			if (data->list->docs[i].flag == INFILE)
 				stop = infile(data, i);
 			if (data->list->docs[i].flag == HERE_DOC)
-				heredoc(data, i);
+				stop = heredoc(data, i);
 			if (data->list->docs[i].flag == OUTFILE)
 				stop = outfile(data, i);
 			if (data->list->docs[i].flag == APPEND)

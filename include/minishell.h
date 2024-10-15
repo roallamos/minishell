@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/15 17:10:00 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:22:06 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,7 @@ int		delimiter_expansor(char **args, t_data *data);
 char	*expand_var(t_data *data, char *args);
 void	set_quotes(char c, int *d_quote, int *s_quote);
 int		infile(t_data *data, int i);
-void	heredoc(t_data *data, int i);
+int		heredoc(t_data *data, int i);
 int		outfile(t_data *data, int i);
 int		append(t_data *data, int i);
 void	close_files(t_cmd *list);
