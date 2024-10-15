@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:24:43 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/11 20:07:02 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/15 18:25:37 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ int	check_export(char *export, t_data *data)
 	i = 0;
 	data->d_quote = 0;
 	data->s_quote = 0;
-	while (export[i] && (export[i] != '=' || i == 0))
+	while ((export[i] && (export[i] != '=' || i == 0)) || !ft_strlen(export))
 	{
 		set_quotes(export[i], &data->d_quote, &data->s_quote);
 		if ((i == 0 && !ft_isalpha(export[i]))
-			|| (i != 0 && !ft_isalnum(export[i])))
+			|| (i != 0 && !ft_isalnum(export[i])) || !ft_strlen(export)) 
 		{
 			printf("export: %s not a valid identifier\n", export);
 			g_exit_status = 1;
