@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/15 18:14:14 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/15 22:36:41 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ void	full_expansor(char **args, t_data *data);
 void	heredock_expansor(char **args, t_data *data);
 int		delimiter_expansor(char **args, t_data *data);
 char	*expand_var(t_data *data, char *args);
-void	set_quotes(char c, int *d_quote, int *s_quote);
+int		set_quotes(char c, int *d_quote, int *s_quote);
 int		infile(t_data *data, int i);
 int		heredoc(t_data *data, int i);
 int		outfile(t_data *data, int i);
@@ -201,7 +201,7 @@ int		nb_redir(char **args);
 void	redirection_type(t_docs *redir, char *args, int pos);
 void	fill_redir_struct(t_docs *redir, char **args, int i, int j);
 int		args_nb(const char *command, t_data *data);
-void	ft_cut_cmd(char *command, char **ret, t_data *data);
+void	ft_cut_cmd(char *command, char **ret);
 int		only_spaces(const char *command);
 int		allocate_pids(t_data *data);
 

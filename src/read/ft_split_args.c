@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:18:15 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/15 08:08:00 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/15 22:51:05 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ char	**ft_split_args(char *command, t_data *data)
 	ret = ft_calloc(nb + 1, sizeof(char *));
 	data->s_quote = 0;
 	data->d_quote = 0;
-	ft_cut_cmd(command, ret, data);
+	ft_cut_cmd(command, ret);
 	ret = trim_spaces(ret);
 	return (ret);
 }
