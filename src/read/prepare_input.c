@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/09/30 20:22:04 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/15 08:08:15 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	**ft_args(char **args)
 		else
 			ret[j++] = ft_strdup(args[i++]);
 	}
-	ft_free_array(args);
+	ft_free_array((void **)args);
 	return (ret);
 }
 
@@ -93,7 +93,7 @@ char	**exclude_redir(char **args)
 		else
 			i += 2;
 	}
-	ft_free_array(args);
+	ft_free_array((void **)args);
 	return (ret);
 }
 
@@ -132,7 +132,7 @@ t_cmd	*ft_prepare_list(t_data *data)
 		ft_lstcmdadd_back(&list, ft_new_node(data->commands[i], data));
 		i++;
 	}
-	ft_free_array(data->commands);
+	ft_free_array((void **)data->commands);
 	data->num_commands = i;
 	return (list);
 }

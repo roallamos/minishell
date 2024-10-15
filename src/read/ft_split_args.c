@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:18:15 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/11 20:06:54 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/15 08:08:00 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static char	**trim_spaces(char **args)
 			ret[i] = ft_strtrim(args[i], " \t \n \f \r \v");
 			i++;
 		}
-		ft_free_array(args);
+		ft_free_array((void **)args);
 	}
 	return (ret);
 }

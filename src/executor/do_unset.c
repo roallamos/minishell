@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 11:02:04 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/10 21:18:39 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/15 08:07:29 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char	**ft_delete_var(char **env, int pos)
 		new_env[i] = ft_strdup(env[i + 1]);
 		i++;
 	}
-	ft_free_array(env);
+	ft_free_array((void **)env);
 	return (new_env);
 }
 

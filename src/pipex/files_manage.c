@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:07:31 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/10 20:39:51 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/15 08:07:52 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	write_here_doc(t_data *data, char	*limiter, int i)
 		write(data->list->docs[i].fd, line[0], ft_strlen(line[0]));
 		free(line[0]);
 	}
-	ft_free_array(line);
+	ft_free_array((void **)line);
 	free(limiter);
 }
 

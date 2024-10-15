@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/14 19:31:52 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/15 08:08:31 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static void	no_input_exit(t_data *data)
 {
 	free(data->prompt);
-	ft_free_array(data->env);
-	ft_free_array(data->path);
+	ft_free_array((void **)data->env);
+	ft_free_array((void **)data->path);
 	ft_free_lst(data);
 	printf("exit\n");
 	exit(0);
@@ -32,7 +32,7 @@ static void	parser_to_executor(t_data *data)
 			execute(data);
 	}
 	else
-		ft_free_array(data->commands);
+		ft_free_array((void **)data->commands);
 }
 
 void	read_input(t_data *data)

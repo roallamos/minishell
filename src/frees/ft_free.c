@@ -6,13 +6,13 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:50:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/07 13:56:09 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/15 08:07:46 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	ft_free_array(char **array)
+void	ft_free_array(void **array)
 {
 	int	i;
 
@@ -55,7 +55,7 @@ void	ft_free_lst(t_data *data)
 	{
 		i = 0;
 		next = data->list->next;
-		ft_free_array(data->list->args);
+		ft_free_array((void **)data->list->args);
 		while (data->list->docs && data->list->docs[i].doc)
 			free(data->list->docs[i++].doc);
 		free(data->list->docs);

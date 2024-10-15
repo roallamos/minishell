@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:38:30 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/14 19:45:57 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/15 08:50:13 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ static int	do_pipe(t_data *data)
 {
 	int	i;
 
-	data->pipefd = malloc((data->num_commands - 1) * sizeof(int *));
+	data->pipefd = ft_calloc((data->num_commands), sizeof(int *));
 	if (data->pipefd == NULL)
 		return (1);
 	i = 0;
 	while (i < data->num_commands - 1)
 	{
-		data->pipefd[i] = malloc(2 * sizeof(int));
+		data->pipefd[i] = ft_calloc(2, sizeof(int));
 		if (data->pipefd[i] == NULL || pipe(data->pipefd[i]) == -1)
 		{
 			perror("pipe");
 			if (data->pids)
 				free(data->pids);
-			ft_free_array(data->pipefd);
+			ft_free_array((void **)data->pipefd);
 			return (1);
 		}
 		i++;

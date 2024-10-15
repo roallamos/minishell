@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:54:45 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/14 19:30:12 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/15 08:31:06 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ static int	return_home(void)
 		g_exit_status = 1;
 		res = -2;
 	}
-	free(home);
 	return (res);
 }
 
@@ -94,9 +93,8 @@ void	do_cd(t_data *data, int pos)
 	else if (data->list->args[pos + 1] && (*data->list->args[pos + 1] != '~'
 			&& *data->list->args[pos + 1] != '-'))
 		res = chdir(data->list->args[pos + 1]);
-	else if (data->list->args[pos + 1] && (*data->list->args[pos + 1] == '~'))
-		res = return_home();
-	else if (!data->list->args[pos + 1])
+	else if ((data->list->args[pos + 1] && (*data->list->args[pos + 1] == '~'))
+		|| !data->list->args[pos + 1])
 		res = return_home();
 	else if (data->list->args[pos + 1] && (*data->list->args[pos + 1] == '-'))
 	{
