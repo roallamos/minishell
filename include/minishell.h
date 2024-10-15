@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/15 17:22:06 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/15 18:14:14 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ void	dup_env(t_data *data, char **env);
 void	get_cmd_and_execute(t_data *data);
 void	print_env(t_data *data);
 void	set_prompt(t_data *data);
-void	do_exit(t_data *data);
+void	do_exit(t_data *data, int in_child);
 void	do_cd(t_data *data, int pos);
 void	get_pwd(t_data *data);
 int		ft_istoken(int a);

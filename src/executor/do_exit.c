@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   do_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:14:44 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/15 08:07:19 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/15 18:13:23 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	do_exit(t_data *data)
+void	do_exit(t_data *data, int in_child)
 {
 	int	exit_status;
 
-	printf("exit\n");
+	if (!in_child)
+		printf("exit\n");
 	exit_status = ft_atoi(data->list->args[1]);
 	free(data->prompt);
 	ft_free_array((void **)data->env);
