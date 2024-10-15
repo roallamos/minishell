@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 21:05:16 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/14 13:13:21 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/15 18:03:50 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,10 @@ char	*expand_var(t_data *data, char *args)
 			&& args[i + j] != '$'
 			&& args[i + j] != '"' && args[i + j] != '\''))
 		j++;
-	if (!var)
+	if (!var && args[i] && args[i + 1] && args[i + 1] != '$')
 		var = ft_strndup(&args[i], &args[i + j] - &args[i]);
+	else if (!var)
+		return (args);
 	args = ft_replace(var, get_from_env(data, var), args);
 	return (args);
 }
