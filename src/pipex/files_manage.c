@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:07:31 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/15 17:22:34 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/15 18:34:24 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	heredoc(t_data *data, int i)
 	write_here_doc(data, limiter, i);
 	close(data->list->docs[i].fd);
 	if (!data->stop_exec)
-		return(infile(data, i));
+		return (infile(data, i));
 	else
 		return (1);
 }
@@ -105,6 +105,6 @@ int	infile(t_data *data, int i)
 		write_error("minishell: Permission denied: ",
 			data->list->docs[i].doc);
 		return (1);
-	}	
+	}
 	return (0);
 }

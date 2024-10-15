@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/15 18:13:50 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/15 18:34:37 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static void	open_files(t_data *data)
 void	execute(t_data *data)
 {
 	int	stop;
-	
+
 	stop = open_heredocs(data);
 	if (!stop)
 		open_files(data);
