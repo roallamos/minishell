@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:17:20 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/10 18:28:51 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/16 17:22:48 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ int	env_size(char **arr)
 	return (i);
 }
 
+static void 	no_env(t_data *data)
+{
+	data->env = ft_calloc(sizeof(char *), 2 + 1);
+	if (!data->env)
+		return ;
+	data->env[0] = ft_strjoin("PWD=", data->pwd);
+	data->env[1] = ft_strdup("SHLVL=1");
+}
+
 void	dup_env(t_data *data, char **env)
 {
 	int	i;
@@ -57,6 +66,8 @@ void	dup_env(t_data *data, char **env)
 			i++;
 		}
 	}
+	else
+		no_env(data);
 }
 
 void	print_env(t_data *data)

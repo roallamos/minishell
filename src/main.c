@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:12:44 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/15 16:54:15 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/16 17:09:27 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	main(int argc, char *argv[], char *env[])
 		return (1);
 	}
 	ft_memset(&data, 0, sizeof(t_data));
-	dup_env(&data, env);
 	get_pwd(&data);
+	dup_env(&data, env);
 	read_input(&data);
 	return (0);
 }
