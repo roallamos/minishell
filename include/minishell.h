@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/15 22:36:41 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/16 01:39:18 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#if !defined(MINISHELL_H)
+#ifndef MINISHELL_H
 # define MINISHELL_H
-
 // for printf, readline, perror
 # include <stdio.h>
 // for strerror

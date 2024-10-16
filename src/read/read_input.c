@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/15 18:33:43 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/16 01:20:04 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	no_input_exit(t_data *data)
-{
-	free(data->prompt);
-	ft_free_array((void **)data->env);
-	ft_free_array((void **)data->path);
-	ft_free_lst(data);
-	printf("exit\n");
-	exit(0);
-}
+// static void	no_input_exit(t_data *data)
+// {
+// 	free(data->prompt);
+// 	ft_free_array((void **)data->env);
+// 	ft_free_array((void **)data->path);
+// 	ft_free_lst(data);
+// 	printf("exit\n");
+// 	exit(g_exit_status);
+// }
 
 static void	parser_to_executor(t_data *data)
 {
@@ -45,7 +45,8 @@ void	read_input(t_data *data)
 		data->input = readline(data->prompt);
 		add_history(data->input);
 		if (!data->input)
-			no_input_exit(data);
+			do_exit(data, 0);
+			// no_input_exit(data);
 		else if (check_input(data->input, data))
 		{
 			printf("syntax error near unexpected token\n");

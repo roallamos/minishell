@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 12:15:29 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/15 22:50:54 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/16 00:54:53 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	advance_tokkens(const char *command, int *i, int *args)
 
 int	args_nb(const char *command, t_data *data)
 {
-	int i;
+	int	i;
 	int	args;
 
 	args = 0;

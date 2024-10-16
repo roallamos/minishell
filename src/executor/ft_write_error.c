@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 15:01:27 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/10 17:31:31 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/16 01:39:50 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	write_error(char *msg, char *arg)
 {
-	ft_putstr_fd(msg, STDERR_FILENO);
-	ft_putendl_fd(arg, STDERR_FILENO);
+	ft_putstr_fd(msg, STDERR);
+	ft_putendl_fd(arg, STDERR);
 }
 
 void	write_n_change_status(char *msg, int status)
