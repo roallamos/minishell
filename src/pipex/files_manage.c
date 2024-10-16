@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:07:31 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/15 18:34:24 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/16 16:04:00 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,21 @@ int	outfile(t_data *data, int i)
 	return (0);
 }
 
-static void	write_here_doc(t_data *data, char	*limiter, int i)
+static void	write_here_doc(t_data *data, char *limiter, int i, int lim_len)
 {
 	char	**line;
-	int		lim_len;
 
-	lim_len = ft_strlen(limiter);
 	line = ft_calloc(2, sizeof(char *));
 	g_exit_status = 0;
 	while (1)
 	{
 		line[0] = readline("> ");
 		if (!line[0])
+		{
+			ft_putstr_fd("minishell: warning: here-document wanted ", STDERR);
+			ft_putstr_fd(limiter, STDERR);
 			break ;
+		}
 		line[0] = ft_strjoin_free(line[0], "\n");
 		if (g_exit_status == 130)
 			data->stop_exec = 1;
@@ -80,10 +82,12 @@ static void	write_here_doc(t_data *data, char	*limiter, int i)
 int	heredoc(t_data *data, int i)
 {
 	char	*limiter;
+	int		lim_len;
 
 	limiter = ft_strjoin_free(data->list->docs[i].doc, "\n");
+	lim_len = ft_strlen(limiter);
 	open_tmp_file(data, i);
-	write_here_doc(data, limiter, i);
+	write_here_doc(data, limiter, i, lim_len);
 	close(data->list->docs[i].fd);
 	if (!data->stop_exec)
 		return (infile(data, i));

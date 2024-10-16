@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/15 18:34:37 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:45:45 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	check_builtin(t_data *data, int in_child)
 	else if (in_child == 1 && !ft_strcmp(data->list->args[0], "env"))
 		return (print_env(data), 1);
 	else if (!ft_strcmp(data->list->args[0], "exit"))
-		do_exit(data, in_child);
+		return (do_exit(data, in_child));
 	return (0);
 }
 

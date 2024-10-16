@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/16 01:20:04 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:57:41 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-
-// static void	no_input_exit(t_data *data)
-// {
-// 	free(data->prompt);
-// 	ft_free_array((void **)data->env);
-// 	ft_free_array((void **)data->path);
-// 	ft_free_lst(data);
-// 	printf("exit\n");
-// 	exit(g_exit_status);
-// }
 
 static void	parser_to_executor(t_data *data)
 {
@@ -46,7 +36,6 @@ void	read_input(t_data *data)
 		add_history(data->input);
 		if (!data->input)
 			do_exit(data, 0);
-			// no_input_exit(data);
 		else if (check_input(data->input, data))
 		{
 			printf("syntax error near unexpected token\n");

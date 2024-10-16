@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:10:33 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/15 15:54:37 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:28:45 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	files_redirs(t_data *data, t_cmd *list)
 	int	i;
 
 	i = 0;
-	while (data->list->docs && data->list->docs[i].doc)
+	while (data->list && data->list->docs && data->list->docs[i].doc)
 	{
 		if (data->list->docs[i].flag == INFILE
 			|| data->list->docs[i].flag == HERE_DOC)
