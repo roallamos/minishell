@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:17:20 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/16 17:22:48 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/17 11:39:40 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	env_size(char **arr)
 	return (i);
 }
 
-static void 	no_env(t_data *data)
+static void	no_env(t_data *data)
 {
 	data->env = ft_calloc(sizeof(char *), 2 + 1);
 	if (!data->env)

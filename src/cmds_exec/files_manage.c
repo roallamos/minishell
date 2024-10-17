@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   files_manage.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:07:31 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/16 16:04:00 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:26:23 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,23 @@
 
 int	append(t_data *data, int i)
 {
+	if (access(data->list->docs[i].doc, F_OK) == 0)
+	{
+		if (access(data->list->docs[i].doc, W_OK) == -1)
+		{
+			write_error("minishell: Permission denied: ",
+				data->list->docs[i].doc);
+			data->list->stop_exec = 1;
+			return (1);
+		}
+	}
 	data->list->docs[i].fd = open(data->list->docs[i].doc, O_CREAT | O_WRONLY
 			| O_APPEND, 0644);
 	if (data->list->docs[i].fd < 0)
 	{
 		write_error("minishell: No such file or directory: ",
 			data->list->docs[i].doc);
-		return (1);
-	}
-	if (access(data->list->docs[i].doc, W_OK) == -1)
-	{
-		write_error("minishell: Permission denied: ",
-			data->list->docs[i].doc);
+		data->list->stop_exec = 1;
 		return (1);
 	}
 	return (0);
@@ -33,18 +38,23 @@ int	append(t_data *data, int i)
 
 int	outfile(t_data *data, int i)
 {
+	if (access(data->list->docs[i].doc, F_OK) == 0)
+	{
+		if (access(data->list->docs[i].doc, W_OK) == -1)
+		{
+			write_error("minishell: Permission denied: ",
+				data->list->docs[i].doc);
+			data->list->stop_exec = 1;
+			return (1);
+		}
+	}
 	data->list->docs[i].fd = open(data->list->docs[i].doc, O_CREAT | O_WRONLY
 			| O_TRUNC, 0644);
 	if (data->list->docs[i].fd < 0)
 	{
 		write_error("minishell: No such file or directory: ",
 			data->list->docs[i].doc);
-		return (1);
-	}
-	if (access(data->list->docs[i].doc, W_OK) == -1)
-	{
-		write_error("minishell: Permission denied: ",
-			data->list->docs[i].doc);
+		data->list->stop_exec = 1;
 		return (1);
 	}
 	return (0);
@@ -67,7 +77,7 @@ static void	write_here_doc(t_data *data, char *limiter, int i, int lim_len)
 		}
 		line[0] = ft_strjoin_free(line[0], "\n");
 		if (g_exit_status == 130)
-			data->stop_exec = 1;
+			data->stop_exec_hd = 1;
 		if (ft_strncmp(line[0], limiter, lim_len) == 0 || g_exit_status == 130)
 			break ;
 		if (data->list->docs[i].exp)
@@ -89,7 +99,7 @@ int	heredoc(t_data *data, int i)
 	open_tmp_file(data, i);
 	write_here_doc(data, limiter, i, lim_len);
 	close(data->list->docs[i].fd);
-	if (!data->stop_exec)
+	if (!data->stop_exec_hd)
 		return (infile(data, i));
 	else
 		return (1);
@@ -97,17 +107,22 @@ int	heredoc(t_data *data, int i)
 
 int	infile(t_data *data, int i)
 {
+	if (access(data->list->docs[i].doc, F_OK) == 0)
+	{
+		if (access(data->list->docs[i].doc, R_OK) == -1)
+		{
+			write_error("minishell: Permission denied: ",
+				data->list->docs[i].doc);
+			data->list->stop_exec = 1;
+			return (1);
+		}
+	}
 	data->list->docs[i].fd = open(data->list->docs[i].doc, O_RDONLY);
 	if (data->list->docs[i].fd < 0)
 	{
 		write_error("minishell: No such file or directory: ",
 			data->list->docs[i].doc);
-		return (1);
-	}
-	if (access(data->list->docs[i].doc, R_OK) == -1)
-	{
-		write_error("minishell: Permission denied: ",
-			data->list->docs[i].doc);
+		data->list->stop_exec = 1;
 		return (1);
 	}
 	return (0);

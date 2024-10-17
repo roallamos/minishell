@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:24:58 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/16 15:57:41 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:50:04 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ static void	parser_to_executor(t_data *data)
 	{
 		data->list = ft_prepare_list(data);
 		if (data->list->args)
+		{
 			execute(data);
+			close_files(data->list);
+		}
 	}
 	else
 		ft_free_array((void **)data->commands);
@@ -30,7 +33,7 @@ void	read_input(t_data *data)
 	while (1)
 	{
 		signal(SIGINT, handler);
-		data->stop_exec = 0;
+		data->stop_exec_hd = 0;
 		data->prompt = ft_strdup("minishell$ ");
 		data->input = readline(data->prompt);
 		add_history(data->input);

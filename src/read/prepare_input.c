@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:40:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/15 08:08:15 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:05:24 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ t_cmd	*ft_new_node(char *commands, t_data *data)
 	(void) data;
 	list = ft_calloc(1, sizeof(t_cmd));
 	list->cmd = NULL;
+	list->stop_exec = 0;
 	list->args = ft_split_args(commands, data);
 	list->docs = ft_redir(list->args);
 	list->args = exclude_redir(list->args);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:37:39 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/30 18:19:57 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/17 12:26:49 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	redirection_type(t_docs *redir, char *args, int pos)
 	if (!ft_strcmp(args, "<"))
 		redir[pos].flag = INFILE;
 	else if (!ft_strcmp(args, "<<"))
-		redir[pos].flag = HERE_DOC;
+		redir[pos].flag = HEREDOC;
 	else if (!ft_strcmp(args, ">"))
 		redir[pos].flag = OUTFILE;
 	else if (!ft_strcmp(args, ">>"))

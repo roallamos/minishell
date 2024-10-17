@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:42:08 by rodralva          #+#    #+#             */
-/*   Updated: 2024/09/30 11:51:49 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:23:51 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	**check_echo_flag(char **args, int *new_line)
 		{
 			if (args[i][j] == '-' && f == 0 && ft_strcmp(args[i], "-"))
 				f = 1;
-			else if (args[i][j] != 'n')
+			else if (args[i][j] != 'n' || (args[i][j] == 'n' && j == 0))
 				return (&args[i]);
 			j++;
 		}

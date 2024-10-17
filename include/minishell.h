@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/16 15:45:39 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:59:03 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@
 # define STDERR	STDERR_FILENO
 
 # define INFILE		0
-# define HERE_DOC	1
+# define HEREDOC	1
 # define OUTFILE	2
 # define APPEND		3
 
@@ -115,6 +115,7 @@ typedef struct s_cmd
 	char			*cmd;
 	char			**args;
 	t_docs			*docs;
+	int				stop_exec;
 	struct s_cmd	*next;
 
 }	t_cmd;
@@ -137,7 +138,7 @@ typedef struct s_data
 	int			size;
 	const char	*pos;
 	const char	*start;
-	int			stop_exec;
+	int			stop_exec_hd;
 	char		quote;
 	pid_t		*pids;
 	int			num_commands;
@@ -172,7 +173,7 @@ void	get_pwd(t_data *data);
 int		ft_istoken(int a);
 t_cmd	*ft_prepare_list(t_data *data);
 void	ft_lstcmdadd_back(t_cmd **lst, t_cmd *new);
-void	exec_pipex(t_data *data);
+void	cmds_exec(t_data *data);
 void	wait_pids(t_data *data, int i);
 int		check_builtin(t_data *data, int in_child);
 void	full_expansor(char **args, t_data *data);
@@ -186,7 +187,7 @@ int		outfile(t_data *data, int i);
 int		append(t_data *data, int i);
 void	close_files(t_cmd *list);
 void	open_tmp_file(t_data *data, int i);
-void	delete_here_docs(t_data *data);
+void	delete_heredocs(t_data *data);
 void	pipes_redirs(t_data *data, int i, t_cmd *list);
 void	files_redirs(t_data *data, t_cmd *list);
 void	close_pipes(t_data *data, int i);
@@ -202,6 +203,5 @@ void	fill_redir_struct(t_docs *redir, char **args, int i, int j);
 int		args_nb(const char *command, t_data *data);
 void	ft_cut_cmd(char *command, char **ret);
 int		only_spaces(const char *command);
-int		allocate_pids(t_data *data);
 
-#endif // MINISHELL_H
+#endif

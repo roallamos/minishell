@@ -40,10 +40,10 @@ MANDATORY 	=	src/main.c \
 			src/executor/ft_pwd.c \
 			src/executor/ft_write_error.c \
 			src/frees/ft_free.c \
-			src/pipex/files_manage.c \
-			src/pipex/ft_pipex.c \
-			src/pipex/redirections.c \
-			src/pipex/utils.c \
+			src/cmds_exec/files_manage.c \
+			src/cmds_exec/cmds_exec.c \
+			src/cmds_exec/redirections.c \
+			src/cmds_exec/utils.c \
 			src/read/check_input.c \
 			src/read/expand.c \
 			src/read/ft_split_args.c \

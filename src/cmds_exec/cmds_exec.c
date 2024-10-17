@@ -1,16 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pipex.c                                         :+:      :+:    :+:   */
+/*   cmds_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:38:30 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/15 16:01:51 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:22:42 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+static int	allocate_pids(t_data *data)
+{
+	data->pids = malloc(sizeof(pid_t) * data->num_commands);
+	if (!data->pids)
+	{
+		perror("malloc pids");
+		return (1);
+	}
+	return (0);
+}
 
 static int	do_pipe(t_data *data)
 {
@@ -18,14 +29,17 @@ static int	do_pipe(t_data *data)
 
 	data->pipefd = ft_calloc((data->num_commands), sizeof(int *));
 	if (data->pipefd == NULL)
+	{
+		perror("malloc pipefd");
 		return (1);
+	}
 	i = 0;
 	while (i < data->num_commands - 1)
 	{
 		data->pipefd[i] = ft_calloc(2, sizeof(int));
 		if (data->pipefd[i] == NULL || pipe(data->pipefd[i]) == -1)
 		{
-			perror("pipe");
+			perror("malloc pipefd[i] or pipe");
 			if (data->pids)
 				free(data->pids);
 			ft_free_array((void **)data->pipefd);
@@ -36,10 +50,10 @@ static int	do_pipe(t_data *data)
 	return (0);
 }
 
-static int	do_fork(pid_t *pid, t_data *data)
+static int	do_fork(t_data *data, int i)
 {
-	*pid = fork();
-	if (*pid == -1)
+	data->pids[i] = fork();
+	if (data->pids[i] == -1)
 	{
 		if (data->pids)
 			free(data->pids);
@@ -50,37 +64,25 @@ static int	do_fork(pid_t *pid, t_data *data)
 	return (0);
 }
 
-int	allocate_pids(t_data *data)
+static int	child_process(t_data *data, int i, t_cmd *list)
 {
-	data->pids = malloc(sizeof(pid_t) * data->num_commands);
-	if (!data->pids)
-	{
-		perror("malloc");
+	if (do_fork(data, i))
 		return (1);
-	}
-	return (0);
-}
-
-static int	pipex(t_data *data, int i, t_cmd *list)
-{
-	pid_t		pid;
-
-	if (do_fork(&pid, data))
-		return (1);
-	if (pid == 0)
+	if (data->pids[i] == 0)
 	{
 		signal(SIGQUIT, SIG_DFL);
 		pipes_redirs(data, i, list);
-		files_redirs(data, list);
+		if (!data->list->stop_exec)
+			files_redirs(data, list);
 		close_files(list);
+		if (data->list->stop_exec)
+			exit(1);
 		get_cmd_and_execute(data);
 	}
-	else
-		data->pids[i] = pid;
 	return (0);
 }
 
-void	exec_pipex(t_data *data)
+void	cmds_exec(t_data *data)
 {
 	int			i;
 	t_cmd		*tmp;
@@ -93,7 +95,7 @@ void	exec_pipex(t_data *data)
 		return ;
 	while (i < data->num_commands)
 	{
-		if (pipex(data, i, tmp))
+		if (child_process(data, i, tmp))
 			break ;
 		signal(SIGINT, SIG_IGN);
 		data->list = data->list->next;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/16 15:45:45 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:50:26 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	open_heredocs(t_data *data)
 		i = 0;
 		while (data->list->docs && data->list->docs[i].doc && stop == 0)
 		{
-			if (data->list->docs[i].flag == HERE_DOC)
+			if (data->list->docs[i].flag == HEREDOC)
 				stop = heredoc(data, i);
 			i++;
 		}
@@ -96,15 +96,14 @@ void	execute(t_data *data)
 	stop = open_heredocs(data);
 	if (!stop)
 		open_files(data);
-	if (!data->stop_exec)
+	if (!data->stop_exec_hd)
 	{
 		if (data->num_commands == 1)
 		{
 			if (check_builtin(data, 0) == 1)
 				return ;
 		}
-		exec_pipex(data);
+		cmds_exec(data);
 	}
-	close_files(data->list);
-	delete_here_docs(data);
+	delete_heredocs(data);
 }

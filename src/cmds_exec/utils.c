@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:59:37 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/14 19:04:19 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/17 11:39:16 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	open_tmp_file(t_data *data, int i)
 	count++;
 }
 
-void	delete_here_docs(t_data *data)
+void	delete_heredocs(t_data *data)
 {
 	int		i;
 	int		j;
@@ -88,10 +88,13 @@ void	wait_pids(t_data *data, int i)
 {
 	while (i < data->num_commands)
 	{
-		if (i == data->num_commands - 1)
-			waitpid(data->pids[i], &data->status, 0);
-		else
-			waitpid(data->pids[i], NULL, 0);
+		if (data->pids)
+		{
+			if (i == data->num_commands - 1)
+				waitpid(data->pids[i], &data->status, 0);
+			else
+				waitpid(data->pids[i], NULL, 0);
+		}
 		i++;
 	}
 	if (WIFEXITED(data->status))
