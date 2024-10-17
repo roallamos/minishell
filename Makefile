@@ -27,23 +27,25 @@ endif
 
 MANDATORY 	=	src/main.c \
 			src/signals.c \
+			src/cmds_exec/files_manage.c \
+			src/cmds_exec/cmds_exec.c \
+			src/cmds_exec/redirections.c \
+			src/cmds_exec/utils.c \
 			src/executor/do_cd.c \
 			src/executor/do_exit.c \
 			src/executor/env_utils.c \
 			src/executor/execute_cmd.c \
 			src/executor/execute.c \
 			src/executor/export.c \
+			src/executor/ft_atoll.c \
 			src/executor/do_unset.c \
 			src/executor/do_echo.c \
 			src/executor/ft_find_env_var.c \
 			src/executor/ft_get_cmd.c \
 			src/executor/ft_pwd.c \
 			src/executor/ft_write_error.c \
+			src/executor/print_env.c \
 			src/frees/ft_free.c \
-			src/cmds_exec/files_manage.c \
-			src/cmds_exec/cmds_exec.c \
-			src/cmds_exec/redirections.c \
-			src/cmds_exec/utils.c \
 			src/read/check_input.c \
 			src/read/expand.c \
 			src/read/ft_split_args.c \

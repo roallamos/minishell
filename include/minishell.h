@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/17 15:59:03 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:48:53 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,7 @@ void	get_cmd_and_execute(t_data *data);
 void	print_env(t_data *data);
 void	set_prompt(t_data *data);
 int		do_exit(t_data *data, int in_child);
+int		ft_atoll(const char *str, long long *result);
 void	do_cd(t_data *data, int pos);
 void	get_pwd(t_data *data);
 int		ft_istoken(int a);

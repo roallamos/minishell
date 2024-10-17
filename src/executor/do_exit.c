@@ -6,64 +6,11 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:14:44 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/17 17:27:09 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:47:37 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-#include <limits.h>
-
-static int	check_overflow(long long *result, int digit, int sign)
-{
-	if (*result > (LLONG_MAX - digit) / 10)
-	{
-		if (sign == 1)
-			*result = LLONG_MAX;
-		else
-			*result = LLONG_MIN;
-		return (1);
-	}
-	return (0);
-}
-
-static void	atoll_aux(const char **p, int *sign, int *subtract)
-{
-	while (ft_isspace(**p))
-		(*p)++;
-	if (**p == '-')
-	{
-		*sign = -1;
-		(*p)++;
-		*subtract = 1;
-	}
-	else if (**p == '+')
-		(*p)++;
-}
-
-static int	ft_atoll(const char *str, long long *result)
-{
-	int			sign;
-	int			subtract;
-	int			digit;
-	const char	*p = str;
-
-	*result = 0;
-	sign = 1;
-	subtract = 0;
-	atoll_aux(&p, &sign, &subtract);
-	while (*p >= '0' && *p <= '9')
-	{
-		digit = *p - '0';
-		p++;
-		if (subtract && (!(p) || !ft_isdigit(*p)))
-			digit--;
-		if (check_overflow(result, digit, sign))
-			return (1);
-		*result = *result * 10 + digit;
-	}
-	*result *= sign;
-	return (0);
-}
 
 static void	check_args_aux(t_data *data, int *j, int i)
 {

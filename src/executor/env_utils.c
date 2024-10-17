@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:17:20 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/17 11:39:40 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:50:32 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,21 +68,6 @@ void	dup_env(t_data *data, char **env)
 	}
 	else
 		no_env(data);
-}
-
-void	print_env(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	if (data->env)
-	{
-		while (data->env[i])
-		{
-			printf("%s\n", data->env[i]);
-			i++;
-		}
-	}
 }
 
 int	ft_lgth(const char *s1, const char *s2)
