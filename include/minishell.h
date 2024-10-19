@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/17 17:48:53 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/19 15:35:48 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,24 +128,16 @@ typedef struct s_data
 	char		**commands;
 	int			d_quote;
 	int			s_quote;
-	int			cmd_pos;
 	char		**env;
 	char		*pwd;
 	char		*oldpwd;
-	char		*prompt;
 	int			status;
-	int			cap;
-	int			size;
-	const char	*pos;
-	const char	*start;
 	int			stop_exec_hd;
-	char		quote;
 	pid_t		*pids;
 	int			num_commands;
 	int			**pipefd;
 	t_cmd		*list;
-	int			og_stdin;
-	int			og_stdout;
+	int			file_fd;
 }	t_data;
 
 void	handler(int signal);
@@ -158,25 +150,24 @@ void	write_n_change_status(char *msg, int status);
 void	ft_free_lst(t_data *data);
 void	ft_free_array(void **array);
 void	ft_free_env(t_data *data);
-void	read_input(t_data *data);
+void	read_input(t_data *data, int is_piped);
 int		check_input(char *input, t_data *data);
-void	execute(t_data *data);
+void	execute(t_data *data, int is_piped);
 void	export(t_data *data);
 int		env_size(char **arr);
 void	dup_env(t_data *data, char **env);
-void	get_cmd_and_execute(t_data *data);
+void	get_cmd_and_execute(t_data *data, int is_piped);
 void	print_env(t_data *data);
-void	set_prompt(t_data *data);
-int		do_exit(t_data *data, int in_child);
+int		do_exit(t_data *data, int in_child, int is_piped);
 int		ft_atoll(const char *str, long long *result);
 void	do_cd(t_data *data, int pos);
 void	get_pwd(t_data *data);
 int		ft_istoken(int a);
 t_cmd	*ft_prepare_list(t_data *data);
 void	ft_lstcmdadd_back(t_cmd **lst, t_cmd *new);
-void	cmds_exec(t_data *data);
+void	cmds_exec(t_data *data, int is_piped);
 void	wait_pids(t_data *data, int i);
-int		check_builtin(t_data *data, int in_child);
+int		check_builtin(t_data *data, int in_child, int is_piped);
 void	full_expansor(char **args, t_data *data);
 void	heredock_expansor(char **args, t_data *data);
 int		delimiter_expansor(char **args, t_data *data);
@@ -204,5 +195,7 @@ void	fill_redir_struct(t_docs *redir, char **args, int i, int j);
 int		args_nb(const char *command, t_data *data);
 void	ft_cut_cmd(char *command, char **ret);
 int		only_spaces(const char *command);
+int		execute_file(char *filename, t_data *data);
+void	verify_input(t_data *data, int is_piped);
 
 #endif

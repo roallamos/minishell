@@ -6,13 +6,13 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:03:59 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/17 16:50:26 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:54:08 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	check_builtin(t_data *data, int in_child)
+int	check_builtin(t_data *data, int in_child, int is_piped)
 {
 	if (!data->list->args || !data->list->args[0])
 		return (2);
@@ -36,7 +36,7 @@ int	check_builtin(t_data *data, int in_child)
 	else if (in_child == 1 && !ft_strcmp(data->list->args[0], "env"))
 		return (print_env(data), 1);
 	else if (!ft_strcmp(data->list->args[0], "exit"))
-		return (do_exit(data, in_child));
+		return (do_exit(data, in_child, is_piped));
 	return (0);
 }
 
@@ -89,7 +89,7 @@ static void	open_files(t_data *data)
 	data->list = tmp;
 }
 
-void	execute(t_data *data)
+void	execute(t_data *data, int is_piped)
 {
 	int	stop;
 
@@ -100,10 +100,10 @@ void	execute(t_data *data)
 	{
 		if (data->num_commands == 1)
 		{
-			if (check_builtin(data, 0) == 1)
+			if (check_builtin(data, 0, is_piped) == 1)
 				return ;
 		}
-		cmds_exec(data);
+		cmds_exec(data, is_piped);
 	}
 	delete_heredocs(data);
 }

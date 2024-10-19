@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:38:30 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/17 16:22:42 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:53:41 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static int	do_fork(t_data *data, int i)
 	return (0);
 }
 
-static int	child_process(t_data *data, int i, t_cmd *list)
+static int	child_process(t_data *data, int i, t_cmd *list, int is_piped)
 {
 	if (do_fork(data, i))
 		return (1);
@@ -77,12 +77,12 @@ static int	child_process(t_data *data, int i, t_cmd *list)
 		close_files(list);
 		if (data->list->stop_exec)
 			exit(1);
-		get_cmd_and_execute(data);
+		get_cmd_and_execute(data, is_piped);
 	}
 	return (0);
 }
 
-void	cmds_exec(t_data *data)
+void	cmds_exec(t_data *data, int is_piped)
 {
 	int			i;
 	t_cmd		*tmp;
@@ -95,7 +95,7 @@ void	cmds_exec(t_data *data)
 		return ;
 	while (i < data->num_commands)
 	{
-		if (child_process(data, i, tmp))
+		if (child_process(data, i, tmp, is_piped))
 			break ;
 		signal(SIGINT, SIG_IGN);
 		data->list = data->list->next;

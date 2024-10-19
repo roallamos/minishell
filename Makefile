@@ -35,6 +35,7 @@ MANDATORY 	=	src/main.c \
 			src/executor/do_exit.c \
 			src/executor/env_utils.c \
 			src/executor/execute_cmd.c \
+			src/executor/execute_file.c \
 			src/executor/execute.c \
 			src/executor/export.c \
 			src/executor/ft_atoll.c \
@@ -53,7 +54,6 @@ MANDATORY 	=	src/main.c \
 			src/read/lists.c \
 			src/read/prepare_input.c \
 			src/read/read_input.c \
-			src/read/set_prompt.c \
 			src/read/expand_utils.c \
 			src/read/redir_utils.c \
 			src/read/cut_cmd.c \

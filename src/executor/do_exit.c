@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:14:44 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/17 17:47:37 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/19 17:45:59 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,14 @@ static int	check_args(t_data *data)
 	return (0);
 }
 
-int	do_exit(t_data *data, int in_child)
+int	do_exit(t_data *data, int in_child, int is_piped)
 {
 	int	exit_status;
 
-	if (!in_child)
+	if (!in_child && !is_piped)
 		printf("exit\n");
+	if (data->file_fd != -1)
+		close(data->file_fd);
 	exit_status = check_args(data);
 	if (!exit_status && data->list && data->list->args[1])
 		exit_status = ft_atoi(data->list->args[1]);
@@ -70,7 +72,6 @@ int	do_exit(t_data *data, int in_child)
 		g_exit_status = exit_status;
 		return (1);
 	}
-	free(data->prompt);
 	ft_free_array((void **)data->env);
 	ft_free_array((void **)data->path);
 	ft_free_lst(data);
