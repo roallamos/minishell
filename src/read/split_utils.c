@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 12:15:29 by rodralva          #+#    #+#             */
-/*   Updated: 2024/10/16 00:54:53 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/21 19:01:15 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ int	args_nb(const char *command, t_data *data)
 	{
 		if (!set_quotes(command[i], &data->d_quote, &data->s_quote)
 			&& !ft_isspace(command[i]) && !ft_istoken(command[i])
-			&& (ft_isspace(command[i + 1]) || !command[i + 1]))
+			&& (ft_isspace(command[i + 1]) || !command[i + 1]
+			|| ft_istoken(command[i + 1])))
 			args++;
 		else if (ft_istoken(command[i]))
 			advance_tokkens(command, &i, &args);
