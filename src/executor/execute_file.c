@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 14:49:39 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/19 18:28:45 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/21 12:47:49 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,12 @@ int	execute_file(char *filename, t_data *data)
 			line = get_next_line(data->file_fd);
 		}
 	}
-	if (line)
-		free(line);
-	close(data->file_fd);
+	if (data->file_fd > -1)
+		close(data->file_fd);
 	ft_free_array((void **)data->env);
 	ft_free_array((void **)data->path);
+	free(data->pwd);
+	free(data->oldpwd);
 	if (ret)
 		return (ret);
 	return (g_exit_status);

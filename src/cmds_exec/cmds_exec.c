@@ -6,7 +6,7 @@
 /*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:38:30 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/18 13:53:41 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/21 12:33:01 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ static int	child_process(t_data *data, int i, t_cmd *list, int is_piped)
 		if (!data->list->stop_exec)
 			files_redirs(data, list);
 		close_files(list);
+		if (data->file_fd > -1)
+			close(data->file_fd);
 		if (data->list->stop_exec)
 			exit(1);
 		get_cmd_and_execute(data, is_piped);
