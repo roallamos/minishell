@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:13:42 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/21 16:39:16 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/21 16:58:19 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ void	ft_free_lst(t_data *data);
 void	ft_free_array(void **array);
 void	ft_free_env(t_data *data);
 void	ft_free_all(t_data *data);
-void	ft_free_pids(pid_t *pids);
+void	ft_free_pids(pid_t **pids);
 void	read_input(t_data *data, int is_piped);
 int		check_input(char *input, t_data *data);
 void	execute(t_data *data, int is_piped);

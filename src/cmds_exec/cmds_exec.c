@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmds_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:38:30 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/21 16:39:36 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/21 16:59:16 by migumore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,5 @@ void	cmds_exec(t_data *data, int is_piped)
 	close_pipes(data, 0);
 	close_files(data->list);
 	wait_pids(data, 0);
-	ft_free_pids(data->pids);
+	ft_free_pids(&data->pids);
 }
