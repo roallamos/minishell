@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:50:18 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/15 08:07:46 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/21 16:39:00 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,26 @@ void	ft_free_lst(t_data *data)
 		free(data->list);
 		data->list = next;
 	}
+}
+
+void	ft_free_pids(pid_t *pids)
+{
+	if (pids)
+	{
+		free(pids);
+		pids = NULL;
+	}
+}
+
+void	ft_free_all(t_data *data)
+{
+	ft_free_array((void **)data->env);
+	ft_free_array((void **)data->path);
+	ft_free_lst(data);
+	if (data->pwd)
+		free(data->pwd);
+	if (data->oldpwd)
+		free(data->oldpwd);
+	rl_clear_history();
+	ft_free_pids(data->pids);
 }

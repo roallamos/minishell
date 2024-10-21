@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:10:33 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/17 16:20:36 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/21 16:27:26 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	pipes_redirs(t_data *data, int i, t_cmd *list)
 			perror("dup2 failed");
 			close_pipes(data, 0);
 			close_files(list);
+			ft_free_all(data);
 			exit(1);
 		}
 	}
@@ -31,6 +32,7 @@ void	pipes_redirs(t_data *data, int i, t_cmd *list)
 			perror("dup2 failed");
 			close_pipes(data, 0);
 			close_files(list);
+			ft_free_all(data);
 			exit(1);
 		}
 	}
@@ -43,12 +45,14 @@ static void	duplication(t_data *data, int i, int std, t_cmd *list)
 	{
 		perror("bad fd");
 		close_files(list);
+		ft_free_all(data);
 		exit(1);
 	}
 	if (dup2(data->list->docs[i].fd, std) == -1)
 	{
 		perror("dup2 failed");
 		close_files(list);
+		ft_free_all(data);
 		exit(1);
 	}
 	close(data->list->docs[i].fd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:14:44 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/19 17:45:59 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/21 16:19:02 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ int	do_exit(t_data *data, int in_child, int is_piped)
 		g_exit_status = exit_status;
 		return (1);
 	}
-	ft_free_array((void **)data->env);
-	ft_free_array((void **)data->path);
-	ft_free_lst(data);
+	ft_free_all(data);
 	exit(exit_status);
 }

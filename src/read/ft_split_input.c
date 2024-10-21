@@ -6,7 +6,7 @@
 /*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 23:47:13 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/09 17:45:46 by rodralva         ###   ########.fr       */
+/*   Updated: 2024/10/21 16:19:56 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,10 @@ char	**split_pipes(char *input, t_data *data)
 	{
 		ret = ft_calloc(pipes + 2, sizeof(char *));
 		ret[0] = ft_strdup(input);
-		free(input);
 		return (ret);
 	}
 	else
 		ret = copy_pipes(pipes, input);
-	free(input);
 	return (ret);
 }
 

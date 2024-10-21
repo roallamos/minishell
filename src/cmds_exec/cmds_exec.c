@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmds_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migumore <migumore@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rodralva <rodralva@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:38:30 by migumore          #+#    #+#             */
-/*   Updated: 2024/10/21 12:33:01 by migumore         ###   ########.fr       */
+/*   Updated: 2024/10/21 16:39:36 by rodralva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ static int	child_process(t_data *data, int i, t_cmd *list, int is_piped)
 		return (1);
 	if (data->pids[i] == 0)
 	{
+		rl_clear_history();
 		signal(SIGQUIT, SIG_DFL);
 		pipes_redirs(data, i, list);
 		if (!data->list->stop_exec)
@@ -78,7 +79,10 @@ static int	child_process(t_data *data, int i, t_cmd *list, int is_piped)
 		if (data->file_fd > -1)
 			close(data->file_fd);
 		if (data->list->stop_exec)
+		{
+			ft_free_all(data);
 			exit(1);
+		}
 		get_cmd_and_execute(data, is_piped);
 	}
 	return (0);
@@ -107,6 +111,5 @@ void	cmds_exec(t_data *data, int is_piped)
 	close_pipes(data, 0);
 	close_files(data->list);
 	wait_pids(data, 0);
-	if (data->pids)
-		free(data->pids);
+	ft_free_pids(data->pids);
 }
